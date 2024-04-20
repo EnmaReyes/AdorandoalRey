@@ -1,0 +1,150 @@
+$backGround : #d7dbe4;
+$titulos: #285480;
+$butonColor: #285480;
+$parrafo: 'Open Sans',
+sans-serif;
+$titulo: 'Montserrat',
+sans-serif;
+
+.scrolled {
+  padding: 0px 0;
+  background-color: #285480;
+}
+
+#navbar {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  margin: 0px 0px;
+  position: fixed;
+  z-index: 9999;
+  transition: 0.32s ease-in-out;
+
+
+  .container-navbar {
+    width: 100%;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+
+    .logo {
+      img {
+        width: 100px;
+      }
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .img {
+        padding: 0px;
+        width: 40px;
+        margin: 0px 10px;
+        transition: 0.2s ease-in-out;
+      }
+
+      .search-bar {
+        display: flex;
+        flex-direction: column;
+      }
+
+      span {
+        cursor: pointer;
+      }
+
+    }
+
+    // Drop Down\\
+    .custom-select-navbar {
+      display: flex;
+      position: relative;
+
+    }
+
+    .custom-select-navbar button {
+      padding: 10px;
+      border: none;
+      background-color: #00000000;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .custom-select-navbar .dropdown-menu-navbar {
+      list-style: none;
+      display: none;
+      position: absolute;
+      top: 50px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-menu-navbar {
+      color: black;
+      padding: 12px;
+      text-decoration: none;
+      display: block;
+
+      a {
+        color: black;
+        padding: 12px;
+        text-decoration: none;
+        display: block;
+      }
+    }
+
+    .custom-select-navbar .dropdown-menu-navbar a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .imgUSer {
+      width: 55px;
+      height: 55px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0px 0px 11px -3px rgba(241, 241, 241, 0.71);
+
+    }
+
+    /* Mostrar la lista cuando el botón se haga clic */
+    .custom-select-navbar button:focus+.dropdown-menu-navbar,
+    .custom-select-navbar .dropdown-menu-navbar:hover {
+      display: block;
+    }
+
+
+    .custom-select-navbar select {
+      width: 100%;
+      font-size: 18px;
+      padding: 5px 10px 5px 10px;
+      background-color: #ffffff00;
+      border-radius: 7px;
+      color: #000000;
+      cursor: pointer;
+      outline: none;
+
+    }
+
+    .custom-select-navbar:focus {
+      background: #17067781;
+      border: 0px solid #ffffff00;
+      border-radius: 7px 7px 0px 0px;
+      box-shadow: 1px 1px 6px 0px #E2E2E2;
+      cursor: pointer;
+    }
+
+    .custom-select-navbar::after {
+      display: flex;
+      content: "";
+      transform: translate(0, 20%);
+      width: 12px;
+      height: 12px;
+
+    }
+
+  }
+}

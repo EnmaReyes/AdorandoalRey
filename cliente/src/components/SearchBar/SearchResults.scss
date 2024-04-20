@@ -1,0 +1,42 @@
+#hidden{
+    display: none;
+}
+.results-list {
+    width: 24.5%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px #ddd;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    max-height: 300px;
+    overflow-y: scroll;
+    position: fixed;
+    right:660px;
+}
+
+.results-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.results-list::-webkit-scrollbar-thumb {
+    background-color: #182540;
+    /* Color del thumb (la parte deslizable) */
+    border-radius: 10px;
+    /* Bordes redondeados del thumb */
+}
+
+.results-list::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 10px;
+    /* Color del fondo de la barra de desplazamiento */
+}
+
+.search-result {
+    padding: 10px 20px;
+}
+
+.search-result:hover {
+    background-color: #f9cb80;
+    border-radius: 10px;
+}

@@ -1,0 +1,26 @@
+$backGround : #d7dbe4;
+$titulos: #285480;
+$butonColor: #285480;
+$parrafo: 'Open Sans',
+sans-serif;
+$titulo: 'Montserrat',
+sans-serif;
+
+.banner {
+    width: 40%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    transition: 0.8s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
+
+    .wrap {
+        color: #fff;
+        line-height: 60px;
+        font-family: $parrafo;
+        font-size: 45px;
+        transition: 0.9s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
+    }
+}

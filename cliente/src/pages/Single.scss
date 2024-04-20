@@ -1,0 +1,362 @@
+$backGround : #d7dbe4;
+$titulos: #285480;
+$butonColor: #285480;
+$parrafo: 'Open Sans',
+sans-serif;
+$titulo: 'Montserrat',
+sans-serif;
+
+#postImg {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
+  /* Agrega una transición suave para el cambio de tamaño */
+  box-shadow: 0px 3px 18px -8px rgba(2, 17, 119, 0.48);
+}
+
+.loading {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  backdrop-filter: blur(2px);
+}
+
+.scroll {
+  height: 300px !important;
+}
+
+.single {
+  margin-top: 20px;
+  display: flex;
+  gap: 50px;
+
+  .content {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+    gap: 15px;
+
+    .edit {
+      display: flex;
+      gap: 20px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 30px;     
+      
+      .editar {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.2s ease-out;
+
+        .fonticon{
+          transition: 0.1s;
+        }
+        .fonticon:active{
+          transform: scale(0.90);
+      }
+      }
+
+      .editar:hover {
+        color: $butonColor;
+
+      }
+    
+      .delete {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.2s ease-out;
+
+        .fonticon{
+          transition: 0.1s;
+        }
+        .fonticon:active{
+          transform: scale(0.90);
+      }
+      }
+
+      .delete:hover {
+        color: $butonColor;
+ 
+      }
+    }
+
+    h1 {
+      margin: 0px 15px 0px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 50px;
+      color: #070707;
+      text-align: center;
+    }
+
+    .social-icon {
+      gap: 380px;
+      height: 90px;
+      background-color: $backGround;
+      border-radius: 15px 15px 0px 0px;
+      box-shadow: 0px -3px 4px -3px rgba(0, 0, 0, 0.84);
+      -webkit-box-shadow: 0px -3px 4px -3px rgba(0, 0, 0, 0.84);
+      -moz-box-shadow: 0px -3px 4px -3px rgba(0, 0, 0, 0.84);
+
+
+      .user {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        line-height: 10px;
+        align-items: center;
+        margin: 0px 8px;
+
+        img {
+          width: 55px;
+          height: 55px;
+          border-radius: 50%;
+          object-fit: cover;
+
+        }
+
+        span {
+          font-weight: bold;
+
+        }
+      }
+
+      p, span {
+        margin: 15px 15px;
+        font-family: $parrafo;
+        font-size: large;
+      }
+
+      ul {
+        display: flex;
+        justify-content: left;
+        justify-self: center;
+        transform: translate(30%, -20%);
+
+      }
+
+      li {
+        list-style: none;
+      }
+
+      ul li a {
+        width: 35px;
+        height: 35px;
+        background-color: #fff;
+        text-align: center;
+        line-height: 38px;
+        font-size: 25px;
+        margin: 0 8px;
+        display: block;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        border: 3px solid #fff;
+        z-index: 1;
+      }
+
+      ul li a .icon {
+        position: relative;
+        color: #262626;
+        transition: .5s;
+        z-index: 3;
+      }
+
+      ul li a:hover .icon {
+        color: #fff;
+        transform: rotateY(360deg);
+      }
+
+      ul li a:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f00;
+        transition: .5s;
+        z-index: 2;
+      }
+
+      ul li a:hover:before {
+        top: 0;
+      }
+
+      ul li:nth-child(1) a:before {
+        background: rgb(7, 104, 4);
+      }
+
+      ul li:nth-child(2) a:before {
+
+        background: #d81507;
+      }
+
+    }
+
+    .box-parrafo {
+      margin: -20px 0px;
+      background-color: #fff;
+    }
+
+    #parafos {
+      font-size: large;
+      font-family: $parrafo;
+      text-align: justify;
+
+      background-color: #fff;
+      margin: 15px 15px;
+
+      @keyframes show {
+        from {
+          opacity: 0;
+          scale: 25%;
+        }
+
+        to {
+          opacity: 1;
+          scale: 100%;
+        }
+      }
+
+      p {
+        view-timeline-name: --image;
+        view-timeline-axis: block;
+
+        animation-timeline: --image;
+        animation-name: show;
+
+        animation-range: entry 20% cover 20%;
+        animation-fill-mode: both;
+      }
+    }
+
+
+    .box3 {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 70px;
+      background-color: $backGround;
+      border-radius: 0px 0px 15px 15px;
+      box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
+      -webkit-box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
+      -moz-box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
+      z-index: 0;
+
+      ul {
+        display: inline-flex;
+
+      }
+
+      li {
+        list-style: none;
+      }
+
+      ul li {
+        position: relative;
+      }
+
+      ul li a {
+        width: 35px;
+        height: 35px;
+        background-color: #fff;
+        text-align: center;
+        line-height: 40px;
+        font-size: 25px;
+        margin: 0 8px;
+        display: block;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        cursor: pointer;
+      }
+
+      p {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        transform: translate(0%, 35%);
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        font-size: 15px;
+        margin: 0px;
+        color: $titulos;
+        font-family: $titulo;
+
+      }
+
+      ul li a .icon {
+        position: relative;
+        color: #262626;
+        transition: 0.7s;
+        z-index: 3;
+      }
+
+      ul li a .heart {
+        position: relative;
+        color: #ce0505;
+        transition: 0.7s;
+        z-index: 3;
+        transform: rotateY(360deg);
+      }
+
+      ul li a .chat {
+        position: relative;
+        color: $butonColor;
+        transition: 0.7s;
+        z-index: 3;
+        transform: rotateY(360deg);
+      }
+
+      ul li .icon,
+      .heart,
+      .chat {
+        position: relative;
+        z-index: 2;
+      }
+
+      ul li a:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: 0.7s;
+        z-index: 1;
+      }
+
+      ul li a:hover:before {
+        top: 0;
+      }
+
+
+    }
+
+    .social-icon {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+    }
+
+
+  }
+
+
+}
