@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef} from "react";
 import "./SearchResults.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";

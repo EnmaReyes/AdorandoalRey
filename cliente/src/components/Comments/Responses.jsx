@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Responses = ({
   postId,
@@ -19,12 +20,12 @@ const Responses = ({
     try {
       // Enviar el nuevo comentario
       await axios.post(
-        `http://localhost:8800/api/posts/${postId}/response`,
+        `${URL}/api/posts/${postId}/response`,
         { commentid: selectedCommentId, text: commentText },
         { withCredentials: true }
       );
 
-      const res = await axios.get(`http://localhost:8800/api/posts/${postId}`);
+      const res = await axios.get(`${URL}/api/posts/${postId}`);
       setComments(res.data.comments);
       setCommentText("");
     } catch (error) {

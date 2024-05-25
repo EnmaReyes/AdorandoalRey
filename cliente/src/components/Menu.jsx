@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Menu.scss"
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Menu = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,7 @@ const Menu = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/posts/`
+          `${URL}/api/posts/`
         );
         setPosts(res.data);
       } catch (error) {

@@ -9,6 +9,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 import "./Write.scss"
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+
 const Write = () => {
   const navigate = useNavigate();
   const state = useLocation().state;
@@ -43,7 +45,7 @@ const Write = () => {
       const formData = new FormData();
       formData.append("fileImg", fileImg);
       const res = await axios.post(
-        "http://localhost:8800/api/upload",
+        `${URL}/api/upload`,
         formData,
         { withCredentials: true }
       );
@@ -59,7 +61,7 @@ const Write = () => {
     try {
       state
         ? await axios.put(
-            `http://localhost:8800/api/posts/${state.id}`,
+            `${URL}/api/posts/${state.id}`,
             {
               title,
               desc: description,
@@ -69,7 +71,7 @@ const Write = () => {
             { withCredentials: true }
           )
         : await axios.post(
-            `http://localhost:8800/api/posts/`,
+            `${URL}/api/posts/`,
             {
               title,
               desc: description,
@@ -132,7 +134,7 @@ const Write = () => {
           <label className="file" htmlFor="file">
             Cargar Imagen
           </label>
-          {fileImg && <span>{fileImg?.name}</span>}
+         
           
             <button onClick={handleClick}>Publicar</button>
           </div>

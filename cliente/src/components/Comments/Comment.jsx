@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment-timezone";
 import Responses from "./Responses";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+
 
 const Comment = ({ setShowCommentField, showCommentField }) => {
   const [comments, setComments] = useState([]);
@@ -29,11 +31,11 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
     e.preventDefault();
     try {
       await axios.post(
-        `http://localhost:8800/api/posts/${postId}`,
+        `${URL}/api/posts/${postId}`,
         { postId, text: commentText },
         { withCredentials: true }
       );
-      const res = await axios.get(`http://localhost:8800/api/posts/${postId}`);
+      const res = await axios.get(`${URL}/api/posts/${postId}`);
       setComments(res.data.comments);
       setCommentText("");
     } catch (error) {
@@ -46,7 +48,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/posts/${postId}`
+          `${URL}/api/posts/${postId}`
         );
         setComments(res.data.comments);
         setRepliesData(res.data.comments.map((r) => r.replies));
@@ -61,7 +63,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
   const handleDelete = async (commentId) => {
     try {
       await axios.delete(
-        `http://localhost:8800/api/posts/${postId}/${commentId}`,
+        `${URL}/api/posts/${postId}/${commentId}`,
         { withCredentials: true }
       );
       setComments((prevComments) =>
@@ -77,7 +79,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
   const handleRepleyDelete = async (replyID) => {
     try {
       await axios.delete(
-        `http://localhost:8800/api/posts/${postId}/response/${replyID}`,
+        `${URL}/api/posts/${postId}/response/${replyID}`,
         { withCredentials: true }
       );
       setComments((prevComments) => {

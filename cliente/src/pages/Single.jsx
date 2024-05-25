@@ -10,6 +10,7 @@ import moment from "moment-timezone";
 import Share from "../components/Share";
 import "./Single.scss";
 import Loading from "../components/Loading";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Single = () => {
   const [post, setPost] = useState({});
@@ -44,7 +45,7 @@ const Single = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/posts/${postid}`
+          `${URL}/api/posts/${postid}`
         );
         setPost(res.data);
         setIsLoading(false);
@@ -74,7 +75,7 @@ const Single = () => {
   //! delete post
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8800/api/posts/${postid}`, {
+      await axios.delete(`${URL}/api/posts/${postid}`, {
         withCredentials: true,
       });
       navigate("/");
@@ -90,7 +91,7 @@ const Single = () => {
       if (heart) {
         // Hacer el axios.delete
         await axios.delete(
-          `http://localhost:8800/api/posts/${postid}/${hearts}/${heartID}`,
+          `${URL}/api/posts/${postid}/${hearts}/${heartID}`,
           { withCredentials: true }
         );
         // Actualizar el estado local solo después de que el delete sea exitoso
@@ -99,12 +100,12 @@ const Single = () => {
       } else {
         // Si heart es false, realiza la lógica de like (axios post)
         await axios.post(
-          `http://localhost:8800/api/posts/${postid}/${hearts}`,
+          `${URL}/api/posts/${postid}/${hearts}`,
           { heart: hearts, postid },
           { withCredentials: true }
         );
         const res = await axios.get(
-          `http://localhost:8800/api/posts/${postid}`
+          `${URL}/api/posts/${postid}`
         );
         setHeartId(
           res.data.hearts.find(

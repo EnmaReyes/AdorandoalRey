@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Search = ({ setSearchResult }) => {
   const [input, setInput] = useState("");
@@ -21,7 +22,7 @@ const Search = ({ setSearchResult }) => {
           setSearchResult([]);
         } else {
           const response = await axios.get(
-            `http://localhost:8800/api/posts/search?title=${input}`,
+            `${URL}/api/posts/search?title=${input}`,
             {
               withCredentials: true,
             }

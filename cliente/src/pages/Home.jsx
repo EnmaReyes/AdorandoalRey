@@ -17,6 +17,8 @@ import Banner from "../components/Banner";
 import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.gif";
 import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.gif";
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const location = useLocation().search;
@@ -25,8 +27,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/posts/${location}`,
-          { withCredentials: true }
+          `${URL}/api/posts/${location}`,
         );
         setPosts(res.data);
         window.scrollTo(0, 0);

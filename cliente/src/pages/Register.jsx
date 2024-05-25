@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 const Register = () => {
   
   const [inputs, setInputs] = useState({
@@ -20,7 +21,7 @@ const Register = () => {
   const handlesubmit = async e =>{
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/api/auth/register", inputs);
+      await axios.post(`${URL}/api/auth/register`, inputs);
       navigate("/login")
     }catch(err){
       setError(err.response.data)

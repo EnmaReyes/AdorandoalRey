@@ -6,12 +6,13 @@ import { sequelize } from "./db.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import {FRONTEND_URL, PORT} from './config.js'
 const app = express();
 app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
@@ -57,7 +58,7 @@ app.use("/api/auth", authRoutes);
 async function main() {
   try {
     await sequelize.sync({alter: true});
-    app.listen(8800);
+    app.listen(PORT);
     console.log("Connected!!");
   } catch (error) {
     console.error("Unable to connect to the database:", error);

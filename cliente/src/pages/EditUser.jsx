@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./EditUser.scss";
 import { AuthContext } from "../context/authContext";
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const EditUser = () => {
   const { currentUser, logout} = useContext(AuthContext);
@@ -31,7 +32,7 @@ const EditUser = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/user/edit/`, {
+        const res = await axios.get(`${URL}/api/user/edit/`, {
           withCredentials: true,
         });
         setState(res.data);
@@ -71,7 +72,7 @@ const EditUser = () => {
       const formData = new FormData();
       formData.append("userImg", userImg);
       const res = await axios.post(
-        "http://localhost:8800/api/uploadUserImg",
+        `${URL}/api/uploadUserImg`,
         formData,
         { withCredentials: true }
       );
@@ -97,7 +98,7 @@ const EditUser = () => {
     try {
       if (state) {
         await axios.put(
-          `http://localhost:8800/api/user/edit/`,
+          `${URL}/api/user/edit/`,
           {
             image: fileImgPreview ? imgUrl : "",
             email: formData.email,

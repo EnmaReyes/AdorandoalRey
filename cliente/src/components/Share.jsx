@@ -17,12 +17,13 @@ import {
   LinkedinIcon,
 } from "react-share";
 import "./Share.scss" 
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();
   const url = `https://www.youtube.com/watch?v=OPRJ7pRiV1E`;
   const [share, setShare] = useState(false)
-
+ 
   return (
     <div className="custom-select-share">
       <button class="dropselector-share"
@@ -35,7 +36,7 @@ const Share = ({ post }) => {
           <ul class="dropdown-menu-share">
           <li class="dropdown-item1">
             <FacebookShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
@@ -45,7 +46,7 @@ const Share = ({ post }) => {
   
           <li class="dropdown-item2">
             <TwitterShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
@@ -55,7 +56,7 @@ const Share = ({ post }) => {
   
           <li class="dropdown-item3">
             <WhatsappShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
@@ -65,7 +66,7 @@ const Share = ({ post }) => {
   
           <li class="dropdown-item4">
             <EmailShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
@@ -75,7 +76,7 @@ const Share = ({ post }) => {
   
           <li class="dropdown-item5">
             <TelegramShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
@@ -84,7 +85,7 @@ const Share = ({ post }) => {
           </li>
           <li class="dropdown-item6">
             <LinkedinShareButton
-              url={url}
+              url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
