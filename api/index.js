@@ -6,7 +6,9 @@ import { sequelize } from "./db.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
-import {FRONTEND_URL, PORT} from './config.js'
+import {FRONTEND_URL} from './config.js'
+export const PORT = process.env.PORT || 4000
+
 const app = express();
 app.use(express.json());
 
