@@ -7,7 +7,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import {FRONTEND_URL} from './config.js'
-export const PORT = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 
 const app = express();
 app.use(express.json());
@@ -60,10 +60,9 @@ app.use("/api/auth", authRoutes);
 async function main() {
   try {
     await sequelize.sync({alter: true});
-    app.listen(PORT, ()=>{
-      logger.info(`\nServer running om port ${PORT}`)
-    });
-    console.log("Connected!!");
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`)
+    })
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
