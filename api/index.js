@@ -58,7 +58,9 @@ app.use("/api/auth", authRoutes);
 async function main() {
   try {
     await sequelize.sync({alter: true});
-    app.listen(PORT);
+    app.listen(PORT, ()=>{
+      logger.info(`\nServer running om port ${PORT}`)
+    });
     console.log("Connected!!");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
