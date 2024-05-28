@@ -17,7 +17,7 @@ import Banner from "../components/Banner";
 import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.gif";
 import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.gif";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import Share from '../components/Share';
 import "./Blogs.scss"
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Blogs = () => {
     const [posts, setPosts] = useState([]);

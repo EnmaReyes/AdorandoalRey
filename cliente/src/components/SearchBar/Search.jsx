@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Search = ({ setSearchResult }) => {
   const [input, setInput] = useState("");

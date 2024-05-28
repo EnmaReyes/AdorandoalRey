@@ -21,7 +21,7 @@ const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();
-  const url = `https://www.youtube.com/watch?v=OPRJ7pRiV1E`;
+  const url = URL;
   const [share, setShare] = useState(false)
  
   return (

@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 import "./Write.scss"
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Write = () => {
   const navigate = useNavigate();

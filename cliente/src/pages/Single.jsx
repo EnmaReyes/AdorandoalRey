@@ -10,7 +10,7 @@ import moment from "moment-timezone";
 import Share from "../components/Share";
 import "./Single.scss";
 import Loading from "../components/Loading";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Single = () => {
   const [post, setPost] = useState({});

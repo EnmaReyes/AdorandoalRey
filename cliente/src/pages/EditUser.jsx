@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./EditUser.scss";
 import { AuthContext } from "../context/authContext";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const EditUser = () => {
   const { currentUser, logout} = useContext(AuthContext);
