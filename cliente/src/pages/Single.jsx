@@ -3,7 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
 import Comment from "../components/Comments/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faComment, faTrash, faPaintbrush, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faComment,
+  faTrash,
+  faPaintbrush,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import moment from "moment-timezone";
@@ -44,9 +50,7 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `${URL}/api/posts/${postid}`
-        );
+        const res = await axios.get(`${URL}/api/posts/${postid}`);
         setPost(res.data);
         setIsLoading(false);
         // Verificar si el usuario actual ya dio like al post
@@ -90,10 +94,9 @@ const Single = () => {
       // Si heart es true, realiza la lógica de unlike (axios delete)
       if (heart) {
         // Hacer el axios.delete
-        await axios.delete(
-          `${URL}/api/posts/${postid}/${hearts}/${heartID}`,
-          { withCredentials: true }
-        );
+        await axios.delete(`${URL}/api/posts/${postid}/${hearts}/${heartID}`, {
+          withCredentials: true,
+        });
         // Actualizar el estado local solo después de que el delete sea exitoso
         setCountHearts((prevCount) => prevCount - 1);
         setHeart(false);
@@ -104,9 +107,7 @@ const Single = () => {
           { heart: hearts, postid },
           { withCredentials: true }
         );
-        const res = await axios.get(
-          `${URL}/api/posts/${postid}`
-        );
+        const res = await axios.get(`${URL}/api/posts/${postid}`);
         setHeartId(
           res.data.hearts.find(
             (heart) => heart.userHearts.id === currentUser?.id
@@ -146,7 +147,7 @@ const Single = () => {
       <img
         id="postImg"
         className={scrolled ? "scroll" : ""}
-        src={`${URL}/upload/${post.img}` || `../public/upload/${post.img}`}
+        src={`${URL}/upload/${post?.img}` || `../public/upload/${post?.img}`}
       />
       <div className="single">
         <div className="content">
@@ -156,7 +157,7 @@ const Single = () => {
             <div className="user">
               {post?.user?.image && (
                 <img
-                  src={`../public/uploadUserImg/${post?.user?.image}`}
+                  src={ `${URL}/uploadUserImg/${post.user?.image}` || `../public/uploadUserImg/${post.user?.image}`}
                   alt={post?.user.username}
                 />
               )}
@@ -171,18 +172,24 @@ const Single = () => {
                 <div className="edit">
                   <Link className="link" to={`/write?edit=2`} state={post}>
                     <div className="editar">
-                      <FontAwesomeIcon className="fonticon" icon={faPenToSquare} />
+                      <FontAwesomeIcon
+                        className="fonticon"
+                        icon={faPenToSquare}
+                      />
                     </div>
                   </Link>
                   <div onClick={handleDelete} className="delete">
-                  <FontAwesomeIcon className="fonticon" icon={faTrash} />
+                    <FontAwesomeIcon className="fonticon" icon={faTrash} />
                   </div>
                 </div>
               )}
             </div>
 
             <div className="icon">
-            {post.links?.spotify?.length !== 0 && post.links?.youtobe?.length !== 0 ? <p>Escucha el Capitulo por</p> : null}
+              {post.links?.spotify?.length !== 0 &&
+              post.links?.youtobe?.length !== 0 ? (
+                <p>Escucha el Capitulo por</p>
+              ) : null}
               <ul>
                 {post.links?.spotify?.length > 0 && (
                   <li>

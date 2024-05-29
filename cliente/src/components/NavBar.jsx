@@ -2,23 +2,22 @@ import { React, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo1 from "../assets/logo1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/authContext";
 import Home from "../pages/Home";
 import axios from "axios";
 import Search from "../components/SearchBar/Search.jsx";
 import SearchResults from "../components/SearchBar/SearchResults.jsx";
-import "./NavBar.scss"
+import "./NavBar.scss";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const NavBar = () => {
-  const { currentUser, logout} = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  const navegate = useNavigate()
-  
+  const navegate = useNavigate();
 
   // scroll del navbar\\
   useEffect(() => {
@@ -43,10 +42,10 @@ const NavBar = () => {
           </Link>
         </div>
         <div className="search-bar">
-        <Search setSearchResult={setSearchResult} />  
-        <SearchResults searchResult={searchResult} />
+          <Search setSearchResult={setSearchResult} />
+          <SearchResults searchResult={searchResult} />
         </div>
-          
+
         <div className="links">
           {currentUser?.admin === true && (
             <span>
@@ -56,34 +55,43 @@ const NavBar = () => {
             </span>
           )}
           <Link className="link" to="/blogs">
-          <span>Blogs</span>
+            <span>Blogs</span>
           </Link>
-          <Link className="link" to="/Aboutme"> 
-          <span>Sobre mi</span>
+          <Link className="link" to="/Aboutme">
+            <span>Sobre mi</span>
           </Link>
-          
-          
+
           {currentUser ? (
-        <div class="custom-select-navbar">
-        <button class="dropselector">
-        {currentUser?.username}
-        </button>
-        <ul class="dropdown-menu-navbar">
-          <li><a class="dropdown-item" onClick={()=>navegate("/edit")}>Editar</a></li>
-          <li><a class="dropdown-item" onClick={()=>logout()} >Salir</a></li>
-        </ul>
-        {currentUser?.image && 
-        <img className="imgUSer" src={ `${URL}/uploadUserImg/${currentUser.image}` 
-        || `../public/uploadUserImg/${currentUser?.image}`}/>
-         }
-      </div>
+            <div class="custom-select-navbar">
+              <button class="dropselector">{currentUser?.username}</button>
+              <ul class="dropdown-menu-navbar">
+                <li>
+                  <a class="dropdown-item" onClick={() => navegate("/edit")}>
+                    Editar
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" onClick={() => logout()}>
+                    Salir
+                  </a>
+                </li>
+              </ul>
+              {currentUser?.image && (
+                <img
+                  className="imgUSer"
+                  src={
+                    `${URL}/uploadUserImg/${currentUser?.image}` ||
+                    `../public/uploadUserImg/${currentUser?.image}`
+                  }
+                />
+              )}
+            </div>
           ) : (
             <Link className="link" to="/login">
               Inisiar sesion
             </Link>
           )}
         </div>
-        
       </div>
     </div>
   );

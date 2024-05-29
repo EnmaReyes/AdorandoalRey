@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
 
-import "./Home.scss"
+import "./Home.scss";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
@@ -22,13 +22,11 @@ const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const location = useLocation().search;
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `${URL}/api/posts/${location}`,
-        );
+        const res = await axios.get(`${URL}/api/posts/${location}`);
         setPosts(res.data);
         window.scrollTo(0, 0);
       } catch (error) {}
@@ -55,7 +53,9 @@ const Home = () => {
   }, []);
 
   // los mas gutados\\
-  const postsOrdenados = [...posts].sort((a, b) => b.hearts.length - a.hearts.length);
+  const postsOrdenados = [...posts].sort(
+    (a, b) => b.hearts.length - a.hearts.length
+  );
   const primeros8Posts = postsOrdenados.slice(0, 8);
 
   return (
@@ -82,7 +82,13 @@ const Home = () => {
             <SwiperSlide key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
                 <div className="img">
-                  <img src={`../public/upload/${post.img}`} alt="img" />
+                  <img
+                    src={
+                      `${URL}/upload/${post.img}` ||
+                      `../public/upload/${post.img}`
+                    }
+                    alt="img"
+                  />
                 </div>
               </Link>
               <div className="content">
@@ -91,7 +97,6 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </div>
-
       </Swiper>
 
       <h1>Posts mas Gustados</h1>

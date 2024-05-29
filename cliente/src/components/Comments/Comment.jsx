@@ -14,7 +14,6 @@ import moment from "moment-timezone";
 import Responses from "./Responses";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
-
 const Comment = ({ setShowCommentField, showCommentField }) => {
   const [comments, setComments] = useState([]);
   const { currentUser, login } = useContext(AuthContext);
@@ -47,9 +46,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `${URL}/api/posts/${postId}`
-        );
+        const res = await axios.get(`${URL}/api/posts/${postId}`);
         setComments(res.data.comments);
         setRepliesData(res.data.comments.map((r) => r.replies));
       } catch (err) {
@@ -62,10 +59,9 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
   //! delete comments\\
   const handleDelete = async (commentId) => {
     try {
-      await axios.delete(
-        `${URL}/api/posts/${postId}/${commentId}`,
-        { withCredentials: true }
-      );
+      await axios.delete(`${URL}/api/posts/${postId}/${commentId}`, {
+        withCredentials: true,
+      });
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.id !== commentId)
       );
@@ -78,10 +74,9 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
 
   const handleRepleyDelete = async (replyID) => {
     try {
-      await axios.delete(
-        `${URL}/api/posts/${postId}/response/${replyID}`,
-        { withCredentials: true }
-      );
+      await axios.delete(`${URL}/api/posts/${postId}/response/${replyID}`, {
+        withCredentials: true,
+      });
       setComments((prevComments) => {
         return prevComments.map((comment) => {
           if (comment.replies && comment.replies.length > 0) {
@@ -114,7 +109,10 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                 <div className="user">
                   {comment.commenter?.image ? (
                     <img
-                      src={`../public/uploadUserImg/${comment?.commenter?.image}`}
+                      src={
+                        `${URL}/uploadUserImg/${comment?.commenter?.image}` ||
+                        `../public/uploadUserImg/${comment?.commenter?.image}`
+                      }
                       alt={comment?.commenter.username}
                     />
                   ) : (
@@ -132,18 +130,25 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                   </div>
                   <div className="comments">
                     <p>{comment.comments}</p>
-                      <div className="editIcon">
-                        <span className="responder" onClick={() => handleOpenRes(comment.id)}>
-                          Responder
-                          <FontAwesomeIcon className="faReply" icon={faReply} flip="horizontal" />
-                        </span>
-                        {currentUser?.admin === true ||
-                    currentUser?.username === comment.commenter?.username ? (
+                    <div className="editIcon">
+                      <span
+                        className="responder"
+                        onClick={() => handleOpenRes(comment.id)}
+                      >
+                        Responder
+                        <FontAwesomeIcon
+                          className="faReply"
+                          icon={faReply}
+                          flip="horizontal"
+                        />
+                      </span>
+                      {currentUser?.admin === true ||
+                      currentUser?.username === comment.commenter?.username ? (
                         <p onClick={() => handleDelete(comment.id)}>
                           <FontAwesomeIcon icon={faTrash} />
                         </p>
-                        ) : null}
-                      </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,7 +163,10 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                       <div className="user-replies">
                         {reply.userComments?.image ? (
                           <img
-                            src={`../public/uploadUserImg/${reply.userComments?.image}`}
+                            src={
+                              `${URL}/uploadUserImg/${reply.userComments?.image}` ||
+                              `../public/uploadUserImg/${reply.userComments?.image}`
+                            }
                             alt={reply.userComments?.username}
                           />
                         ) : (
