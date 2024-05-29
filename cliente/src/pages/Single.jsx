@@ -146,7 +146,7 @@ const Single = () => {
       <img
         id="postImg"
         className={scrolled ? "scroll" : ""}
-        src={ `/upload/${post.img}` || ` ../public/upload/${post.img}`}
+        src={ `./upload/${post.img}` || ` ../public/upload/${post.img}`}
       />
       <div className="single">
         <div className="content">
