@@ -8,6 +8,11 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import {FRONTEND_URL} from './config.js'
 const port = process.env.PORT || 4000;
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -36,10 +41,15 @@ app.post("/api/upload", upload.single("fileImg"), function (req, res) {
   res.status(200).json(file.filename);
 });
 
-  //! user img\\
+
+ //! user img\\
+const UPLOAD_DIR = path.join(__dirname, '../cliente/public/uploadUserImg');
+// Servir archivos estáticos
+app.use('/uploadUserImg', express.static(UPLOAD_DIR));
+ 
 const userStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../cliente/public/uploadUserImg");
+    cb(null, UPLOAD_DIR);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);

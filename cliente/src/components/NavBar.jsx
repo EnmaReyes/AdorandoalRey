@@ -10,6 +10,8 @@ import Search from "../components/SearchBar/Search.jsx";
 import SearchResults from "../components/SearchBar/SearchResults.jsx";
 import "./NavBar.scss"
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+
 const NavBar = () => {
   const { currentUser, logout} = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState("");
@@ -70,7 +72,7 @@ const NavBar = () => {
           <li><a class="dropdown-item" onClick={()=>navegate("/edit")}>Editar</a></li>
           <li><a class="dropdown-item" onClick={()=>logout()} >Salir</a></li>
         </ul>
-        {currentUser?.image && <img className="imgUSer" src={ `/image/${currentUser?.image}`|| `../public/uploadUserImg/${currentUser?.image}`}/> }
+        {currentUser?.image && <img className="imgUSer" src={ `${URL}/uploadUserImg/${currentUser.image}` || `../public/uploadUserImg/${currentUser?.image}`}/> }
       </div>
           ) : (
             <Link className="link" to="/login">
