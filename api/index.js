@@ -25,10 +25,13 @@ app.use(
   })
 );
 //! almacenamiento de imagenes\\
+const UPLOAD_BLOG = path.join(__dirname, '../cliente/public/upload');
+// Servir archivos estáticos
+app.use('/upload', express.static(UPLOAD_BLOG));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../cliente/public/upload");
+    cb(null, UPLOAD_BLOG);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
