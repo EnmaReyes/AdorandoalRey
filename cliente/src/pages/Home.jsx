@@ -115,7 +115,13 @@ const Home = () => {
             <SwiperSlide key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
                 <div className="img">
-                  <img src={`../public/upload/${post.img}`} alt="img" />
+                  <img
+                    src={
+                      `${URL}/upload/${post.img}` ||
+                      `../public/upload/${post.img}`
+                    }
+                    alt="img"
+                  />
                 </div>
               </Link>
               <div className="content">
