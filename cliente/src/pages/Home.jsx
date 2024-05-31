@@ -84,7 +84,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `/upload/${post.img}` ||
+                      `/upload/` ||
                       `../public/upload/${post.img}`
                     }
                     alt="img"
@@ -117,7 +117,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `${URL}/upload/${post.img}` ||
+                      `${URL}/upload/` ||
                       `../public/upload/${post.img}`
                     }
                     alt="img"
