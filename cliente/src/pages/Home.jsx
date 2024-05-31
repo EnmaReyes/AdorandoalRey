@@ -31,6 +31,7 @@ const Home = () => {
         window.scrollTo(0, 0);
       } catch (error) {}
     };
+    console.log(URL);
     fetchData();
   }, [location]);
   const nuevosPosts = posts.slice(0, 8);
@@ -84,7 +85,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `${"/post"}/upload/${post.img}` ||
+                      `${URL}upload/${post.img}` ||
                       `../public/upload/${post.img}`
                     }
                     alt="img"
@@ -117,7 +118,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `"/post"/upload/${post.img}` ||
+                      `${URL}upload/${post.img}` ||
                       `../public/upload/${post.img}`
                     }
                     alt="img"
