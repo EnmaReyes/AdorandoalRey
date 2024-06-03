@@ -18,7 +18,6 @@ import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.gif";
 import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.gif";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
-const imgBlog = require.context(`${URL}/upload/`, true)
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -86,7 +85,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `${imgBlog}${post.img}`
+                      `${URL}/upload/${post.img}`
                     }
                     alt={post.img}
                     onError={(e) => { e.target.src = `../public/upload/${post.img}` }}
@@ -119,7 +118,7 @@ const Home = () => {
                 <div className="img">
                   <img
                     src={
-                      `${imgBlog}${post.img}`
+                      `${URL}/upload/${post.img}`
                     }
                     onError={(e) => { e.target.src = `../public/upload/${post.img}` }}
                     alt="img"
