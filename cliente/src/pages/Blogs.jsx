@@ -41,7 +41,7 @@ const Blogs = () => {
           <div className="post" key={post.id}>
             <div className="img">
               <Link className="link" to={`/post/${post.id}`}>
-                <img src={`../public/upload/${post.img}`} alt="img" />
+                <img src={post.img} alt="img" />
               </Link>
             </div>
             <div className="content">
