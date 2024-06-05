@@ -109,10 +109,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                 <div className="user">
                   {comment.commenter?.image ? (
                     <img
-                      src={
-                        `${URL}/uploadUserImg/${comment?.commenter?.image}` ||
-                        `../public/uploadUserImg/${comment?.commenter?.image}`
-                      }
+                      src={comment?.commenter?.image}
                       alt={comment?.commenter.username}
                     />
                   ) : (
@@ -163,10 +160,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                       <div className="user-replies">
                         {reply.userComments?.image ? (
                           <img
-                            src={
-                              `${URL}/uploadUserImg/${reply.userComments?.image}` ||
-                              `../public/uploadUserImg/${reply.userComments?.image}`
-                            }
+                            src={reply.userComments?.image}
                             alt={reply.userComments?.username}
                           />
                         ) : (

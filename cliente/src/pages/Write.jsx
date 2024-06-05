@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
 import spotify from "../assets/write-spotify.png";
 import youtobe from "../assets/write-youtobe.png";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
-import "./Write.scss"
-
+import "./Write.scss";
+import { UploadImg } from "../firebase/config.js";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Write = () => {
@@ -24,7 +23,7 @@ const Write = () => {
       youtobe: "",
     }
   );
-    //* mostrar imagen seleccionada\\
+  //* mostrar imagen seleccionada\\
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -40,24 +39,24 @@ const Write = () => {
       reader.readAsDataURL(selectedFile);
     }
   };
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("fileImg", fileImg);
-      const res = await axios.post(
-        `${URL}/api/upload`,
-        formData,
-        { withCredentials: true }
-      );
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const upload = async () => {
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("fileImg", fileImg);
+  //     const res = await axios.post(
+  //       `${URL}/api/upload`,
+  //       formData,
+  //       { withCredentials: true }
+  //     );
+  //     return res.data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
-
+    const imgUrl = await UploadImg(fileImg);
+    console.log(imgUrl);
     try {
       state
         ? await axios.put(
@@ -105,12 +104,9 @@ const Write = () => {
         />
         {fileImgPreview && (
           <div className="preview-img">
-            <img 
-              src={fileImgPreview}
-              alt="Preview"
-            />
-            </div>
-          )}
+            <img src={fileImgPreview} alt="Preview" />
+          </div>
+        )}
         <div className="editorContainer">
           <ReactQuill
             className="editor"
@@ -124,23 +120,21 @@ const Write = () => {
         <div className="item">
           <h1>Publicar</h1>
           <div className="buttons">
-          <input
-            style={{ display: "none" }}
-            type="file"
-            name=""
-            id="file"
-            onChange={handleFileChange}
-          />
-          <label className="file" htmlFor="file">
-            Cargar Imagen
-          </label>
-         
-          
+            <input
+              style={{ display: "none" }}
+              type="file"
+              name=""
+              id="file"
+              onChange={handleFileChange}
+            />
+            <label className="file" htmlFor="file">
+              Cargar Imagen
+            </label>
+
             <button onClick={handleClick}>Publicar</button>
           </div>
         </div>
         <div className="item">
-          
           <div className="spotify">
             <img src={spotify} alt="" />
             <input

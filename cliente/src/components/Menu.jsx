@@ -32,12 +32,7 @@ const Menu = () => {
       {selectedPosts.map((post) => (
         <Link className="link" to={`/post/${post?.id}`}>
           <div className="post" key={post?.id}>
-            <img
-              src={
-                `${URL}/upload/${post?.img}` || `../public/upload/${post?.img}`
-              }
-              alt="img"
-            />
+            <img src={post?.img} alt="img" />
             <h2>{post?.title}</h2>
           </div>
         </Link>

@@ -10,11 +10,11 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import "./EditUser.scss";
 import { AuthContext } from "../context/authContext";
-
+import { UploadUserImg } from "../firebase/config.js";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const EditUser = () => {
-  const { currentUser, logout} = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
   const navegate = useNavigate();
   const [userImg, setUserImg] = useState(null);
   const [fileImgPreview, setFileImgPreview] = useState(null);
@@ -67,22 +67,6 @@ const EditUser = () => {
     }
   };
 
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("userImg", userImg);
-      const res = await axios.post(
-        `${URL}/api/uploadUserImg`,
-        formData,
-        { withCredentials: true }
-      );
-      
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleDelete = () => {
     setFileImgPreview(null);
     setUserImg(null);
@@ -93,7 +77,7 @@ const EditUser = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
+    const imgUrl = await UploadUserImg(userImg);
 
     try {
       if (state) {
@@ -108,7 +92,7 @@ const EditUser = () => {
           { withCredentials: true }
         );
         logout();
-        navegate("/login")
+        navegate("/");
       } else {
         console.error("Error: El estado es nulo o indefinido.");
       }
@@ -149,10 +133,7 @@ const EditUser = () => {
 
           {!fileImgPreview && formData.image && (
             <div className="preview-img">
-              <img
-                src={`../public/uploadUserImg/${formData.image}`}
-                alt="Preview"
-              />
+              <img src={formData.image} alt="Preview" />
             </div>
           )}
 

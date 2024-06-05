@@ -144,11 +144,7 @@ const Single = () => {
           <Loading />
         </div>
       )}
-      <img
-        id="postImg"
-        className={scrolled ? "scroll" : ""}
-        src={`${URL}/upload/${post?.img}` || `../public/upload/${post?.img}`}
-      />
+      <img id="postImg" className={scrolled ? "scroll" : ""} src={post?.img} />
       <div className="single">
         <div className="content">
           <h1>{post.title}</h1>
@@ -156,10 +152,7 @@ const Single = () => {
           <div className="social-icon">
             <div className="user">
               {post?.user?.image && (
-                <img
-                  src={ `${URL}/uploadUserImg/${post.user?.image}` || `../public/uploadUserImg/${post.user?.image}`}
-                  alt={post?.user.username}
-                />
+                <img src={post.user?.image} alt={post?.user.username} />
               )}
               <div className="info">
                 <span className="span">{post.user?.username}</span>

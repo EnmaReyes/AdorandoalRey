@@ -77,13 +77,7 @@ const NavBar = () => {
                 </li>
               </ul>
               {currentUser?.image && (
-                <img
-                  className="imgUSer"
-                  src={
-                    `${URL}/uploadUserImg/${currentUser?.image}` ||
-                    `../public/uploadUserImg/${currentUser?.image}`
-                  }
-                />
+                <img className="imgUSer" src={currentUser?.image} />
               )}
             </div>
           ) : (

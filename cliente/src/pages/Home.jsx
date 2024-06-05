@@ -31,7 +31,7 @@ const Home = () => {
         window.scrollTo(0, 0);
       } catch (error) {}
     };
-    console.log(URL);
+
     fetchData();
   }, [location]);
   const nuevosPosts = posts.slice(0, 8);
@@ -83,13 +83,7 @@ const Home = () => {
             <SwiperSlide key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
                 <div className="img">
-                  <img
-                    src={
-                      `${URL}/upload/${post.img}`
-                    }
-                    alt={post.img}
-                    onError={(e) => { e.target.src = `../public/upload/${post.img}` }}
-                  />
+                  <img src={post.img} alt={post.title} />
                 </div>
               </Link>
               <div className="content">
@@ -116,13 +110,7 @@ const Home = () => {
             <SwiperSlide key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
                 <div className="img">
-                  <img
-                    src={
-                      `${URL}/upload/${post.img}`
-                    }
-                    onError={(e) => { e.target.src = `../public/upload/${post.img}` }}
-                    alt="img"
-                  />
+                  <img src={post.img} alt={post.title} />
                 </div>
               </Link>
               <div className="content">
