@@ -17,83 +17,43 @@ import {
   LinkedinIcon,
 } from "react-share";
 import "./Share.scss";
+
 const URL = import.meta.env.VITE_FRONTEND_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();
-  const url = URL;
+  const url = `${URL}${location.pathname}`;
   const [share, setShare] = useState(false);
+
+  const sharePlatforms = [
+    { component: FacebookShareButton, icon: FacebookIcon, name: "Facebook" },
+    { component: TwitterShareButton, icon: TwitterIcon, name: "Twitter" },
+    { component: WhatsappShareButton, icon: WhatsappIcon, name: "Whatsapp" },
+    { component: EmailShareButton, icon: EmailIcon, name: "Email" },
+    { component: TelegramShareButton, icon: TelegramIcon, name: "Telegram" },
+    { component: LinkedinShareButton, icon: LinkedinIcon, name: "Linkedin" },
+  ];
 
   return (
     <div className="custom-select-share">
-      <button
-        class="dropselector-share"
-        onClick={() => {
-          setShare(!share);
-        }}
-      >
+      <button className="dropselector-share" onClick={() => setShare(!share)}>
         <FontAwesomeIcon className={!share ? "icon" : "share"} icon={faShare} />
       </button>
       {share && (
-        <ul class="dropdown-menu-share">
-          <li class="dropdown-item1">
-            <FacebookShareButton
-              url={url}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <FacebookIcon className="iconShare" />
-            </FacebookShareButton>
-          </li>
-
-          <li class="dropdown-item2">
-            <TwitterShareButton
-              url={URL}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <TwitterIcon className="iconShare" />
-            </TwitterShareButton>
-          </li>
-
-          <li class="dropdown-item3">
-            <WhatsappShareButton
-              url={URL}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <WhatsappIcon className="iconShare" />
-            </WhatsappShareButton>
-          </li>
-
-          <li class="dropdown-item4">
-            <EmailShareButton
-              url={URL}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <EmailIcon className="iconShare" />
-            </EmailShareButton>
-          </li>
-
-          <li class="dropdown-item5">
-            <TelegramShareButton
-              url={URL}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <TelegramIcon className="iconShare" />
-            </TelegramShareButton>
-          </li>
-          <li class="dropdown-item6">
-            <LinkedinShareButton
-              url={URL}
-              quote={post?.title}
-              hashtag={`#Adorando al Rey`}
-            >
-              <LinkedinIcon className="iconShare" />
-            </LinkedinShareButton>
-          </li>
+        <ul className="dropdown-menu-share">
+          {sharePlatforms.map(
+            ({ component: ShareButton, icon: ShareIcon, name }, index) => (
+              <li key={index} className={`dropdown-item${index + 1}`}>
+                <ShareButton
+                  url={url}
+                  quote={post?.title}
+                  hashtag={`#AdorandoAlRey`}
+                >
+                  <ShareIcon className="iconShare" />
+                </ShareButton>
+              </li>
+            )
+          )}
         </ul>
       )}
     </div>
