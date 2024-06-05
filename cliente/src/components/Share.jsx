@@ -16,71 +16,73 @@ import {
   LinkedinShareButton,
   LinkedinIcon,
 } from "react-share";
-import "./Share.scss" 
-const URL = import.meta.env.VITE_BACKEND_URL;
+import "./Share.scss";
+const URL = import.meta.env.VITE_FRONTEND_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();
   const url = URL;
-  const [share, setShare] = useState(false)
- 
+  const [share, setShare] = useState(false);
+
   return (
     <div className="custom-select-share">
-      <button class="dropselector-share"
-       onClick={()=>{setShare(!share)}} >
-      <FontAwesomeIcon
-      className={!share ? "icon" : "share"}
-      icon={faShare} />
+      <button
+        class="dropselector-share"
+        onClick={() => {
+          setShare(!share);
+        }}
+      >
+        <FontAwesomeIcon className={!share ? "icon" : "share"} icon={faShare} />
       </button>
-      {share && 
-          <ul class="dropdown-menu-share">
+      {share && (
+        <ul class="dropdown-menu-share">
           <li class="dropdown-item1">
             <FacebookShareButton
-              url={URL}
+              url={url}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-              <FacebookIcon className="iconShare"/>
+              <FacebookIcon className="iconShare" />
             </FacebookShareButton>
           </li>
-  
+
           <li class="dropdown-item2">
             <TwitterShareButton
               url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-              <TwitterIcon className="iconShare"/>
+              <TwitterIcon className="iconShare" />
             </TwitterShareButton>
           </li>
-  
+
           <li class="dropdown-item3">
             <WhatsappShareButton
               url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-          <WhatsappIcon className="iconShare"/>
+              <WhatsappIcon className="iconShare" />
             </WhatsappShareButton>
           </li>
-  
+
           <li class="dropdown-item4">
             <EmailShareButton
               url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-              <EmailIcon className="iconShare"/>
+              <EmailIcon className="iconShare" />
             </EmailShareButton>
           </li>
-  
+
           <li class="dropdown-item5">
             <TelegramShareButton
               url={URL}
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-              <TelegramIcon className="iconShare"/>
+              <TelegramIcon className="iconShare" />
             </TelegramShareButton>
           </li>
           <li class="dropdown-item6">
@@ -89,11 +91,11 @@ const Share = ({ post }) => {
               quote={post?.title}
               hashtag={`#Adorando al Rey`}
             >
-              <LinkedinIcon className="iconShare"/>
+              <LinkedinIcon className="iconShare" />
             </LinkedinShareButton>
           </li>
-        </ul>}
-  
+        </ul>
+      )}
     </div>
   );
 };

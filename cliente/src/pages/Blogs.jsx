@@ -33,7 +33,7 @@ const Blogs = () => {
     // Devolver el contenido HTML con el texto truncado
     return truncatedText;
   };
-  console.log(posts);
+ 
   return (
     <div className="blogs">
       <div className="posts">
