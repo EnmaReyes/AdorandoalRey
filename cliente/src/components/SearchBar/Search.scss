@@ -3,11 +3,11 @@
     background-color: #fff;
     border-radius: 10px;
     height: 2.5rem;
-    padding: 0 15px;
+    padding: 0 10px;
     box-shadow: 0px 0px 8px #ddd;
     display: flex;
     align-items: center;
-    transform: translate(-50%, -50%);
+    transform: translate(-05%, -50%);
 }
 
 .input-wrapper input {
@@ -15,7 +15,6 @@
     border: none;
     font-size: 1.25rem;
     width: 0px;
-    margin-left: 5px;
     transition: width 0.7s ease;
 }
 

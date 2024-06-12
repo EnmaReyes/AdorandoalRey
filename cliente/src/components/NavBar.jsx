@@ -36,14 +36,14 @@ const NavBar = () => {
   return (
     <div id="navbar" className={scrolled ? "scrolled" : ""}>
       <div className="container-navbar">
+        <div className="search-bar">
+          <Search setSearchResult={setSearchResult} />
+          <SearchResults searchResult={searchResult} />
+        </div>
         <div className="logo">
           <Link to="/" className="link">
             <img src={logo1} alt="logo" />
           </Link>
-        </div>
-        <div className="search-bar">
-          <Search setSearchResult={setSearchResult} />
-          <SearchResults searchResult={searchResult} />
         </div>
 
         <div className="links">
@@ -62,16 +62,19 @@ const NavBar = () => {
           </Link>
 
           {currentUser ? (
-            <div class="custom-select-navbar">
-              <button class="dropselector">{currentUser?.username}</button>
-              <ul class="dropdown-menu-navbar">
+            <div className="custom-select-navbar">
+              <button className="dropselector">{currentUser?.username}</button>
+              <ul className="dropdown-menu-navbar">
                 <li>
-                  <a class="dropdown-item" onClick={() => navegate("/edit")}>
+                  <a
+                    className="dropdown-item"
+                    onClick={() => navegate("/edit")}
+                  >
                     Editar
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" onClick={() => logout()}>
+                  <a className="dropdown-item" onClick={() => logout()}>
                     Salir
                   </a>
                 </li>

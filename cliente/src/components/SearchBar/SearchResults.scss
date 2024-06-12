@@ -1,8 +1,9 @@
-#hidden{
+#hidden {
     display: none;
 }
+
 .results-list {
-    width: 24.5%;
+    width: 23.5%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -12,7 +13,7 @@
     max-height: 300px;
     overflow-y: scroll;
     position: fixed;
-    right:660px;
+    left: 5%;
 }
 
 .results-list::-webkit-scrollbar {
