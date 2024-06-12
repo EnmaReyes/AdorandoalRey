@@ -7,12 +7,12 @@ import {
   faHeart,
   faComment,
   faTrash,
-  faPaintbrush,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
-import moment from "moment-timezone";
+import { parseISO, formatDistanceToNow } from "date-fns";
+import { es } from "date-fns/locale";
 import Share from "../components/Share";
 import "./Single.scss";
 import Loading from "../components/Loading";
@@ -33,7 +33,7 @@ const Single = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isLoadidng, setIsLoading] = useState(true);
 
-  // scroll del navbar\\
+  // scroll del navbar
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 10) {
@@ -76,18 +76,19 @@ const Single = () => {
     fetchData();
   }, [postid, currentUser]);
 
-  //! delete post
+  // delete post
   const handleDelete = async () => {
     try {
       await axios.delete(`${URL}/api/posts/${postid}`, {
         withCredentials: true,
       });
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error al eliminar el post:", error);
+    }
   };
 
-  //! like Heart\\
-
+  // like Heart
   const handleHeart = async () => {
     try {
       setIsProcessingHeart(true);
@@ -124,7 +125,7 @@ const Single = () => {
     }
   };
 
-  //! Comentarios\\
+  // Comentarios
   const toggleCommentField = () => {
     setShowCommentField(!showCommentField);
   };
@@ -157,7 +158,11 @@ const Single = () => {
               <div className="info">
                 <span className="span">{post.user?.username}</span>
                 <p className="p">
-                  {moment(post.date).fromNow("DD-MM-YYYY HH:mm:")}
+                  {post.date &&
+                    formatDistanceToNow(parseISO(post.date), {
+                      addSuffix: true,
+                      locale: es,
+                    })}
                 </p>
               </div>
 
@@ -187,7 +192,7 @@ const Single = () => {
                 {post.links?.spotify?.length > 0 && (
                   <li>
                     <a href={post.links?.spotify} target="blanket">
-                      <i class="fab fa-spotify icon"></i>
+                      <i className="fab fa-spotify icon"></i>
                     </a>
                   </li>
                 )}
@@ -195,7 +200,7 @@ const Single = () => {
                 {post.links?.youtobe?.length > 0 && (
                   <li>
                     <a href={post.links?.youtobe} target="blanket">
-                      <i class="fab fa-youtube icon"></i>
+                      <i className="fab fa-youtube icon"></i>
                     </a>
                   </li>
                 )}

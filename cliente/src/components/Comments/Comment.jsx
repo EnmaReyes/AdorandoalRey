@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Comment.scss";
 import { AuthContext } from "../../context/authContext";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -10,20 +9,21 @@ import {
   faTrash,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import moment from "moment-timezone";
+import { parseISO, formatDistanceToNow } from "date-fns";
+import { es } from "date-fns/locale";
 import Responses from "./Responses";
+import "./Comment.scss";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Comment = ({ setShowCommentField, showCommentField }) => {
   const [comments, setComments] = useState([]);
   const { currentUser, login } = useContext(AuthContext);
-  const state = useLocation().state;
   const [commentText, setCommentText] = useState("");
   const location = useLocation();
-  const postId = location.pathname.split("/")[2];
   const [openViewRes, setOpenViewRes] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState();
   const [repliesData, setRepliesData] = useState();
+  const postId = location.pathname.split("/")[2];
 
   //! post comments \\
   const submitComment = async (e) => {
@@ -120,9 +120,10 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                   <div className="name">
                     <p>{comment.commenter?.username}</p>
                     <p>
-                      {"Send " +
-                        moment(comment.updatedAt).fromNow("HH:mm: DD-MM-YYYY") +
-                        " ago..."}
+                      {formatDistanceToNow(parseISO(comment.updatedAt), {
+                        addSuffix: true,
+                        locale: es,
+                      })}
                     </p>
                   </div>
                   <div className="comments">
@@ -174,11 +175,11 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                         <div className="name-replies">
                           <p>{reply.userComments?.username}</p>
                           <p>
-                            {"Send " +
-                              moment(reply?.updatedAt).fromNow(
-                                "HH:mm: DD-MM-YYYY"
-                              ) +
-                              " ago..."}
+                          {reply.updatedAt &&
+                              formatDistanceToNow(parseISO(reply.updatedAt), {
+                                addSuffix: true,
+                                locale: es,
+                              })}
                           </p>
                         </div>
                         <div className="comments-replies">

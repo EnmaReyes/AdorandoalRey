@@ -37,7 +37,7 @@ const Responses = ({
     <div>
       <div>
         <div className="input-replies">
-          <textarea
+          <textarea className="textarea"
             onChange={(e) => setCommentText(e.target.value)}
             placeholder="Escribe tu comentario"
             value={commentText}
