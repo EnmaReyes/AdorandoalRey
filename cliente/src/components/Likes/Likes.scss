@@ -1,0 +1,26 @@
+$backGround : #d7dbe4;
+$titulos: #285480;
+$butonColor: #285480;
+$parrafo: 'Open Sans',
+sans-serif;
+$titulo: 'Montserrat',
+sans-serif;
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .counter {
+        display: flex;
+        justify-content: end;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        font-weight: 1000;
+        margin: 0px;
+        color: $titulos;
+        font-family: $titulo;
+
+    }
+}

@@ -24,8 +24,7 @@ const Share = ({ post }) => {
   const location = useLocation();
   const url = `${URL}${location.pathname}`;
   const [share, setShare] = useState(false);
-      console.log(url);
-      
+         
   const sharePlatforms = [
     { component: FacebookShareButton, icon: FacebookIcon, name: "Facebook" },
     { component: TwitterShareButton, icon: TwitterIcon, name: "Twitter" },

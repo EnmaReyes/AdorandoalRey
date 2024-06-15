@@ -48,8 +48,8 @@ sans-serif;
       gap: 20px;
       font-size: 20px;
       text-align: center;
-      line-height: 30px;     
-      
+      line-height: 30px;
+
       .editar {
         width: 30px;
         height: 30px;
@@ -58,19 +58,20 @@ sans-serif;
         cursor: pointer;
         transition: 0.2s ease-out;
 
-        .fonticon{
+        .fonticon {
           transition: 0.1s;
         }
-        .fonticon:active{
+
+        .fonticon:active {
           transform: scale(0.90);
-      }
+        }
       }
 
       .editar:hover {
         color: $butonColor;
 
       }
-    
+
       .delete {
         width: 30px;
         height: 30px;
@@ -79,17 +80,18 @@ sans-serif;
         cursor: pointer;
         transition: 0.2s ease-out;
 
-        .fonticon{
+        .fonticon {
           transition: 0.1s;
         }
-        .fonticon:active{
+
+        .fonticon:active {
           transform: scale(0.90);
-      }
+        }
       }
 
       .delete:hover {
         color: $butonColor;
- 
+
       }
     }
 
@@ -133,7 +135,8 @@ sans-serif;
         }
       }
 
-      p, span {
+      p,
+      span {
         margin: 15px 15px;
         font-family: $parrafo;
         font-size: large;
@@ -285,20 +288,7 @@ sans-serif;
         cursor: pointer;
       }
 
-      p {
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-        transform: translate(0%, 35%);
-        width: 35px;
-        height: 35px;
-        text-align: center;
-        font-size: 15px;
-        margin: 0px;
-        color: $titulos;
-        font-family: $titulo;
 
-      }
 
       ul li a .icon {
         position: relative;

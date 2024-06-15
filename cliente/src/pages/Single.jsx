@@ -4,7 +4,6 @@ import Menu from "../components/Menu";
 import Comment from "../components/Comments/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHeart,
   faComment,
   faTrash,
   faPenToSquare,
@@ -16,6 +15,8 @@ import { es } from "date-fns/locale";
 import Share from "../components/Share";
 import "./Single.scss";
 import Loading from "../components/Loading";
+import Likes from "../components/Likes/Likes";
+
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Single = () => {
@@ -25,11 +26,6 @@ const Single = () => {
   const postid = location.pathname.split("/")[2];
   const { currentUser } = useContext(AuthContext);
   const [showCommentField, setShowCommentField] = useState(null);
-  const [heart, setHeart] = useState(null);
-  const hearts = 1;
-  const [countHearts, setCountHearts] = useState();
-  const [heartID, setHeartId] = useState("");
-  const [isProcessingHeart, setIsProcessingHeart] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoadidng, setIsLoading] = useState(true);
 
@@ -53,28 +49,13 @@ const Single = () => {
         const res = await axios.get(`${URL}/api/posts/${postid}`);
         setPost(res.data);
         setIsLoading(false);
-        // Verificar si el usuario actual ya dio like al post
-        const userLiked = res.data.hearts.some(
-          (heart) => heart.userHearts.id === currentUser?.id
-        );
-        setHeart(userLiked);
-
-        // Establecer el ID del corazón (si existe)
-        if (userLiked) {
-          setHeartId(
-            res.data.hearts.find(
-              (heart) => heart.userHearts.id === currentUser?.id
-            )?.id
-          );
-        }
-        setCountHearts(res.data.hearts?.length);
         window.scrollTo(0, 0);
       } catch (error) {
         console.error("Error al obtener el post:", error);
       }
     };
     fetchData();
-  }, [postid, currentUser]);
+  }, [postid]);
 
   // delete post
   const handleDelete = async () => {
@@ -85,43 +66,6 @@ const Single = () => {
       navigate("/");
     } catch (error) {
       console.error("Error al eliminar el post:", error);
-    }
-  };
-
-  // like Heart
-  const handleHeart = async () => {
-    try {
-      setIsProcessingHeart(true);
-      // Si heart es true, realiza la lógica de unlike (axios delete)
-      if (heart) {
-        // Hacer el axios.delete
-        await axios.delete(`${URL}/api/posts/${postid}/${hearts}/${heartID}`, {
-          withCredentials: true,
-        });
-        // Actualizar el estado local solo después de que el delete sea exitoso
-        setCountHearts((prevCount) => prevCount - 1);
-        setHeart(false);
-      } else {
-        // Si heart es false, realiza la lógica de like (axios post)
-        await axios.post(
-          `${URL}/api/posts/${postid}/${hearts}`,
-          { heart: hearts, postid },
-          { withCredentials: true }
-        );
-        const res = await axios.get(`${URL}/api/posts/${postid}`);
-        setHeartId(
-          res.data.hearts.find(
-            (heart) => heart.userHearts.id === currentUser?.id
-          )?.id
-        );
-        // Actualizar el estado local solo después de que el post sea exitoso
-        setCountHearts((prevCount) => prevCount + 1);
-        setHeart(true);
-      }
-    } catch (error) {
-      console.error("Error al manejar el like/unlike:", error);
-    } finally {
-      setIsProcessingHeart(false);
     }
   };
 
@@ -218,14 +162,8 @@ const Single = () => {
           <div className="box3">
             <div className="icons">
               <ul>
-                {countHearts >= 1 && <p className="count">{countHearts}</p>}
-                <li onClick={handleHeart}>
-                  <a>
-                    <FontAwesomeIcon
-                      className={!heart ? "icon" : "heart"}
-                      icon={faHeart}
-                    />
-                  </a>
+                <li>
+                  <Likes postid={postid} currentUser={currentUser} />
                 </li>
                 <li onClick={toggleCommentField}>
                   <a>
