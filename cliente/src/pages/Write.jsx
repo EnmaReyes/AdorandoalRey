@@ -5,9 +5,12 @@ import spotify from "../assets/write-spotify.png";
 import youtobe from "../assets/write-youtobe.png";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import moment from "moment";
+import { format } from "date-fns";
+import { es } from "date-fns/locale"; // Importa el locale español si es necesario
 import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
+import { toast } from "react-toastify";
+import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Write = () => {
@@ -23,8 +26,8 @@ const Write = () => {
       youtobe: "",
     }
   );
-  //* mostrar imagen seleccionada\\
 
+  // Mostrar imagen seleccionada
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
 
@@ -39,58 +42,57 @@ const Write = () => {
       reader.readAsDataURL(selectedFile);
     }
   };
-  // const upload = async () => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("fileImg", fileImg);
-  //     const res = await axios.post(
-  //       `${URL}/api/upload`,
-  //       formData,
-  //       { withCredentials: true }
-  //     );
-  //     return res.data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+
   const handleClick = async (e) => {
     e.preventDefault();
     const imgUrl = await UploadImg(fileImg);
-    console.log(imgUrl);
     try {
-      state
-        ? await axios.put(
-            `${URL}/api/posts/${state.id}`,
-            {
-              title,
-              desc: description,
-              img: file ? imgUrl : "",
-              links: socialLinks,
-            },
-            { withCredentials: true }
-          )
-        : await axios.post(
-            `${URL}/api/posts/`,
-            {
-              title,
-              desc: description,
-              img: file ? imgUrl : "",
-              links: socialLinks,
-              date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-            },
-            { withCredentials: true }
-          );
+      const postData = {
+        title,
+        desc: description,
+        img: fileImg ? imgUrl : "",
+        links: socialLinks,
+      };
 
+      if (!state) {
+        postData.date = format(new Date(), "yyyy-MM-dd HH:mm:ss", {
+          locale: es,
+        });
+      }
+
+      const promise = state
+        ? axios.put(`${URL}/api/posts/${state.id}`, postData, {
+            withCredentials: true,
+          })
+        : axios.post(`${URL}/api/posts/`, postData, { withCredentials: true });
+
+      //! notificaion del post
+      toast.promise(
+        promise,
+        {
+          pending: "Subiendo Blog...",
+
+          success: {
+            render({ data }) {
+              const responseData = JSON.parse(data.config.data);
+              return `${responseData.title} subido exitosamente`;
+            },
+          },
+          error: {
+            render({ data }) {
+              return `${data.message}`;
+            },
+          },
+        },
+        toastpromise //estilo
+      );
+
+      await promise;
       navigate("/");
     } catch (err) {
+      toast.error(`Error al realizar la solicitud: ${err.message}`);
       console.log("Error al realizar la solicitud:", err);
     }
-  };
-
-  const handleLinkChange = (e, index) => {
-    const newLinks = [...links];
-    newLinks[index] = e.target.value;
-    setLinks(newLinks);
   };
 
   return (
@@ -130,7 +132,6 @@ const Write = () => {
             <label className="file" htmlFor="file">
               Cargar Imagen
             </label>
-
             <button onClick={handleClick}>Publicar</button>
           </div>
         </div>

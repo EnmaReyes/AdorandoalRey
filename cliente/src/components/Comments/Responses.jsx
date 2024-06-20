@@ -4,14 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+import { toastComments } from "../toastConfig/toastconfigs";
+import { toast } from "react-toastify";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
-const Responses = ({
-  postId,
-  selectedCommentId,
-  setComments,
-  comments,
-}) => {
+const Responses = ({ postId, selectedCommentId, setComments, comments }) => {
   const [commentText, setCommentText] = useState("");
   const { currentUser } = useContext(AuthContext);
 
@@ -24,7 +21,10 @@ const Responses = ({
         { commentid: selectedCommentId, text: commentText },
         { withCredentials: true }
       );
-
+      toast.success(
+        "Enviado Correctamente",
+        toastComments // estilo del toast
+      );
       const res = await axios.get(`${URL}/api/posts/${postId}`);
       setComments(res.data.comments);
       setCommentText("");
@@ -37,7 +37,8 @@ const Responses = ({
     <div>
       <div>
         <div className="input-replies">
-          <textarea className="textarea"
+          <textarea
+            className="textarea"
             onChange={(e) => setCommentText(e.target.value)}
             placeholder="Escribe tu comentario"
             value={commentText}

@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
     // Establecer un nuevo temporizador de 1 hora (3600000 ms)
     const timer = setTimeout(() => {
       logout();
-    }, 3600000);
+    }, 1800000);
     setLogoutTimer(timer);
   };
 

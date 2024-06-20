@@ -13,6 +13,8 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import Responses from "./Responses";
 import "./Comment.scss";
+import { toast } from "react-toastify";
+import { toastComments } from "../toastConfig/toastconfigs";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
 
 const Comment = ({ setShowCommentField, showCommentField }) => {
@@ -34,10 +36,15 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
         { postId, text: commentText },
         { withCredentials: true }
       );
+      toast.success(
+        "Enviado Correctamente",
+        toastComments // estilo del toast
+      );
       const res = await axios.get(`${URL}/api/posts/${postId}`);
       setComments(res.data.comments);
       setCommentText("");
     } catch (error) {
+      toast.error(`Ocurrrio un error ${error.message}`, toastComments);
       console.log("El comentario no se envió " + error);
     }
   };
@@ -62,10 +69,15 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
       await axios.delete(`${URL}/api/posts/${postId}/${commentId}`, {
         withCredentials: true,
       });
+      toast.success(
+        "Eliminado con Exito",
+        toastComments // estilo del toast
+      );
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.id !== commentId)
       );
     } catch (error) {
+      toast.error(`Ocurrrio un error ${error.message}`, toastComments);
       console.log(error);
     }
   };
@@ -77,6 +89,10 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
       await axios.delete(`${URL}/api/posts/${postId}/response/${replyID}`, {
         withCredentials: true,
       });
+      toast.success(
+        "Eliminado con Exito",
+        toastComments // estilo del toast
+      );
       setComments((prevComments) => {
         return prevComments.map((comment) => {
           if (comment.replies && comment.replies.length > 0) {
@@ -175,7 +191,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                         <div className="name-replies">
                           <p>{reply.userComments?.username}</p>
                           <p>
-                          {reply.updatedAt &&
+                            {reply.updatedAt &&
                               formatDistanceToNow(parseISO(reply.updatedAt), {
                                 addSuffix: true,
                                 locale: es,

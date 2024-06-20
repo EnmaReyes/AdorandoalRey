@@ -1,4 +1,3 @@
-
 import "./style.scss";
 import {
   createBrowserRouter,
@@ -17,11 +16,14 @@ import Footer from "./components/Footer";
 import Blogs from "./pages/Blogs";
 import Aboutme from "./pages/Aboutme";
 import EditUser from "./pages/EditUser";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 //! Rutas de las Paginas \\
 const Layout = () => {
   return (
     <>
+      <ToastContainer />
       <NavBar />
       <Outlet />
       <Footer />
