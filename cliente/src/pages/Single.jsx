@@ -16,6 +16,8 @@ import Share from "../components/Share";
 import "./Single.scss";
 import Loading from "../components/Loading";
 import Likes from "../components/Likes/Likes";
+import { toast } from "react-toastify";
+import { toastComments } from "../components/toastConfig/toastconfigs";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
@@ -63,6 +65,10 @@ const Single = () => {
       await axios.delete(`${URL}/api/posts/${postid}`, {
         withCredentials: true,
       });
+      toast.success(
+        "Eliminado con Exito",
+        toastComments // estilo del toast
+      );
       navigate("/");
     } catch (error) {
       console.error("Error al eliminar el post:", error);
