@@ -1,14 +1,19 @@
 import { Sequelize } from "sequelize";
-import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from "./config.js";
+import { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } from "./config.js";
 
-export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+const sequelizeConfig = {
   host: DB_HOST,
   dialect: "postgres",
-  port: DB_PORT,
-  dialectOptions: {
+  port: DB_PORT
+};
+
+if (process.env.NODE_ENV === 'production') {
+  sequelizeConfig.dialectOptions = {
     ssl: {
       require: true,
-      rejectUnauthorized: false, // Puedes cambiar esto a `true` si tienes un certificado SSL válido
-    },
-  },
-});
+      rejectUnauthorized: false
+    }
+  };
+}
+
+export const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, sequelizeConfig);
