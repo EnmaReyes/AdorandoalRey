@@ -1,5 +1,10 @@
-import { toast, Bounce, Slide } from "react-toastify";
 import React from "react";
+import { toast, Bounce, Slide } from "react-toastify";
+import Swal from "sweetalert2";
+import "react-toastify/dist/ReactToastify.css";
+import "sweetalert2/src/sweetalert2.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 export const toastpromise = {
   position: "bottom-right",
@@ -24,3 +29,20 @@ export const toastComments = {
   theme: "light",
   transition: Slide,
 };
+
+
+  export const notify = (handleClick, texto) => {
+    Swal.fire({
+      title: texto,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleClick(); // Llama a la función pasada por parámetro
+      }
+    });
+  };
+
+

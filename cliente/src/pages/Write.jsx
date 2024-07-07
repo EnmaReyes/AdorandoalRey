@@ -10,7 +10,7 @@ import { es } from "date-fns/locale"; // Importa el locale español si es necesa
 import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
 import { toast } from "react-toastify";
-import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
+import { notify } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Write = () => {
@@ -18,7 +18,7 @@ const Write = () => {
   const state = useLocation().state;
   const [title, setTitle] = useState(state?.title || "");
   const [description, setDescription] = useState(state?.desc || "");
-  const [fileImg, setFileImg] = useState(null);
+  const [fileImg, setFileImg] = useState(state?.img || "");
   const [fileImgPreview, setFileImgPreview] = useState(null);
   const [socialLinks, setSocialLinks] = useState(
     state?.links || {
@@ -43,9 +43,7 @@ const Write = () => {
     }
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    const imgUrl = await UploadImg(fileImg);
+  const handleClick = async () => {
     try {
       const postData = {
         title,
@@ -104,9 +102,13 @@ const Write = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        {fileImgPreview && (
+        {fileImgPreview ? (
           <div className="preview-img">
-            <img src={fileImgPreview} alt="Preview" />
+            <img src={fileImgPreview} alt="" />
+          </div>
+        ) : (
+          <div className="preview-img">
+            <img src={fileImg} alt="" />
           </div>
         )}
         <div className="editorContainer">
@@ -132,7 +134,8 @@ const Write = () => {
             <label className="file" htmlFor="file">
               Cargar Imagen
             </label>
-            <button onClick={handleClick}>Publicar</button>
+            <button  
+            onClick={() => notify(handleClick, "¿Está seguro en subir el post?")}> Publicar </button>
           </div>
         </div>
         <div className="item">

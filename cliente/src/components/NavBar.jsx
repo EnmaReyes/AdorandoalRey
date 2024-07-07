@@ -9,6 +9,8 @@ import axios from "axios";
 import Search from "../components/SearchBar/Search.jsx";
 import SearchResults from "../components/SearchBar/SearchResults.jsx";
 import "./NavBar.scss";
+import { notify } from "./toastConfig/toastconfigs.jsx";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
@@ -74,7 +76,9 @@ const NavBar = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" onClick={() => logout()}>
+                  <a 
+                    onClick={() => notify(logout, "¿Está seguro en salir?")}
+                  >
                     Salir
                   </a>
                 </li>

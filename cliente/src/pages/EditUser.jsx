@@ -11,6 +11,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./EditUser.scss";
 import { AuthContext } from "../context/authContext";
 import { UploadUserImg } from "../firebase/config.js";
+import { notify } from "../components/toastConfig/toastconfigs.jsx";
+import { toast } from "react-toastify";
+import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const EditUser = () => {
@@ -75,8 +78,7 @@ const EditUser = () => {
     });
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const handleClick = async () => {
     const imgUrl = await UploadUserImg(userImg);
 
     try {
@@ -91,9 +93,10 @@ const EditUser = () => {
           },
           { withCredentials: true }
         );
-        logout();
+        toast.success("Cambios Exitosos", toastpromise);
         navegate("/");
       } else {
+        toast.error("Ocurrió un error" , toastpromise)
         console.error("Error: El estado es nulo o indefinido.");
       }
       setFormData({
@@ -203,10 +206,9 @@ const EditUser = () => {
           </div>
 
           <div className="buttons">
-            <span className="upload" onClick={handleClick}>
+          <span className="upload" onClick={() => notify(handleClick, "¿Está seguro en actualizar sus datos?")}>
               <FontAwesomeIcon icon={faUpload} />
             </span>
-
             <span className="delete" onClick={handleDelete}>
               <FontAwesomeIcon icon={faTrash} />
             </span>
