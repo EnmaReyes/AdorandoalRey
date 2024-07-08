@@ -17,7 +17,7 @@ import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const EditUser = () => {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { refreshUserData } = useContext(AuthContext);
   const navegate = useNavigate();
   const [userImg, setUserImg] = useState(null);
   const [fileImgPreview, setFileImgPreview] = useState(null);
@@ -93,6 +93,7 @@ const EditUser = () => {
           },
           { withCredentials: true }
         );
+        refreshUserData()
         toast.success("Cambios Exitosos", toastpromise);
         navegate("/");
       } else {

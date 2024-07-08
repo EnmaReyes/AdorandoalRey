@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import { Users } from "../models/Users.js";
-import { Heart } from "../models/Heart.js";
 
 export const userById = async (req, res) => {
   try {
@@ -11,7 +10,7 @@ export const userById = async (req, res) => {
         .json("No estas autenticado para actualizar Usuario");
     }
     const userInfo = jwt.verify(token, "jwtkey");
-    
+
     const user = await Users.findByPk(userInfo.id);
 
     if (!user) {
@@ -24,7 +23,6 @@ export const userById = async (req, res) => {
   }
 };
 
-
 export const updateUser = async (req, res) => {
   try {
     const token = req.cookies.access_token;
@@ -34,14 +32,14 @@ export const updateUser = async (req, res) => {
         .json("No estas autenticado para actualizar Usuario");
     }
     const userInfo = jwt.verify(token, "jwtkey");
-    
+
     const userUpdate = {
       image: req.body.image,
       email: req.body.email,
       name: req.body.name,
       lastName: req.body.lastName,
     };
-    
+
     const [rowsUpdated] = await Users.update(userUpdate, {
       where: {
         id: userInfo.id,

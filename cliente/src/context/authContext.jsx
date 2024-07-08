@@ -25,12 +25,25 @@ export const AuthContextProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
+  const refreshUserData = async () => {
+    try {
+      const res = await axios.get(`${URL}/api/auth/user`, {
+        withCredentials: true,
+      });
+      setCurrentUser(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data));
+    } catch (err) {
+      console.error("Error al refrescar los datos del usuario:", err);
+      logout(); // Si falla la solicitud, cerrar sesión
+    }
+  };
+
   // Función para reiniciar el temporizador de cierre de sesión
   const resetLogoutTimer = () => {
     if (logoutTimer) {
       clearInterval(logoutTimer); //! limpiar el temporizador anteriror
     }
-    // Establecer un nuevo temporizador de 1 hora (3600000 ms)
+    // Establecer un nuevo temporizador de 30 minutos (1800000 ms)
     const timer = setTimeout(() => {
       logout();
     }, 1800000);
@@ -69,7 +82,14 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, login, logout, showUserEdit, setShowUserEdit }}
+      value={{
+        currentUser,
+        login,
+        logout,
+        showUserEdit,
+        setShowUserEdit,
+        refreshUserData,
+      }}
     >
       {children}
     </AuthContext.Provider>
