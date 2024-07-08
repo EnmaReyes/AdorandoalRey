@@ -10,7 +10,7 @@ import { es } from "date-fns/locale"; // Importa el locale español si es necesa
 import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
 import { toast } from "react-toastify";
-import { notify } from "../components/toastConfig/toastconfigs.jsx";
+import { notify, toastpromise } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Write = () => {
@@ -45,10 +45,18 @@ const Write = () => {
 
   const handleClick = async () => {
     try {
+      // Verificar si title, fileImg o description están vacíos o en false
+      if (!title || !fileImg || !description) {
+        toast.error("Falta información para subir el Blog!!!", toastpromise);
+        return;
+      }
+
+      const imgUrl = await UploadImg(fileImg);
+
       const postData = {
         title,
         desc: description,
-        img: fileImg ? imgUrl : "",
+        img: imgUrl,
         links: socialLinks,
       };
 
@@ -64,12 +72,11 @@ const Write = () => {
           })
         : axios.post(`${URL}/api/posts/`, postData, { withCredentials: true });
 
-      //! notificaion del post
+      //! notificación del post
       toast.promise(
         promise,
         {
           pending: "Subiendo Blog...",
-
           success: {
             render({ data }) {
               const responseData = JSON.parse(data.config.data);
@@ -82,7 +89,7 @@ const Write = () => {
             },
           },
         },
-        toastpromise //estilo
+        toastpromise // estilo
       );
 
       await promise;
@@ -134,8 +141,13 @@ const Write = () => {
             <label className="file" htmlFor="file">
               Cargar Imagen
             </label>
-            <button  
-            onClick={() => notify(handleClick, "¿Está seguro en subir el post?")}> Publicar </button>
+            <button
+              onClick={() =>
+                notify(handleClick, "¿Está seguro en subir el post?")
+              }
+            >
+              Publicar
+            </button>
           </div>
         </div>
         <div className="item">
