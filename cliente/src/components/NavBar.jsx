@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo1 from "../assets/logo1.png";
+import logoblanco from "../assets/logoblanco.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/authContext";
@@ -36,31 +36,32 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div id="navbar" className={scrolled ? "scrolled" : ""}>
+    <div id="navbar" className={scrolled ? "scrolled" : "noscrolled"}>
       <div className="container-navbar">
+        <div className="logo">
+          <Link to="/" className="link">
+            <img src={logoblanco} alt="logo" />
+          </Link>
+        </div>
+        
         <div className="search-bar">
           <Search setSearchResult={setSearchResult} />
           <SearchResults searchResult={searchResult} />
         </div>
-        <div className="logo">
-          <Link to="/" className="link">
-            <img src={logo1} alt="logo" />
-          </Link>
-        </div>
 
         <div className="links">
           {currentUser?.admin === true && (
-            <span>
+            <addEventListener>
               <Link className="link" to="/write">
                 Escribir
               </Link>
-            </span>
+            </addEventListener>
           )}
           <Link className="link" to="/blogs">
-            <span>Blogs</span>
+            <a>Blogs</a>
           </Link>
           <Link className="link" to="/Aboutme">
-            <span>Sobre mi</span>
+            <a>Sobre mi</a>
           </Link>
 
           {currentUser ? (
@@ -88,9 +89,15 @@ const NavBar = () => {
               )}
             </div>
           ) : (
+            <> 
             <Link className="link" to="/login">
               Inisiar sesion
             </Link>
+
+             <Link className="link" to="/register">
+             Registrate
+           </Link>
+           </>
           )}
         </div>
       </div>

@@ -6,19 +6,18 @@ sans-serif;
 $titulo: 'Montserrat',
 sans-serif;
 
-.scrolled {
-  padding: 0px 0;
-  background-color: #285480;
-}
+
 
 #navbar {
   display: flex;
   width: 100%;
   height: 80px;
   margin: 0px 0px;
+  background: rgb(149, 149, 156);
+  background: linear-gradient(90deg, rgba(149, 149, 156, 1) 0%, rgba(87, 87, 92, 1) 20%, rgba(55, 55, 57, 0.9444152661064426) 50%, rgba(88, 88, 93, 1) 80%, rgba(149, 149, 156, 1) 100%);
   position: fixed;
   z-index: 9999;
-  transition: 0.32s ease-in-out;
+  transition: background 0.8s ease-in-out;
 
 
   .container-navbar {
@@ -28,12 +27,13 @@ sans-serif;
     align-items: center;
     justify-content: space-between;
     font-size: 18px;
- 
-    .search-bar{
-      width: 10%;
-      margin: 5%;
+
+    .search-bar {
+      width: 40%;
     }
+
     .logo {
+
       img {
         width: 100px;
       }
@@ -51,9 +51,10 @@ sans-serif;
         transition: 0.2s ease-in-out;
       }
 
-      
 
-      span {
+
+      a {
+        color: #fff;
         cursor: pointer;
       }
 
@@ -69,7 +70,7 @@ sans-serif;
     .custom-select-navbar button {
       padding: 10px;
       border: none;
-      background-color: #00000000;
+      background-color: #fff;
       cursor: pointer;
       font-size: 18px;
     }
@@ -94,6 +95,7 @@ sans-serif;
         padding: 12px;
         text-decoration: none;
         display: block;
+        cursor: pointer;
       }
     }
 

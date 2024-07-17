@@ -9,7 +9,7 @@ const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Search = ({ setSearchResult }) => {
   const [input, setInput] = useState("");
-  const {setShowUserEdit } = useContext(AuthContext);
+  const { setShowUserEdit } = useContext(AuthContext);
   const inputRef = useRef(null);
 
   const handleChange = (value) => {
@@ -40,22 +40,20 @@ const Search = ({ setSearchResult }) => {
 
   return (
     <div className="input-wrapper">
+      <div className="btn">
+        <FontAwesomeIcon id="search-icon" icon={faSearch} />
+      </div>
       <input
-        placeholder="Buscador"
+        placeholder="Buscar"
         type="text"
-        onClick={(e)=>{
+        onClick={(e) => {
           e.stopPropagation();
-          setShowUserEdit(true)
+          setShowUserEdit(true);
         }}
         ref={inputRef}
         value={input}
-        onChange={(e) => {
-          handleChange(e.target.value);
-        }}
+        onChange={(e) => handleChange(e.target.value)}
       />
-      <div className="btn">
-      <FontAwesomeIcon id="search-icon" icon={faSearch} />
-      </div> 
     </div>
   );
 };
