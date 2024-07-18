@@ -15,28 +15,29 @@ import "../App.css";
 import Banner from "../components/Banner";
 import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.gif";
 import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.gif";
-
+import img3 from "../assets/BANNERS_E_IMAGENES/003.png";
+import Blogcards from "../components/BlogCards/Blogcards";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
-  const location = useLocation().search;
+  // const [posts, setPosts] = useState([]);
+  // const location = useLocation().search;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${URL}/api/posts/${location}`);
-        setPosts(res.data);
-        window.scrollTo(0, 0);
-      } catch (error) {}
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get(`${URL}/api/posts/${location}`);
+  //       setPosts(res.data);
+  //       window.scrollTo(0, 0);
+  //     } catch (error) {}
+  //   };
 
-    fetchData();
-  }, [location]);
-  const nuevosPosts = posts.slice(0, 8);
+  //   fetchData();
+  // }, [location]);
+  // const nuevosPosts = posts.slice(0, 8);
 
   // carrusel
-  const banerImg = [img1, img2];
+  const banerImg = [img1, img2, img3];
 
   const [currentImage, setCurrentImage] = useState(banerImg[0]);
   useEffect(() => {
@@ -44,19 +45,21 @@ const Home = () => {
       setCurrentImage((prevImage) => {
         if (prevImage === banerImg[0]) {
           return banerImg[1];
-        } else {
-          return banerImg[0];
+        } else if (prevImage === banerImg[1]){
+          return banerImg[2];
+        }else if (prevImage === banerImg[2]){
+          return banerImg[0]
         }
       });
     }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  // los mas gutados\\
-  const postsOrdenados = [...posts].sort(
-    (a, b) => b.hearts.length - a.hearts.length
-  );
-  const primeros8Posts = postsOrdenados.slice(0, 8);
+  // // los mas gutados\\
+  // const postsOrdenados = [...posts].sort(
+  //   (a, b) => b.hearts.length - a.hearts.length
+  // );
+  // const primeros8Posts = postsOrdenados.slice(0, 8);
 
   return (
     <div className="home">
@@ -66,59 +69,11 @@ const Home = () => {
       >
         <Banner />
       </div>
-      <h1>Nuevos Posts</h1>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={80}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        <div className="cards">
-          {nuevosPosts.map((post) => (
-            <SwiperSlide key={post.id}>
-              <Link className="link" to={`/post/${post.id}`}>
-                <div className="img">
-                  <img src={post.img} alt={post.title} />
-                </div>
-              </Link>
-              <div className="content">
-                <h1>{post.title}</h1>
-              </div>
-            </SwiperSlide>
-          ))}
-        </div>
-      </Swiper>
 
-      <h1>Posts mas Gustados</h1>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={80}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        <div className="cards">
-          {primeros8Posts.map((post) => (
-            <SwiperSlide key={post.id}>
-              <Link className="link" to={`/post/${post.id}`}>
-                <div className="img">
-                  <img src={post.img} alt={post.title} />
-                </div>
-              </Link>
-              <div className="content">
-                <h1>{post.title}</h1>
-              </div>
-            </SwiperSlide>
-          ))}
-        </div>
-      </Swiper>
+     {/* BLOGS  */}
+     <div className="blogs-container">
+     <Blogcards/>
+     </div>
     </div>
   );
 };

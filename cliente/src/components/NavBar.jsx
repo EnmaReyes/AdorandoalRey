@@ -11,6 +11,7 @@ import SearchResults from "../components/SearchBar/SearchResults.jsx";
 import "./NavBar.scss";
 import { notify } from "./toastConfig/toastconfigs.jsx";
 import { text } from "@fortawesome/fontawesome-svg-core";
+import DropDown from "./DropDownProfile/DropDown.jsx";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
@@ -19,6 +20,7 @@ const NavBar = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
+  const [open, setopen] = useState(false)
   const navegate = useNavigate();
 
   // scroll del navbar\\
@@ -36,7 +38,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div id="navbar" className={scrolled ? "scrolled" : "noscrolled"}>
+    <div id="navbar" className={scrolled ? "scrolled" : ""}>
       <div className="container-navbar">
         <div className="logo">
           <Link to="/" className="link">
@@ -63,30 +65,14 @@ const NavBar = () => {
           <Link className="link" to="/Aboutme">
             <a>Sobre mi</a>
           </Link>
-
+          
           {currentUser ? (
-            <div className="custom-select-navbar">
-              <button className="dropselector">{currentUser?.username}</button>
-              <ul className="dropdown-menu-navbar">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => navegate("/edit")}
-                  >
-                    Editar
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    onClick={() => notify(logout, "¿Está seguro en salir?")}
-                  >
-                    Salir
-                  </a>
-                </li>
-              </ul>
+            <div className="custom-select-navbar" onClick={()=>{ setopen(!open)}}>
+              <a>{currentUser?.username}</a>
               {currentUser?.image && (
                 <img className="imgUSer" src={currentUser?.image} />
               )}
+              {open && <DropDown/>}
             </div>
           ) : (
             <> 
@@ -100,6 +86,7 @@ const NavBar = () => {
            </>
           )}
         </div>
+        
       </div>
     </div>
   );

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+.card-container {
+    width: 100%;
+    height: 100%;
+    font-family: "Libre Baskerville", serif;
+
+
+}
+
+.card {
+    background-color: white;
+}
+
+.section-name {
+    height: 100px;
+    font-size: 40px;
+    font-family: "Libre Baskerville", serif;
+    color: #464441;
+    position: relative;
+    top: 80px;
+    left: 80px;
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    background-color: white;
+    width: 400px;
+    height: 320px;
+}
+
+.swiper-slide img {
+    align-items: center;
+    padding: 10px 15px 0px 20px;
+    width: 90%;
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: white;
+}
