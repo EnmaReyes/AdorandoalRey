@@ -218,7 +218,6 @@ sans-serif;
       font-size: large;
       font-family: $parrafo;
       text-align: justify;
-
       background-color: #fff;
       margin: 15px 15px;
 
@@ -241,7 +240,7 @@ sans-serif;
         animation-timeline: --image;
         animation-name: show;
 
-        animation-range: entry 20% cover 20%;
+        animation-range: entry 30% cover 30%;
         animation-fill-mode: both;
       }
     }

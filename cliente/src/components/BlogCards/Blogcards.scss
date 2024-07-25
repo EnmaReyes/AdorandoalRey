@@ -36,8 +36,10 @@
 
 .swiper-slide img {
     align-items: center;
+    object-fit: fill;
     padding: 10px 15px 0px 20px;
     width: 90%;
+    height: 210px;
 }
 
 .data {

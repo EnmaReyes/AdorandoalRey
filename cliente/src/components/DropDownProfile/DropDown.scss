@@ -17,21 +17,23 @@
     align-items: center;
     padding: 0;
     margin: 0;
-  }
-  
+
     li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Esto asegura que los elementos li ocupen todo el ancho del contenedor ul */
-    padding: 0.5rem 0; /* Ajusta el relleno según sea necesario */
-    transition: 0.2s ease-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%; /* Esto asegura que los elementos li ocupen todo el ancho del contenedor ul */
+      padding: 0.5rem 0; /* Ajusta el relleno según sea necesario */
+      transition: 0.2s ease-out;
+    }
+    
+     li:hover{
+      transform: scale(1.3);
+      color: white;
+    }
   }
   
-   li:hover{
-    transform: scale(1.3);
-    color: white;
-  }
+
   .list-container::before {
     content: "";
     position: absolute;
