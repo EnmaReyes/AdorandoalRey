@@ -17,6 +17,7 @@ import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.gif";
 import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.gif";
 import img3 from "../assets/BANNERS_E_IMAGENES/003.png";
 import Blogcards from "../components/BlogCards/Blogcards";
+import SocialCards from "../components/SocialCards/SocialCards";
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const Home = () => {
@@ -73,6 +74,10 @@ const Home = () => {
      {/* BLOGS  */}
      <div className="blogs-container">
      <Blogcards/>
+     </div>
+
+     <div className="socials-cards">
+     <SocialCards/>
      </div>
     </div>
   );

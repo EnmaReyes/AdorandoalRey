@@ -233,14 +233,14 @@ sans-serif;
         }
       }
 
-      p {
+      * {
         view-timeline-name: --image;
         view-timeline-axis: block;
 
         animation-timeline: --image;
         animation-name: show;
 
-        animation-range: entry 30% cover 30%;
+        animation-range: entry 20% cover 30%;
         animation-fill-mode: both;
       }
     }
