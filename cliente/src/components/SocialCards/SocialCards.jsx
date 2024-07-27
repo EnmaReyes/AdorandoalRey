@@ -74,7 +74,7 @@ const SocialCards = () => {
                       <div className="hover">
                         {blog.links.spotify && (
                           <a
-                            href={blog.links.spotify}
+                            href={blog.links?.spotify}
                             target="_blank"
                             className="spotifi-icon"
                           >
@@ -84,14 +84,14 @@ const SocialCards = () => {
                         {blog.links.youtobe && (
                           <>
                             <a
-                              href={blog.links.youtobe}
+                              href={blog.links?.youtobe || blog.links?.spotify}
                               target="_blank"
                               className="play-icon"
                             >
                               <FontAwesomeIcon icon={faPlayCircle} />
                             </a>
                             <a
-                              href={blog.links.youtobe}
+                              href={blog.links?.youtobe}
                               target="_blank"
                               className="youtobe-icon"
                             >
