@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./SocialCards.scss";
+import "./Socialcards.scss";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
