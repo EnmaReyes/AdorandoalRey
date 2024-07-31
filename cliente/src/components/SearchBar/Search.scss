@@ -16,20 +16,27 @@
     font-size: 1.25rem;
     margin-left: 7px;
     width: 400px;
-    transition: width 0.7s ease; 
+    transition: width 0.7s ease;
 }
+
 
 .input-wrapper input:focus {
     outline: none;
 }
 
-// .input-wrapper:hover input,
-// .input-wrapper input:focus {
-//     width: 350px;
-    
-// }
+
 
 #search-icon {
     color: #606063;
-    
+
+}
+
+@media(max-width: 768px) {
+    .input-wrapper input {
+        width: 0px;
+    }
+
+    .input-wrapper input:focus {
+        width: 100px;
+    }
 }

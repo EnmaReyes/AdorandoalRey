@@ -12,6 +12,7 @@ import "./NavBar.scss";
 import { notify } from "./toastConfig/toastconfigs.jsx";
 import { text } from "@fortawesome/fontawesome-svg-core";
 import DropDown from "./DropDownProfile/DropDown.jsx";
+import Burguer from "./Burgericon/Burguer.jsx";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
@@ -20,7 +21,8 @@ const NavBar = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  const [open, setopen] = useState(false)
+  const [open, setopen] = useState(false);
+  const [clicked, setClicked] = useState(false)
   const navegate = useNavigate();
 
   // scroll del navbar\\
@@ -37,25 +39,31 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleClick =()=>{
+    setClicked(!clicked)
+  }
   return (
     <div id="navbar" className={scrolled ? "scrolled" : ""}>
       <div className="container-navbar">
+        <div className="burguer">
+          <Burguer clicked={clicked} handleClick={handleClick} />
+        </div>
         <div className="logo">
           <Link to="/" className="link">
             <img src={logoblanco} alt="logo" />
           </Link>
         </div>
-        
+
         <div className="search-bar">
           <Search setSearchResult={setSearchResult} />
           <SearchResults searchResult={searchResult} />
         </div>
 
-        <div className="links">
+        <div className= {`links ${clicked? 'active': ""}`}>
           {currentUser?.admin === true && (
             <addEventListener>
               <Link className="link" to="/write">
-                Escribir
+                <a>Escribir</a> 
               </Link>
             </addEventListener>
           )}
@@ -65,28 +73,32 @@ const NavBar = () => {
           <Link className="link" to="/Aboutme">
             <a>Sobre mi</a>
           </Link>
-          
-          {currentUser ? (
-            <div className="custom-select-navbar" onClick={()=>{ setopen(!open)}}>
-              <a>{currentUser?.username}</a>
-              {currentUser?.image && (
-                <img className="imgUSer" src={currentUser?.image} />
-              )}
-              {open && <DropDown/>}
-            </div>
-          ) : (
-            <> 
-            <Link className="link" to="/login">
-              Inisiar sesion
-            </Link>
+          {!currentUser && (
+            <>
+              <Link className="link" to="/login">
+               <a>Inisiar sesion</a> 
+              </Link>
 
-             <Link className="link" to="/register">
-             Registrate
-           </Link>
-           </>
+              <Link className="link" to="/register">
+               <a> Registrate</a> 
+              </Link>
+            </>
           )}
         </div>
-        
+        {currentUser && (
+          <div
+            className="custom-select-navbar"
+            onClick={() => {
+              setopen(!open);
+            }}
+          >
+            <a>{currentUser?.username}</a>
+            {currentUser?.image && (
+              <img className="imgUSer" src={currentUser?.image} />
+            )}
+            {open && <DropDown />}
+          </div>
+        )}
       </div>
     </div>
   );

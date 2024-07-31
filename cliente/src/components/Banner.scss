@@ -10,10 +10,8 @@ sans-serif;
     width: 40%;
     margin: 10px;
     display: flex;
-    align-items: center;
-    /* Centra verticalmente */
-    justify-content: center;
-    /* Centra horizontalmente */
+    align-items: center; 
+    justify-content: center; 
     transition: 0.8s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
 
     .wrap {
@@ -23,4 +21,20 @@ sans-serif;
         font-size: 45px;
         transition: 0.9s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
     }
+    @media (max-width: 768px) {
+        width: 40%; // Aumenta aún más el ancho en pantallas más pequeñas
+        height: 50%;
+        .wrap {
+          font-size: 15px; // Reduce más el tamaño de la fuente en pantallas más pequeñas
+          line-height: 20px; // Ajusta más la altura de línea en pantallas más pequeñas
+        }
+      }
+    
+      @media (max-width: 480px) {
+        width: 40%; // Utiliza todo el ancho disponible en pantallas muy pequeñas
+        margin-left: 30px;
+        .wrap {
+          font-size: 15px;
+          line-height: 15px; 
+        }}
 }

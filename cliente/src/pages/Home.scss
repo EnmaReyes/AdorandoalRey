@@ -1,25 +1,34 @@
-$backGround : #d7dbe4;
+$backGround: #d7dbe4;
 $titulos: #285480;
 $butonColor: #285480;
-$parrafo: 'Open Sans',
-sans-serif;
-$titulo: 'Montserrat',
-sans-serif;
+$parrafo: 'Open Sans', sans-serif;
+$titulo: 'Montserrat', sans-serif;
 
 .home {
-  
-
   .wellcome {
     display: flex;
-    justify-content: space-between;
+    justify-content: left; // Centramos el contenido para pantallas pequeñas
+    align-items: center; // Centramos el contenido verticalmente
     background-size: cover;
     margin-bottom: 100px;
     width: 100%;
     height: 700px;
     text-align: center;
-    transition: background-image 0.5s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
+    transition: background-image 0.5s ease-in-out;
     background-repeat: no-repeat;
     animation-duration: 1s;
+
+    @media (max-width: 768px) {
+      background-size: 60%;  
+      height: 300px;
+     
+    }
+
+    @media (max-width: 480px) {
+      background-size: 100%;
+      height: 300px; // Reducimos aún más la altura para pantallas muy pequeñas
+      margin-bottom: 30px; // Reducimos el margen inferior
+    }
   }
 
   .blogs-container {
@@ -27,6 +36,26 @@ sans-serif;
     height: 600px;
     background-image: url("../assets/background/blog.png");
     background-size: cover;
-    
+
+    @media (max-width: 768px) {
+      height: 400px; // Reducimos la altura para pantallas más pequeñas
+    }
+
+    @media (max-width: 480px) {
+      height: 300px; // Reducimos aún más la altura para pantallas muy pequeñas
+    }
+  }
+
+  .socials-cards {
+    // Ajustes para la sección de tarjetas sociales
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+      // Ajustes para pantallas más pequeñas
+      flex-direction: column; // Apilamos las tarjetas verticalmente
+      align-items: center;
+    }
   }
 }
