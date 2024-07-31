@@ -25,5 +25,11 @@
 
 .search-result:hover {
     background-color: #fffffff6;
-    
+
+}
+
+@media(max-width: 768px) {
+    .results-list {
+        width: 220px;  
+    }
 }

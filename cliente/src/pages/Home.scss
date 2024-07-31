@@ -1,8 +1,10 @@
 $backGround: #d7dbe4;
 $titulos: #285480;
 $butonColor: #285480;
-$parrafo: 'Open Sans', sans-serif;
-$titulo: 'Montserrat', sans-serif;
+$parrafo: 'Open Sans',
+sans-serif;
+$titulo: 'Montserrat',
+sans-serif;
 
 .home {
   .wellcome {
@@ -18,16 +20,10 @@ $titulo: 'Montserrat', sans-serif;
     background-repeat: no-repeat;
     animation-duration: 1s;
 
-    @media (max-width: 768px) {
-      background-size: 60%;  
-      height: 300px;
-     
-    }
+    @media(max-width: 768px) {
+      width: 756px;
+      height: 400px;
 
-    @media (max-width: 480px) {
-      background-size: 100%;
-      height: 300px; // Reducimos aún más la altura para pantallas muy pequeñas
-      margin-bottom: 30px; // Reducimos el margen inferior
     }
   }
 
@@ -37,13 +33,11 @@ $titulo: 'Montserrat', sans-serif;
     background-image: url("../assets/background/blog.png");
     background-size: cover;
 
-    @media (max-width: 768px) {
-      height: 400px; // Reducimos la altura para pantallas más pequeñas
+    @media(max-width: 768px) {
+      width: 750px;
+      height: 600px;
     }
 
-    @media (max-width: 480px) {
-      height: 300px; // Reducimos aún más la altura para pantallas muy pequeñas
-    }
   }
 
   .socials-cards {
@@ -52,10 +46,10 @@ $titulo: 'Montserrat', sans-serif;
     flex-wrap: wrap;
     justify-content: center;
 
-    @media (max-width: 768px) {
-      // Ajustes para pantallas más pequeñas
-      flex-direction: column; // Apilamos las tarjetas verticalmente
-      align-items: center;
+    @media(max-width: 768px) {
+      width: 750px;
+      height: 650px;
+
     }
   }
 }
