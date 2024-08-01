@@ -26,24 +26,24 @@ const NavBar = () => {
   const navegate = useNavigate();
 
   // scroll del navbar\\
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 400) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", onScroll);
+  // useEffect(() => {
+  //   const onScroll = () => {
+  //     if (window.scrollY > 400) {
+  //       setScrolled(true);
+  //     } else {
+  //       setScrolled(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
 
   const handleClick =()=>{
     setClicked(!clicked)
   }
   return (
-    <div id="navbar" className={scrolled ? "scrolled" : ""}>
+    <div id="navbar">
       <div className="container-navbar">
         <div className="burguer">
           <Burguer clicked={clicked} handleClick={handleClick} />

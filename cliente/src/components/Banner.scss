@@ -1,33 +1,34 @@
-$backGround : #d7dbe4;
-$titulos: #285480;
-$butonColor: #285480;
-$parrafo: 'Open Sans',
-sans-serif;
-$titulo: 'Montserrat',
-sans-serif;
-
 .banner {
-    width: 40%;
-    margin: 10px;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    transition: 0.8s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
 
-    .wrap {
-        color: #fff;
-        line-height: 60px;
-        font-family: $parrafo;
-        font-size: 45px;
-        transition: 0.9s ease-in-out; // Ajusta la duración y la función de temporización según tus necesidades
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.active {
+      opacity: 1;
     }
-    @media (max-width: 768px) {
-        width: 40%; // Aumenta aún más el ancho en pantallas más pequeñas
-        height: 50%;
-        .wrap {
-          font-size: 20px; // Reduce más el tamaño de la fuente en pantallas más pequeñas
-          line-height: 20px; // Ajusta más la altura de línea en pantallas más pequeñas
-        }
-      }
-    
+  }
+}
+@media(max-width:768px){
+  .banner{
+    width: 100%;
+    height: 20%;
+    img {
+      
+      object-fit: contain;
+    }
+  }
 }

@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from "react";
-import "./Banner.scss"
+import React, { useState, useEffect } from 'react';
+import './Banner.scss'; // Asegúrate de importar tu archivo de estilos
+import img1 from "../assets/BANNERS_E_IMAGENES/banner_01.png";
+import img2 from "../assets/BANNERS_E_IMAGENES/banner_02.png";
+import img3 from "../assets/BANNERS_E_IMAGENES/003.png";
 
+const banerImg = [img1, img2, img3];
 
 const Banner = () => {
+  const [currentImage, setCurrentImage] = useState(0);
 
- 
-  const toRotate = [
-      "Volveos a mi reprensión; he aquí, yo derramaré mi espíritu sobre vosotros y os haré saber mis palabras",
-      "El principio de la sabiduría es el temor al Señor",
-      "Hijo mío, no te olvides de mis enseñanzas; más bien, guarda en tu corazón mis mandamientos.",
-    ];
-    const [words, setWords] = useState(toRotate[0])
-    useEffect(()=>{
-      const interval = setInterval(()=>{
-        setWords((prevWord)=>{
-          if(prevWord === toRotate[0]){
-            return toRotate[1];
-          }else if(prevWord === toRotate[1]){
-            return toRotate[2]
-          }else{
-            return toRotate[0];
-          }
-        });
-      }, 4000);
-      return ()=> clearInterval(interval)
-    },[])
-  
-    return (
-      <div className="banner">
-        <span className="wrap">{words}</span>
-      </div>
-    );
-  };
-  
-  export default Banner;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % banerImg.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="banner">
+      {banerImg.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          className={index === currentImage ? 'active' : ''}
+          alt={`banner-img-${index}`}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Banner;

@@ -1,10 +1,8 @@
 $backGround: #d7dbe4;
 $titulos: #285480;
 $butonColor: #285480;
-$parrafo: 'Open Sans',
-sans-serif;
-$titulo: 'Montserrat',
-sans-serif;
+$parrafo: 'Open Sans', sans-serif;
+$titulo: 'Montserrat', sans-serif;
 
 .scrolled {}
 
@@ -28,9 +26,10 @@ sans-serif;
     font-size: 18px;
 
     .search-bar {
-      width: 40%;
+      flex-grow: 1; // Para que ocupe el espacio disponible
+      margin-left: 10px;
+      margin-right: 10px;
     }
-
 
     .burguer {
       @media (min-width: 768px) {
@@ -61,20 +60,20 @@ sans-serif;
         left: -2000px;
         margin: 0 auto;
         text-align: center;
-        transition: left 0.6s ease-in-out;
+        transition: top 0.6s ease-in-out, left 0.6s ease-in-out;
 
         &.active {
-          top: 60px; // Ajusta esto según la posición que desees
+          top: 60px;
           left: 0;
           width: 100%;
           display: flex;
           flex-direction: column;
-          background-color: rgba(87, 87, 92, 0.644); // Ajusta el color de fondo si es necesario
+          background-color: rgba(87, 87, 92, 0.644);
 
           a {
             display: block;
             font-size: 2rem;
-            margin: 10px 15px; // Ajusta el margen entre los enlaces si es necesario
+            margin: 10px 15px;
           }
         }
       }
@@ -82,13 +81,12 @@ sans-serif;
 
     .custom-select-navbar {
       display: flex;
-      justify-items: center;
+      justify-content: center;
 
       a {
         margin: 15px 5px;
         color: #fff;
         cursor: pointer;
-
       }
 
       .imgUSer {
@@ -98,7 +96,6 @@ sans-serif;
         border-radius: 50%;
         object-fit: cover;
         box-shadow: 0 0 11px -3px rgba(241, 241, 241, 0.71);
-
       }
     }
   }
@@ -106,32 +103,27 @@ sans-serif;
 
 @media (max-width: 768px) {
   #navbar {
-    width: 100%;
+    width: 395px;
     height: 60px;
-    display: flex;
-    align-items: center;
+    flex-direction: row;  
   }
 
   .container-navbar {
-    display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
+
+    .search-bar {
+      width: 50%;
+    }
 
 
     .custom-select-navbar {
-      display: flex;
-      justify-content: flex-end;
-      width: 40%;
-
+      width: 60%;
+      
       a {
         font-size: 15px;
       }
-
     }
   }
-
-
-
 }

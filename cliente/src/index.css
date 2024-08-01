@@ -1,4 +1,9 @@
 body{
-    margin:0px;   
-}
+    margin:0px;  
 
+    @media(max-width:768px){   
+        width: 395px; 
+        margin: 0px;
+        overflow: none;
+}
+}

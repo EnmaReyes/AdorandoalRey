@@ -22,10 +22,14 @@
   left: 80px;
 
   @media (max-width: 768px) {
-    width: 100%; // Ajustamos el ancho para pantallas más pequeñas
-    font-size: 30px; // Reducimos el tamaño de la fuente
-    top: 40px; // Ajustamos la posición superior
-    left: 20px; // Ajustamos la posición izquierda
+    width: 50%; 
+    top: 40px;
+    left: 20px; 
+    margin: 0px;
+    padding: 0px;
+    h1{
+      font-size: 30px; 
+    }
   }
 
   @media (max-width: 480px) {
@@ -55,14 +59,10 @@
   height: 320px;
 
   @media (max-width: 768px) {
-    width: 300px; // Reducimos el ancho de las slides
+    width: 100%; // Reducimos el ancho de las slides
     height: 240px; // Reducimos la altura de las slides
   }
 
-  @media (max-width: 480px) {
-    width: 200px; // Reducimos aún más el ancho de las slides
-    height: 160px; // Reducimos aún más la altura de las slides
-  }
 }
 
 .swiper-slide img {
