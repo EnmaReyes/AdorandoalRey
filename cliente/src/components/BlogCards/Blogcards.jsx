@@ -9,6 +9,13 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faHeartCircleBolt,
+  faHeartPulse,
+  faShieldHeart,
+} from "@fortawesome/free-solid-svg-icons";
 
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 const Blogcards = () => {
@@ -59,6 +66,9 @@ const Blogcards = () => {
                 <div className="data">
                   <h1 className="text-card">{post.title}</h1>
                   <p>{post.hearts?.length}</p>
+                  <span>
+                    <FontAwesomeIcon icon={faHeart} />
+                  </span>
                 </div>
               </Link>
             </SwiperSlide>

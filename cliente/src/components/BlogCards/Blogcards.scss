@@ -22,13 +22,14 @@
   left: 80px;
 
   @media (max-width: 768px) {
-    width: 50%; 
+    width: 50%;
     top: 40px;
-    left: 20px; 
+    left: 20px;
     margin: 0px;
     padding: 0px;
-    h1{
-      font-size: 30px; 
+
+    h1 {
+      font-size: 30px;
     }
   }
 
@@ -45,9 +46,7 @@
   padding-bottom: 50px;
 
   @media (max-width: 768px) {
-    width: 100%; // Ajustamos el ancho para pantallas más pequeñas
-    padding-top: 30px; // Reducimos el padding superior
-    padding-bottom: 30px; // Reducimos el padding inferior
+    width: 100%;
   }
 }
 
@@ -59,8 +58,9 @@
   height: 320px;
 
   @media (max-width: 768px) {
-    width: 100%; // Reducimos el ancho de las slides
-    height: 240px; // Reducimos la altura de las slides
+    width: 70%;
+    height: 30%;
+
   }
 
 }
@@ -73,14 +73,12 @@
   height: 210px;
 
   @media (max-width: 768px) {
-    padding: 5px 10px 0px 10px; // Ajustamos el padding para pantallas más pequeñas
-    width: 80%; // Ajustamos el ancho de las imágenes
-    height: 160px; // Ajustamos la altura de las imágenes
-  }
-
-  @media (max-width: 480px) {
-    width: 70%; // Ajustamos aún más el ancho de las imágenes
-    height: 120px; // Ajustamos aún más la altura de las imágenes
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px 0px 15px;
+    width: 90%;
+    height: 120px;
+    object-fit: cover;
   }
 }
 
@@ -90,8 +88,48 @@
   justify-content: space-evenly;
   background-color: white;
 
+  h1 {
+    width: 70%;
+    font-family: "Libre Baskerville", serif;
+    font-size: 25px;
+  }
+
+  p {
+    position: relative;
+    right: -43px;
+    top: 2px;
+    font-family: monospace;
+    font-size: 18px;
+    text-align: right;
+    color: #fff;
+    z-index: 1;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    font-size: 35px;
+    color: rgb(151, 3, 3);
+    filter: drop-shadow(0 0 5px rgba(133, 0, 0, 0.904))
+  }
+
   @media (max-width: 768px) {
-    flex-direction: column; // Apilamos los elementos verticalmente en pantallas más pequeñas
-    align-items: center; // Centramos los elementos
+    flex-direction: row;
+    align-items: center;
+
+    p {
+      top: -1px;
+      right: -31px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    span {
+      font-size: 30px;
+    }
   }
 }
