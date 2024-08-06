@@ -129,41 +129,44 @@
 
                 h1 {
                     margin-bottom: -20px;
-                    margin-left: 30px;
+                    margin-left: 35px;
                     font-size: 25px;
                 }
             }
 
             .swiper {
                 width: 100%;
-                height: 60%;
+                height: 40%;
             }
 
             .image-container {
                 display: flex;
                 justify-content: center;
-                margin-left: -10px;
-                
+                margin-left: -5px;
+
                 img {
                     width: 80%;
                     height: 200px;
                     object-fit: contain;
-                    
-                
+
+
                 }
-                .hover{
+
+                .hover {
                     align-content: center;
                     justify-content: space-evenly;
                     margin: 10px;
-                    .spotifi-icon{
-                       font-size: 25px; 
+
+                    .spotifi-icon {
+                        font-size: 25px;
                     }
-                    .play-icon{
+
+                    .play-icon {
                         font-size: 40px;
                     }
 
-                    .youtobe-icon{
-                        font-size: 25px; 
+                    .youtobe-icon {
+                        font-size: 25px;
                     }
                 }
             }
