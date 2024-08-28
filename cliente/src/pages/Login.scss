@@ -26,13 +26,40 @@
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
 
             img {
+                margin-top: -100px;
                 max-width: 70%;
                 height: auto;
             }
+            .inicio{  
+                text-decoration: none;
+            }
+            button{
+                margin: 0.5rem;
+                margin-left: 0px;
+                padding: 8px;
+                background-color: #dee2f0;
+                border: none;
+                border-radius: 16px;
+                color: #182540;
+                font-size: 1rem;
+                cursor: pointer;
+                width: 100%;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: white;
+                }
+                span{
+                    
+                    font-weight: 600;
+                }
+            }
+            
         }
 
         .rigth {
@@ -51,6 +78,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 margin-bottom: 3rem;
+
                 h1 {
                     margin-bottom: 2rem;
                     font-size: 2rem;
@@ -72,12 +100,17 @@
                         border: 1px solid #bdc3c7;
                         background-color: #dee2f0;
                         font-size: 1rem;
-                        
+                    }
+
+                    .show-hide {
+                        position: absolute;
+                        bottom: 47%;
+                        right: 29.5%;
                     }
 
                     button {
                         padding: 8px;
-                        background-color:#063567;
+                        background-color: #063567;
                         border: none;
                         border-radius: 16px;
                         color: white;
@@ -87,11 +120,11 @@
                         transition: background-color 0.3s ease;
 
                         &:hover {
-                            background-color:#094e97;
+                            background-color: #094e97;
                         }
                     }
 
-                    .error{
+                    .error {
                         color: red;
                         font-size: 1rem;
                         font-style: italic;
@@ -105,24 +138,83 @@
 
                         a {
                             padding: 6px;
-                            
                             border-radius: 16px;
                             color: #3498db;
                             text-decoration: none;
                             transition: background-color 0.3s ease;
                             &:hover {
-                                color: white ;
+                                color: white;
                                 background-color: #063567;
                             }
                         }
                     }
                 }
             }
-
         }
-
     }
+}
 
+@media(max-width: 768px) {
+    .login-contain {
+        height: 100%;
+        padding: 75px 15px;
 
+        .login-box {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
 
+            .left {
+                width: 100%;
+                transition: width 0.3s ease-in-out;
+                img {
+                    margin: 0px;
+                    max-width: 100%;
+                    height: auto;
+                }
+                button{
+                    width: 100%;
+                    transition: width 0.3s ease-in-out;
+                }
+            }
+
+            .left.reduced-width {
+                width: 50%;
+
+                button{
+                    width: 100%;
+                }
+            }
+
+            .rigth {
+                width: 100%;
+
+                .info {
+                    h1 {
+                        text-align: center;
+                    }
+
+                    form {
+                        input {
+                            margin-bottom: 15px;
+                        }
+
+                        .show-hide {
+                            position: absolute;
+                            bottom: 46%;
+                            right: 8%;
+                        }
+
+                        span {
+                            text-align: center;
+                            line-height: 25px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 }
