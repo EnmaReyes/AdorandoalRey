@@ -86,7 +86,10 @@ const Login = () => {
               <button onClick={handlesubmit}>Ingresar</button>
               {error && <p className="error">{error}</p>}
               <span>
-                ¿No posees cuenta? <Link className="register" to="/register">Registrate</Link>
+                ¿No posees cuenta?{" "}
+                <Link className="register" to="/register">
+                  Registrate
+                </Link>
               </span>
             </form>
           </div>
