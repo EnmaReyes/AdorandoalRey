@@ -21,7 +21,7 @@
             width: 50%;
             height: 450px;
             padding: 20px;
-            background-image: url("../assets/background/loginLogoFondo.png");
+            background-image: url("../assets/background/Loginfondo.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -206,7 +206,10 @@
                             bottom: 46%;
                             right: 8%;
                         }
-
+                        .error{
+                            font-size: 0.9rem;
+                            text-align: center;
+                        }
                         span {
                             text-align: center;
                             line-height: 25px;
