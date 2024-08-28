@@ -2,7 +2,7 @@ import { React, useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
-
+import "../style.scss"
 import "./Home.scss";
 import "swiper/css";
 import "swiper/css/free-mode";

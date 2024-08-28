@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-
+import logo from "../assets/logoblanco.png";
+import fondo from "../assets/background/login.png";
+import "./Login.scss";
 const Login = () => {
   const [inputs, setInputs] = useState({
     username: "",
@@ -26,29 +28,38 @@ const Login = () => {
     }
   };
   return (
-    <div className="auth">
-      <h1>Iniciar sesión</h1>
-      <form>
-        <input
-          required
-          type="text"
-          placeholder="Usuario"
-          name="username"
-          onChange={handlechange}
-        />
-        <input
-          required
-          type="password"
-          placeholder="Contraseña"
-          name="password"
-          onChange={handlechange}
-        />
-        <button onClick={handlesubmit}>Ingresar</button>
-        {error && <p>{error}</p>}
-        <span>
-          ¿no posees cuenta? <Link to="/register">Registrate</Link>
-        </span>
-      </form>
+    <div className="login-contain">
+      <div className="login-box">
+      <div className="left">
+        <img src={logo} alt="Logo" />
+      </div>
+      <div className="rigth">
+        <div className="info"> 
+        <h1>Iniciar Sesión</h1>
+        <form>
+          <input
+            required
+            type="text"
+            placeholder="Usuario"
+            name="username"
+            onChange={handlechange}
+          />
+          <input
+            required
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+            onChange={handlechange}
+          />
+          <button onClick={handlesubmit}>Ingresar</button>
+          {error && <p className="error">{error}</p>}
+          <span>
+            ¿No posees cuenta? <Link to="/register">Registrate</Link>
+          </span>
+        </form>
+        </div>
+      </div>
+      </div>
     </div>
   );
 };
