@@ -1,14 +1,14 @@
-.login-contain {
+.register-contain {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../assets/background/login.png");
+    background-image: url("../assets/background/Registrarse.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 3.65rem;
     
-    .login-box {
+    .registro-box {
         width: 700px;
         display: flex;
         align-items: center;
@@ -21,7 +21,7 @@
             width: 50%;
             height: 450px;
             padding: 20px;
-            background-image: url("../assets/background/Loginfondo.png");
+            background-color: #4e2c00;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -31,7 +31,7 @@
             align-items: center;
 
             img {
-                margin-top: -100px;
+                margin-top: -60px;
                 max-width: 70%;
                 height: auto;
             }
@@ -75,7 +75,7 @@
             align-items: center;
             justify-content: center;
 
-            .info {
+            .info-register{
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -84,8 +84,8 @@
 
                 h1 {
                     margin-bottom: 2rem;
-                    font-size: 2rem;
-                    color: #182540;
+                    font-size: 1.5rem;
+                    color: #ba7738;
                 }
 
                 form {
@@ -107,13 +107,13 @@
 
                     .show-hide {
                         position: relative;
-                        top: -20%;
+                        top: -16.5%;
                         left: 45%;
                     }
 
                     button {
                         padding: 8px;
-                        background-color: #063567;
+                        background-color: #4e2c00;
                         border: none;
                         border-radius: 16px;
                         color: white;
@@ -123,7 +123,7 @@
                         transition: background-color 0.3s ease;
 
                         &:hover {
-                            background-color: #094e97;
+                            background-color: #ba7738;
                         }
                     }
 
@@ -141,7 +141,7 @@
 
                         a {
                             font-weight: 700;
-                            color: #3498db;
+                            color: #ba7738;
                             text-decoration: none;
                             transition: 0.3s ease;
 
@@ -157,12 +157,12 @@
 }
 
 @media(max-width: 768px) {
-    .login-contain {
+    .register-contain  {
         width: 100%;
         height: 100% ;
         padding: 100px 15px;
 
-        .login-box {
+        .registro-box {
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -196,7 +196,7 @@
             .rigth {
                 width: 100%;
 
-                .info {
+                .info-register {
                     h1 {
                         text-align: center;
                     }
@@ -208,7 +208,7 @@
 
                         .show-hide {
                             position: relative;
-                            top: -19%;
+                            top: -16%;
                             left: 44%;
                             
                         }
@@ -219,6 +219,7 @@
                         }
 
                         span {
+                            text-wrap: pretty;
                             text-align: center;
                             line-height: 25px;
                         }
