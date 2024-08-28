@@ -7,7 +7,7 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 3.65rem;
-
+    
     .login-box {
         width: 700px;
         display: flex;
@@ -35,10 +35,12 @@
                 max-width: 70%;
                 height: auto;
             }
-            .inicio{  
+
+            .inicio {
                 text-decoration: none;
             }
-            button{
+
+            button {
                 margin: 0.5rem;
                 margin-left: 0px;
                 padding: 8px;
@@ -54,12 +56,13 @@
                 &:hover {
                     background-color: white;
                 }
-                span{
-                    
+
+                span {
+
                     font-weight: 600;
                 }
             }
-            
+
         }
 
         .rigth {
@@ -103,9 +106,9 @@
                     }
 
                     .show-hide {
-                        position: absolute;
-                        bottom: 47%;
-                        right: 29.5%;
+                        position: relative;
+                        top: -20%;
+                        left: 45%;
                     }
 
                     button {
@@ -142,6 +145,7 @@
                             color: #3498db;
                             text-decoration: none;
                             transition: background-color 0.3s ease;
+
                             &:hover {
                                 color: white;
                                 background-color: #063567;
@@ -156,8 +160,9 @@
 
 @media(max-width: 768px) {
     .login-contain {
-        height: 100%;
-        padding: 75px 15px;
+        width: 100%;
+        height: 100% ;
+        padding: 100px 15px;
 
         .login-box {
             width: 100%;
@@ -169,12 +174,14 @@
             .left {
                 width: 100%;
                 transition: width 0.3s ease-in-out;
+
                 img {
                     margin: 0px;
                     max-width: 100%;
                     height: auto;
                 }
-                button{
+
+                button {
                     width: 100%;
                     transition: width 0.3s ease-in-out;
                 }
@@ -183,7 +190,7 @@
             .left.reduced-width {
                 width: 50%;
 
-                button{
+                button {
                     width: 100%;
                 }
             }
@@ -202,19 +209,22 @@
                         }
 
                         .show-hide {
-                            position: absolute;
-                            bottom: 46%;
-                            right: 8%;
+                            position: relative;
+                            top: -19%;
+                            left: 44%;
+                            
                         }
-                        .error{
+
+                        .error {
                             font-size: 0.9rem;
                             text-align: center;
                         }
+
                         span {
                             text-align: center;
                             line-height: 25px;
                         }
-                        
+
                     }
                 }
             }
