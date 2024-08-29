@@ -89,7 +89,7 @@ const Single = () => {
   };
 
   return (
-    <div>
+    <div className="sinlge-contain">
       {isLoadidng && (
         <div className="loading">
           <Loading />
@@ -98,65 +98,7 @@ const Single = () => {
       <img id="postImg" className={scrolled ? "scroll" : ""} src={post?.img} />
       <div className="single">
         <div className="content">
-          <h1>{post.title}</h1>
-
-          <div className="social-icon">
-            <div className="user">
-              {post?.user?.image && (
-                <img src={post.user?.image} alt={post?.user.username} />
-              )}
-              <div className="info">
-                <span className="span">{post.user?.username}</span>
-                <p className="p">
-                  {post.date &&
-                    formatDistanceToNow(parseISO(post.date), {
-                      addSuffix: true,
-                      locale: es,
-                    })}
-                </p>
-              </div>
-
-              {currentUser?.admin === true && (
-                <div className="edit">
-                  <Link className="link" to={`/write?edit=2`} state={post}>
-                    <div className="editar">
-                      <FontAwesomeIcon
-                        className="fonticon"
-                        icon={faPenToSquare}
-                      />
-                    </div>
-                  </Link>
-                  <div onClick={handleDelete} className="delete">
-                    <FontAwesomeIcon className="fonticon" icon={faTrash} />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="icon">
-              {post.links?.spotify?.length !== 0 &&
-              post.links?.youtobe?.length !== 0 ? (
-                <p>Escucha el Capitulo por</p>
-              ) : null}
-              <ul>
-                {post.links?.spotify?.length > 0 && (
-                  <li>
-                    <a href={post.links?.spotify} target="blanket">
-                      <i className="fab fa-spotify icon"></i>
-                    </a>
-                  </li>
-                )}
-
-                {post.links?.youtobe?.length > 0 && (
-                  <li>
-                    <a href={post.links?.youtobe} target="blanket">
-                      <i className="fab fa-youtube icon"></i>
-                    </a>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </div>
+          <h1 className="titulo">{post.title}</h1>
 
           <div className="box-parrafo">
             <p
@@ -165,34 +107,97 @@ const Single = () => {
             ></p>
           </div>
 
-          <div className="box3">
-            <div className="icons">
-              <ul>
-                <li>
-                  <Likes postid={postid} currentUser={currentUser} />
-                </li>
-                <li onClick={toggleCommentField}>
-                  <a>
-                    <FontAwesomeIcon
-                      className={!showCommentField ? "icon" : "chat"}
-                      icon={faComment}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <Share post={post} />
-                </li>
-              </ul>
+          <div className="barra-contain">
+            <div className="barra-data">
+              <div className="user">
+                {post?.user?.image && (
+                  <img className="imgUser" src={post.user?.image} alt={post?.user.username} />
+                )}
+                <div className="info">
+                  <span className="span">{post.user?.username}</span>
+                  <p className="p">
+                    {post.date &&
+                      formatDistanceToNow(parseISO(post.date), {
+                        addSuffix: true,
+                        locale: es,
+                      })}
+                  </p>
+                </div>
+
+                {currentUser?.admin === true && (
+                  <div className="edit">
+                    <Link className="link" to={`/write?edit=2`} state={post}>
+                      <div className="editar">
+                        <FontAwesomeIcon
+                          className="fonticon"
+                          icon={faPenToSquare}
+                        />
+                      </div>
+                    </Link>
+                    <div onClick={handleDelete} className="delete">
+                      <FontAwesomeIcon className="fonticon" icon={faTrash} />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="social-icon">
+                <div className="icons">
+                  <ul>
+                    <li>
+                      <Likes postid={postid} currentUser={currentUser} />
+                    </li>
+                    <li onClick={toggleCommentField}>
+                      <a>
+                        <FontAwesomeIcon
+                          className={!showCommentField ? "icon" : "chat"}
+                          icon={faComment}
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <Share post={post} />
+                    </li>
+                    <li>
+                      <Comment
+                        setShowCommentField={setShowCommentField}
+                        showCommentField={showCommentField}
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="icon">
+                {post.links?.spotify?.length !== 0 &&
+                post.links?.youtobe?.length !== 0 ? (
+                  <p>Escuchalo en</p>
+                ) : null}
+                <ul>
+                  {post.links?.spotify?.length > 0 && (
+                    <li>
+                      <a href={post.links?.spotify} target="blanket">
+                        <i className="fab fa-spotify icon"></i>
+                      </a>
+                    </li>
+                  )}
+
+                  {post.links?.youtobe?.length > 0 && (
+                    <li>
+                      <a href={post.links?.youtobe} target="blanket">
+                        <i className="fab fa-youtube icon"></i>
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
-
-          <Comment
-            setShowCommentField={setShowCommentField}
-            showCommentField={showCommentField}
-          />
         </div>
 
-        <Menu />
+        <div className="menu">
+          <Menu />
+        </div>
       </div>
     </div>
   );
