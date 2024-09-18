@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 
 export const AuthContext = createContext();
 const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
@@ -41,12 +40,12 @@ export const AuthContextProvider = ({ children }) => {
   // Función para reiniciar el temporizador de cierre de sesión
   const resetLogoutTimer = () => {
     if (logoutTimer) {
-      clearInterval(logoutTimer); //! limpiar el temporizador anteriror
+      clearTimeout(logoutTimer); // Asegúrate de usar clearTimeout en lugar de clearInterval
     }
-    // Establecer un nuevo temporizador de 30 minutos (1800000 ms)
+    // Establecer un nuevo temporizador de 1 hora (3600000 ms)
     const timer = setTimeout(() => {
       logout();
-    }, 1800000);
+    }, 3600000);
     setLogoutTimer(timer);
   };
 
@@ -57,28 +56,31 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (currentUser) {
+      // Solo reinicia el temporizador si el usuario está logueado
+      resetLogoutTimer();
+    }
+  }, [currentUser]); // Esto se ejecuta cuando cambia el usuario actual
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(currentUser));
+  }, [currentUser]);
+
+  useEffect(() => {
+    // Agregar los eventos para detectar actividad del usuario
     document.addEventListener("mousedown", handleUserActivity);
     document.addEventListener("mousemove", handleUserActivity);
     document.addEventListener("keydown", handleUserActivity);
     document.addEventListener("keypress", handleUserActivity);
 
     return () => {
+      // Limpiar los eventos cuando el componente se desmonte
       document.removeEventListener("mousedown", handleUserActivity);
       document.removeEventListener("mousemove", handleUserActivity);
       document.removeEventListener("keydown", handleUserActivity);
       document.removeEventListener("keypress", handleUserActivity);
     };
   }, []);
-
-  useEffect(() => {
-    if (currentUser) {
-      resetLogoutTimer();
-    }
-  }, [currentUser]);
-
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
-  }, [currentUser]);
 
   return (
     <AuthContext.Provider

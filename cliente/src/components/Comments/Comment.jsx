@@ -230,7 +230,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
             <div className="input">
               <textarea
                 onChange={(e) => setCommentText(e.target.value)}
-                placeholder="Escribe tu comentario"
+                placeholder="Escribir..."
                 value={commentText}
               />
               <div className="barra-inferior">

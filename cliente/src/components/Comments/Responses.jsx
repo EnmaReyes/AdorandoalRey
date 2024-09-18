@@ -40,7 +40,7 @@ const Responses = ({ postId, selectedCommentId, setComments, comments }) => {
           <textarea
             className="textarea"
             onChange={(e) => setCommentText(e.target.value)}
-            placeholder="Escribe tu comentario"
+            placeholder="Escribir..."
             value={commentText}
           />
           <div className="barra-inferior-replies">

@@ -79,7 +79,7 @@ const Likes = ({ postid, currentUser }) => {
         <p className="counter"> {countHearts >= 1 && <p className="count">{countHearts}</p>}</p>
         <a onClick={handleHeart}>
           <FontAwesomeIcon
-            className={!heart ? "icon" : "heart"}
+            className={!heart ? "icon-chat" : "heart"}
             icon={faHeart}
           />
         </a>

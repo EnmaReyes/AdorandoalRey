@@ -11,16 +11,21 @@ sans-serif;
     flex-direction: row;
     justify-content: space-between;
 
-    .counter {
-        display: flex;
-        justify-content: end;
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
-        font-weight: 1000;
+    .counter { 
+        text-align: center;
+        position: relative;
+        top: 1.2rem;
+        right: -1.4rem;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        font-size: 15px;
+        line-height: 2%;
+        font-weight: bolder;
         margin: 0px;
         color: $titulos;
         font-family: $titulo;
-
+        z-index: 999;
     }
 }

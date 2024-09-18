@@ -8,6 +8,8 @@ import {
   faTrash,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import { parseISO, formatDistanceToNow } from "date-fns";
@@ -111,10 +113,14 @@ const Single = () => {
             <div className="barra-data">
               <div className="user">
                 {post?.user?.image && (
-                  <img className="imgUser" src={post.user?.image} alt={post?.user.username} />
+                  <img
+                    className="imgUser"
+                    src={post.user?.image}
+                    alt={post?.user.username}
+                  />
                 )}
                 <div className="info">
-                  <span className="span">{post.user?.username}</span>
+                  <span className="name"> {post.user?.username}</span>
                   <p className="p">
                     {post.date &&
                       formatDistanceToNow(parseISO(post.date), {
@@ -150,7 +156,7 @@ const Single = () => {
                     <li onClick={toggleCommentField}>
                       <a>
                         <FontAwesomeIcon
-                          className={!showCommentField ? "icon" : "chat"}
+                          className={!showCommentField ? "icon-chat" : "chat"}
                           icon={faComment}
                         />
                       </a>
@@ -158,26 +164,18 @@ const Single = () => {
                     <li>
                       <Share post={post} />
                     </li>
-                    <li>
-                      <Comment
-                        setShowCommentField={setShowCommentField}
-                        showCommentField={showCommentField}
-                      />
-                    </li>
                   </ul>
                 </div>
               </div>
 
               <div className="icon">
-                {post.links?.spotify?.length !== 0 &&
-                post.links?.youtobe?.length !== 0 ? (
-                  <p>Escuchalo en</p>
-                ) : null}
                 <ul>
                   {post.links?.spotify?.length > 0 && (
                     <li>
                       <a href={post.links?.spotify} target="blanket">
-                        <i className="fab fa-spotify icon"></i>
+                        <i className="icon">
+                          <FontAwesomeIcon icon={faSpotify} />
+                        </i>
                       </a>
                     </li>
                   )}
@@ -185,7 +183,9 @@ const Single = () => {
                   {post.links?.youtobe?.length > 0 && (
                     <li>
                       <a href={post.links?.youtobe} target="blanket">
-                        <i className="fab fa-youtube icon"></i>
+                        <i className="icon">
+                          <FontAwesomeIcon icon={faYoutube} />
+                        </i>
                       </a>
                     </li>
                   )}
@@ -193,8 +193,11 @@ const Single = () => {
               </div>
             </div>
           </div>
+          <Comment
+            setShowCommentField={setShowCommentField}
+            showCommentField={showCommentField}
+          />
         </div>
-
         <div className="menu">
           <Menu />
         </div>

@@ -28,15 +28,19 @@ const Menu = () => {
 
   return (
     <div className="menu">
-      <h1>Posts que podrian gustarte</h1>
+      <h1>Temas Relacionados</h1>
+    <div className="blogs">
       {selectedPosts.map((post) => (
+        <div className="blog" key={post?.id}>
         <Link className="link" to={`/post/${post?.id}`}>
-          <div className="post" key={post?.id}>
+          <div className="post">
             <img src={post?.img} alt="img" />
-            <h2>{post?.title}</h2>
+            <h2 className="hiden">{post?.title}</h2>
           </div>
         </Link>
+        </div>
       ))}
+      </div>
     </div>
   );
 };
