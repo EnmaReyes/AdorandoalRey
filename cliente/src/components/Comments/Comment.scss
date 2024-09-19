@@ -48,18 +48,29 @@ sans-serif;
     flex-grow: 2;
     margin: 0px 0px 20px 0px;
 
-    .name {
+    .data-box {
       width: 85%;
       display: flex;
       margin: 0px 10px;
-      font-weight: bold;
       background-color: #fff;
       border-radius: 10px 10px 0px 0px;
+      gap: 10rem;
 
-      p {
+      .name {
         margin: 5px 10px 0px 10px;
         font-family: $titulo;
         font-size: 16px;
+        font-weight: bold;
+      }
+
+      .estado {
+        margin: auto;
+        font-size: 12px;
+        text-align: end;
+      }
+
+      @media (max-width:768px) {
+        gap: 1rem;
       }
     }
 

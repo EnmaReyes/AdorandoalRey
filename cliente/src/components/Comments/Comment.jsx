@@ -132,9 +132,9 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                   )}
                 </div>
                 <div className="box">
-                  <div className="name">
-                    <p>{comment.commenter?.username}</p>
-                    <p>
+                  <div className="data-box">
+                    <p className="name">{comment.commenter?.username}</p>
+                    <p className="estado">
                       {formatDistanceToNow(parseISO(comment.updatedAt), {
                         addSuffix: true,
                         locale: es,

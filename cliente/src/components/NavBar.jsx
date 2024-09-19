@@ -71,16 +71,16 @@ const NavBar = () => {
             <a>Blogs</a>
           </Link>
           <Link className="link" to="/Aboutme">
-            <a>Sobre mi</a>
+            <a>Sobre mí</a>
           </Link>
           {!currentUser && (
             <>
               <Link className="link" to="/login">
-               <a>Inisiar sesion</a> 
+               <a>Iniciar sesión</a> 
               </Link>
 
               <Link className="link" to="/register">
-               <a> Registrate</a> 
+               <a> Registrar te</a> 
               </Link>
             </>
           )}
