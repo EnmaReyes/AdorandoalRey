@@ -24,7 +24,7 @@ const Share = ({ post }) => {
   const location = useLocation();
   const url = `${URL}${location.pathname}`;
   const [share, setShare] = useState(false);
-         
+
   const sharePlatforms = [
     { component: FacebookShareButton, icon: FacebookIcon, name: "Facebook" },
     { component: TwitterShareButton, icon: TwitterIcon, name: "Twitter" },
@@ -47,7 +47,7 @@ const Share = ({ post }) => {
                 <ShareButton
                   url={url}
                   quote={post?.title}
-                  hashtag={`#AdorandoAlRey`}
+                  hashtag="#AdorandoAlRey"
                 >
                   <ShareIcon className="iconShare" />
                 </ShareButton>

@@ -1,4 +1,4 @@
-$backGround : #d7dbe4;
+$backGround: #d7dbe4;
 $titulos: #285480;
 $butonColor: #285480;
 $parrafo: 'Open Sans',
@@ -38,11 +38,9 @@ sans-serif;
             transform: rotateY(360deg);
         }
     }
-
 }
 
-//! Campo de links para compatir
-
+//! Campo de links para compartir
 
 button {
     border: none;
@@ -51,27 +49,39 @@ button {
 
 .dropdown-menu-share {
     list-style: none;
-    display: flex;
     position: absolute;
-    top: 60px;
-    right: -1px;
-    background-color: $backGround;
+    top: 3rem;
+    right: 8rem;
     border-radius: 15px;
-    box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    padding: 5px;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+
+    @media (max-width:768px) {
+        top: 4rem;
+        right: 10.5rem;
+    }
 
     li {
-        width: 100%;
-        height: 100%;
-        padding: 10px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
 
         .iconShare {
             width: 45px;
             height: 45px;
             font-size: 50px;
             border-radius: 50%;
-            transition: 0.3s ase-in;
+            transition: 0.3s ease-in;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .iconShare:hover {
