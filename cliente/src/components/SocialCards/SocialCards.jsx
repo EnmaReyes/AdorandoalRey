@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 const SocialCards = () => {
   const [posts, setPosts] = useState([]);
   const [hoveredPostId, setHoveredPostId] = useState(null);

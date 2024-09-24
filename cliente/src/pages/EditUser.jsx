@@ -14,7 +14,7 @@ import { UploadUserImg } from "../firebase/config.js";
 import { notify } from "../components/toastConfig/toastconfigs.jsx";
 import { toast } from "react-toastify";
 import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const EditUser = () => {
   const { refreshUserData } = useContext(AuthContext);

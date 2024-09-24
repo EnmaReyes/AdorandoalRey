@@ -15,7 +15,7 @@ import "../App.css";
 import Banner from "../components/Banner";
 import Blogcards from "../components/BlogCards/Blogcards";
 import SocialCards from "../components/SocialCards/SocialCards";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   

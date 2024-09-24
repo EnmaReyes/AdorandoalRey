@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "./Likes.scss"
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Likes = ({ postid, currentUser }) => {
   const [heart, setHeart] = useState(false);

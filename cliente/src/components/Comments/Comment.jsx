@@ -15,7 +15,7 @@ import Responses from "./Responses";
 import "./Comment.scss";
 import { toast } from "react-toastify";
 import { toastComments } from "../toastConfig/toastconfigs";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Comment = ({ setShowCommentField, showCommentField }) => {
   const [comments, setComments] = useState([]);

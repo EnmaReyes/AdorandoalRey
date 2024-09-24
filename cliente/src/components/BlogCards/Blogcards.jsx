@@ -17,7 +17,7 @@ import {
   faShieldHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 const Blogcards = () => {
   const [posts, setPosts] = useState([]);
   const location = useLocation().search;

@@ -6,7 +6,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { toastComments } from "../toastConfig/toastconfigs";
 import { toast } from "react-toastify";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8800";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Responses = ({ postId, selectedCommentId, setComments, comments }) => {
   const [commentText, setCommentText] = useState("");

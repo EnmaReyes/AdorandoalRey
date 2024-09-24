@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Menu.scss";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Menu = () => {
   const [posts, setPosts] = useState([]);

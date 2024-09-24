@@ -11,7 +11,7 @@ import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
 import { toast } from "react-toastify";
 import { notify, toastpromise } from "../components/toastConfig/toastconfigs.jsx";
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Write = () => {
   const navigate = useNavigate();

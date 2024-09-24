@@ -21,7 +21,7 @@ import Likes from "../components/Likes/Likes";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Single = () => {
   const [post, setPost] = useState({});
