@@ -44,12 +44,14 @@ import { Comments } from "./Comments.js";
     foreignKey: "postId",
     sourceKey: "id",
     as: "comments",
+    onDelete: 'CASCADE'
   });
   
   Comments.belongsTo(Posts, {
     foreignKey: "postId",
     targetKey: "id",
     as: "post",
+    
   });
   
   

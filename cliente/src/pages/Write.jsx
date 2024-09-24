@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import spotify from "../assets/write-spotify.png";
-import youtobe from "../assets/write-youtobe.png";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { format } from "date-fns";
@@ -10,8 +8,17 @@ import { es } from "date-fns/locale"; // Importa el locale español si es necesa
 import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
 import { toast } from "react-toastify";
-import { notify, toastpromise } from "../components/toastConfig/toastconfigs.jsx";
+import {
+  notify,
+  toastpromise,
+} from "../components/toastConfig/toastconfigs.jsx";
+import inicio from "../assets/logoblanco.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 const URL = import.meta.env.VITE_BACKEND_URL;
+
+//! atualizar fecha del dia\\
 
 const Write = () => {
   const navigate = useNavigate();
@@ -20,6 +27,7 @@ const Write = () => {
   const [description, setDescription] = useState(state?.desc || "");
   const [fileImg, setFileImg] = useState(state?.img || "");
   const [fileImgPreview, setFileImgPreview] = useState(null);
+  const [date, setDate] = useState(state?.date || "");
   const [socialLinks, setSocialLinks] = useState(
     state?.links || {
       spotify: "",
@@ -46,7 +54,7 @@ const Write = () => {
   const handleClick = async () => {
     try {
       // Verificar si title, fileImg o description están vacíos o en false
-      if (!title || !fileImg || !description) {
+      if (!title || !fileImg || !description || !date) {
         toast.error("Falta información para subir el Blog!!!", toastpromise);
         return;
       }
@@ -58,13 +66,8 @@ const Write = () => {
         desc: description,
         img: imgUrl,
         links: socialLinks,
+        date,
       };
-
-      if (!state) {
-        postData.date = format(new Date(), "yyyy-MM-dd HH:mm:ss", {
-          locale: es,
-        });
-      }
 
       const promise = state
         ? axios.put(`${URL}/api/posts/${state.id}`, postData, {
@@ -98,80 +101,110 @@ const Write = () => {
       toast.error(`Error al realizar la solicitud: ${err.message}`);
       console.log("Error al realizar la solicitud:", err);
     }
+    
   };
+console.log(date);
 
   return (
     <div className="write">
-      <div className="content">
-        <input
-          type="text"
-          placeholder="Titulo"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        {fileImgPreview ? (
-          <div className="preview-img">
-            <img src={fileImgPreview} alt="" />
-          </div>
-        ) : (
-          <div className="preview-img">
-            <img src={fileImg} alt="" />
-          </div>
-        )}
-        <div className="editorContainer">
-          <ReactQuill
-            className="editor"
-            theme="snow"
-            value={description}
-            onChange={setDescription}
-          />
-        </div>
+      <div className="inicio-bg">
+        <img className="inicio-img" src={inicio} alt="" />
       </div>
-      <div className="menu">
-        <div className="item">
-          <h1>Publicar</h1>
-          <div className="buttons">
-            <input
-              style={{ display: "none" }}
-              type="file"
-              name=""
-              id="file"
-              onChange={handleFileChange}
-            />
-            <label className="file" htmlFor="file">
-              Cargar Imagen
-            </label>
-            <button
-              onClick={() =>
-                notify(handleClick, "¿Está seguro en subir el post?")
-              }
-            >
-              Publicar
-            </button>
+      <div className="content">
+        <div className="content-data">
+          <div
+            className="img-loader"
+            style={{
+              backgroundImage: `url(${
+                fileImgPreview ? fileImgPreview : fileImg
+              })`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="add-img">
+              <input
+                style={{ display: "none" }}
+                type="file"
+                name=""
+                id="file"
+                onChange={handleFileChange}
+              />
+              <label className="file" htmlFor="file">
+                <a className="add-image">
+                  <FontAwesomeIcon icon={faImage} />
+                </a>
+                <a className="add-buton">
+                  {" "}
+                  <FontAwesomeIcon icon={faCirclePlus} />{" "}
+                </a>
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="item">
-          <div className="spotify">
-            <img src={spotify} alt="" />
-            <input
-              type="text"
-              placeholder="https://spotify"
-              value={socialLinks.spotify}
-              onChange={(e) =>
-                setSocialLinks({ ...socialLinks, spotify: e.target.value })
-              }
+          <input
+            className="titulacion"
+            type="text"
+            placeholder="Titulo"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <div className="editorContainer">
+            <ReactQuill
+              className="editor"
+              theme="snow"
+              value={description}
+              onChange={setDescription}
             />
           </div>
-          <div className="twitter">
-            <img src={youtobe} alt="" />
-            <input
-              type="text"
-              placeholder="https://youtobe"
-              value={socialLinks.youtobe}
-              onChange={(e) =>
-                setSocialLinks({ ...socialLinks, youtobe: e.target.value })
-              }
-            />
+
+          <div className="menu-write">
+            <div className="item">
+              <div className="spotify">
+                <span>
+                  <FontAwesomeIcon icon={faSpotify} />
+                </span>
+                <input
+                  type="text"
+                  placeholder="https://spotify"
+                  value={socialLinks.spotify}
+                  onChange={(e) =>
+                    setSocialLinks({ ...socialLinks, spotify: e.target.value })
+                  }
+                />
+              </div>
+              <div className="youtobe">
+                <span>
+                  <FontAwesomeIcon icon={faYoutube} />
+                </span>
+                <input
+                  type="text"
+                  placeholder="https://youtobe"
+                  value={socialLinks.youtobe}
+                  onChange={(e) =>
+                    setSocialLinks({ ...socialLinks, youtobe: e.target.value })
+                  }
+                />
+              </div>
+              <div className="date">
+                <input
+                  type="date"
+                  placeholder={date}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="publicar-btn">
+              <button
+                className="btn-publish"
+                onClick={() =>
+                  notify(handleClick, "¿Está seguro en subir el post?")
+                }
+              >
+                Publicar
+              </button>
+            </div>
           </div>
         </div>
       </div>

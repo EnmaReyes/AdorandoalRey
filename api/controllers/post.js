@@ -182,23 +182,44 @@ export const addPost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
   const token = req.cookies.access_token;
-  const userInfo = jwt.verify(token, "jwtkey");
 
   if (!token) {
     return res.status(401).json("No estás autenticado para eliminar post!");
   }
 
   try {
+    // Verifica el token una vez y usa la información del usuario
     const userInfo = jwt.verify(token, "jwtkey");
     const postId = req.params.id;
 
+    // Busca el post con toda su información asociada
     const post = await Posts.findOne({
       where: {
         id: postId,
-        uid: userInfo.id,
+        uid: userInfo.id, // Solo permite eliminar si el post pertenece al usuario
       },
+      include: [
+        {
+          model: Comments,
+          as: "comments",
+          attributes: ["id"],
+          include: [
+            {
+              model: CommentsResponse,
+              as: "replies",
+              attributes: ["id"],
+            },
+          ],
+        },
+        {
+          model: Heart,
+          as: "hearts",
+          attributes: ["id"],
+        },
+      ],
     });
 
+    // Si no se encuentra el post o no pertenece al usuario
     if (!post) {
       return res
         .status(404)
@@ -209,7 +230,11 @@ export const deletePost = async (req, res) => {
 
     return res.json("Post eliminado con éxito!");
   } catch (err) {
-    return res.status(403).json("Token no válido");
+    // Manejo más detallado de errores
+    if (err.name === "JsonWebTokenError") {
+      return res.status(403).json("Token no válido");
+    }
+    return res.status(500).json("Error en el servidor");
   }
 };
 
@@ -353,8 +378,7 @@ export const addResponseComment = async (req, res) => {
   }
 };
 
-
-        //! Eliminar respuesta \\
+//! Eliminar respuesta \\
 export const deleteResponse = async (req, res) => {
   try {
     const token = req.cookies.access_token;

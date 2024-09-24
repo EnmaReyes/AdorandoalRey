@@ -29,6 +29,7 @@ export const CommentsResponse = sequelize.define(
     foreignKey: "parentCommentId",
     as: "replies",
     sourceKey: "id",
+    onDelete: 'CASCADE'
   });
 
   CommentsResponse.belongsTo(Comments,{
