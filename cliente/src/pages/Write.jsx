@@ -101,9 +101,8 @@ const Write = () => {
       toast.error(`Error al realizar la solicitud: ${err.message}`);
       console.log("Error al realizar la solicitud:", err);
     }
-    
   };
-console.log(date);
+  console.log(date);
 
   return (
     <div className="write">

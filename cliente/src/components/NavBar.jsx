@@ -22,7 +22,7 @@ const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [open, setopen] = useState(false);
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(false);
   const navegate = useNavigate();
 
   // scroll del navbar\\
@@ -39,9 +39,9 @@ const NavBar = () => {
   //   return () => window.removeEventListener("scroll", onScroll);
   // }, []);
 
-  const handleClick =()=>{
-    setClicked(!clicked)
-  }
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
   return (
     <div id="navbar">
       <div className="container-navbar">
@@ -59,28 +59,31 @@ const NavBar = () => {
           <SearchResults searchResult={searchResult} />
         </div>
 
-        <div className= {`links ${clicked? 'active': ""}`}>
+        <div className={`links ${clicked ? "active" : ""}`}>
           {currentUser?.admin === true && (
             <addEventListener>
-              <Link className="link" to="/write">
-                <a>Escribir</a> 
+              <Link className="link" to="/write" onClick={()=>{setClicked(!clicked)}}>
+                <a>Escribir</a>
               </Link>
             </addEventListener>
           )}
-          <Link className="link" to="/blogs">
+          <Link className="link" to="/" onClick={()=>{setClicked(!clicked)}}>
+            <a>Inicio</a>
+          </Link>
+          <Link className="link" to="/blogs" onClick={()=>{setClicked(!clicked)}}>
             <a>Blogs</a>
           </Link>
-          <Link className="link" to="/Aboutme">
+          <Link className="link" to="/Aboutme" onClick={()=>{setClicked(!clicked)}}>
             <a>Sobre mí</a>
           </Link>
           {!currentUser && (
             <>
-              <Link className="link" to="/login">
-               <a>Iniciar sesión</a> 
+              <Link className="link" to="/login" onClick={()=>{setClicked(!clicked)}}>
+                <a>Iniciar sesión</a>
               </Link>
 
-              <Link className="link" to="/register">
-               <a> Registrar te</a> 
+              <Link className="link" to="/register" onClick={()=>{setClicked(!clicked)}}>
+                <a> Registrate</a>
               </Link>
             </>
           )}

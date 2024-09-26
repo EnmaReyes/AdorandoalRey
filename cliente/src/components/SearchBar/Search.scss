@@ -33,10 +33,10 @@
 
 @media(max-width: 768px) {
     .input-wrapper input {
-        width: 1px;
+        width: 0.08rem;
     }
 
     .input-wrapper input:focus {
-        width: 4rem;
+        width: 10rem;
     }
 }
