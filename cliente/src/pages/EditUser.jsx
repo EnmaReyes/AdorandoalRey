@@ -93,11 +93,11 @@ const EditUser = () => {
           },
           { withCredentials: true }
         );
-        refreshUserData()
+        refreshUserData();
         toast.success("Cambios Exitosos", toastpromise);
         navegate("/");
       } else {
-        toast.error("Ocurrió un error" , toastpromise)
+        toast.error("Ocurrió un error", toastpromise);
         console.error("Error: El estado es nulo o indefinido.");
       }
       setFormData({
@@ -207,7 +207,12 @@ const EditUser = () => {
           </div>
 
           <div className="buttons">
-          <span className="upload" onClick={() => notify(handleClick, "¿Está seguro en actualizar sus datos?")}>
+            <span
+              className="upload"
+              onClick={() =>
+                notify(handleClick, "¿Está seguro en actualizar sus datos?")
+              }
+            >
               <FontAwesomeIcon icon={faUpload} />
             </span>
             <span className="delete" onClick={handleDelete}>

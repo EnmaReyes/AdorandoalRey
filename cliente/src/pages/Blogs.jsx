@@ -10,7 +10,7 @@ const URL = import.meta.env.VITE_BACKEND_URL;
 const Blogs = () => {
   const [posts, setPosts] = useState([]);
   const location = useLocation().search;
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,27 +34,29 @@ const Blogs = () => {
     // Devolver el contenido HTML con el texto truncado
     return truncatedText;
   };
- 
+
   return (
     <div className="blogs">
-      <div className="posts">
-        {posts.map((post) => (
-          <div className="post" key={post.id}>
-            <div className="img">
-              <Link className="link" to={`/post/${post.id}`}>
-                <img src={post.img} alt="img" />
-              </Link>
+      <div className="img-inicio">
+        <img src="" alt="" />
+      </div>
+      <div className="blogs-container">
+        <h1>Blogs</h1>
+        <div className="blogs-box">
+          {posts.map((post) => (
+            <div className="blog" key={post.id}>
+              <div className="img-blog">
+                <Link className="link" to={`/post/${post.id}`}>
+                  <img src={post.img} alt="img" />
+                </Link>
+              </div>
+              <div className="blog-info">
+                <h1 className="blog-titulo">{post.title}</h1>
+                <p className="parrafo" dangerouslySetInnerHTML={{ __html: getText(post.desc) }}></p>
+              </div>
             </div>
-            <div className="content">
-              <h1>{post.title}</h1>
-              <p dangerouslySetInnerHTML={{ __html: getText(post.desc) }}></p>
-              <p className="likes">
-                {post?.hearts.length + " "}
-                <FontAwesomeIcon className="icon" icon={faHeart} />
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
