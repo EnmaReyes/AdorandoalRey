@@ -138,7 +138,7 @@ const EditUser = () => {
 
           {!fileImgPreview && formData.image && (
             <div className="preview-img">
-              <img src={formData.image} alt="User" />
+              <img src={formData.image} />
             </div>
           )}
 

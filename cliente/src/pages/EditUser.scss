@@ -31,9 +31,9 @@ sans-serif;
                 width: 2rem;
                 height: 2rem;
                 font-size: 1.8rem;
-                position: absolute;
-                top: 15rem;
-                left: 19rem;
+                position: relative;
+                top: 12rem;
+                left: 4.5rem;
                 border: 2px solid $backGround;
                 border-radius: 50%;
                 padding: 0.5rem;
@@ -57,24 +57,27 @@ sans-serif;
                 }
             }
 
-            .preview-img {
-                border: 1.5px dotted $backGround;
-            }
 
             .preview-img,
-            .preview-undifined,
-            img {
+            .preview-undifined {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                border: 2px dotted $backGround;
                 width: 12rem;
                 height: 12rem;
                 border-radius: 50%;
-                text-align: center;
-                font-size: 2rem;
                 background-color: #fff;
                 color: $backGround;
-                object-fit: cover;
+
+                img {
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 50%;
+                    text-align: center;
+                    object-fit: cover;
+                    font-size: 3em;
+                }
             }
         }
 
