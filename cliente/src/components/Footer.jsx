@@ -1,7 +1,7 @@
 import React from "react";
 import logo2 from "../assets/logoblanco.png";
 import { Link } from "react-router-dom";
-import "./Footer.scss"
+import "./Footer.scss";
 const Footer = () => {
   return (
     <footer>
@@ -64,7 +64,7 @@ const Footer = () => {
       <div className="grupo2">
         <small>
           {" "}
-          © 2023 <b>Adorando al rey</b>- Todos Los Derechos Recervados.
+          © 2023 <b>Adorando al rey</b>- Todos Los Derechos Reservados.
         </small>
       </div>
     </footer>

@@ -8,143 +8,217 @@ sans-serif;
 
 .contenedor {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     margin-top: 3rem;
 
-    .caja-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
+    .gbEdit {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+    }
 
-        .photo {
+    .edit-box {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: -4rem;
+
+        .caja-left {
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: center;
             align-items: center;
-            width: 100%;
+            width: 40%;
+            border: 1px solid $backGround;
+            background: #fff;
+            margin-inline: 2rem;
+
+            .photo {
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                width: 100%;
 
 
-            .preview-change {
-                width: 2rem;
-                height: 2rem;
-                font-size: 1.8rem;
-                position: relative;
-                top: 12rem;
-                left: 4.5rem;
-                border: 2px solid $backGround;
-                border-radius: 50%;
-                padding: 0.5rem;
-                background: #fff;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-
-                .icon {
-
+                .preview-change {
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 1.8rem;
+                    position: relative;
+                    top: 12rem;
+                    left: 4.5rem;
+                    border: 2px solid $backGround;
+                    border-radius: 50%;
+                    padding: 0.5rem;
+                    background: #fff;
                     cursor: pointer;
-                    color: $backGround;
                     transition: all 0.3s ease-in-out;
-                }
-
-                &:hover {
-                    border: 2px solid $butonColor;
 
                     .icon {
-                        color: $titulos;
+
+                        cursor: pointer;
+                        color: $backGround;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    &:hover {
+                        border: 2px solid $butonColor;
+
+                        .icon {
+                            color: $titulos;
+                        }
+                    }
+                }
+
+
+                .preview-img,
+                .preview-undifined {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    border: 2px dotted $backGround;
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: $backGround;
+
+                    img {
+                        width: 12rem;
+                        height: 12rem;
+                        border-radius: 50%;
+                        text-align: center;
+                        object-fit: cover;
+                        font-size: 3em;
                     }
                 }
             }
 
-
-            .preview-img,
-            .preview-undifined {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                border: 2px dotted $backGround;
-                width: 12rem;
-                height: 12rem;
-                border-radius: 50%;
-                background-color: #fff;
-                color: $backGround;
-
-                img {
-                    width: 12rem;
-                    height: 12rem;
-                    border-radius: 50%;
-                    text-align: center;
-                    object-fit: cover;
-                    font-size: 3em;
-                }
-            }
-        }
-
-    }
-
-    //? rigth box \\
-    .caja-rigth {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-        .form-box {
-            width: 100%;
-
-            .formulario {
+            .info-box {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 80%;
-                gap: 10px;
-                background-color: $backGround;
-                padding: 2rem;
-                gap: 30px;
 
-                .input-group {
-                    position: relative;
-
-                }
-
-                .input-group__input {
-                    font: inherit;
-                    color: #fff;
-                    padding: 10px;
-                    border: none;
-                    border-radius: 4px;
-                    outline: 2px solid #fff;
-                    background-color: transparent;
-                    transition: outline-color 500ms;
+                h1 {
+                    width: 100%;
+                    padding: 1rem 1.5rem;
+                    margin: 0px;
+                    border-top: 1px solid $backGround;
+                    border-bottom: 1px solid $backGround;
                     font-family: $titulo;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        //? rigth box \\
+        .caja-rigth {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid $backGround;
+
+            .form-box {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .formulario {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    background-color: #fff;
+                    padding: 3rem;
+                    gap: 30px;
+
+                    .input-group {
+                        position: relative;
+
+                    }
+
+                    .input-group__input {
+                        width: 100%;
+                        font: inherit;
+                        color: #000;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 4px;
+                        outline: 2px solid #4d5052;
+                        background-color: transparent;
+                        transition: outline-color 500ms;
+                        font-family: $titulo;
+                    }
+
+                    .input-group__input:is(:focus, :valid) {
+                        outline-color: $butonColor;
+                    }
+
+                    .input-group__label {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        translate: 10px 10px;
+                        color: #000;
+                        transition: translate 500ms, scale 500ms;
+                    }
+
+                    .input-group__input:focus+.input-group__label,
+                    .input-group__input:valid+.input-group__label {
+                        padding-inline: 5px;
+                        translate: 10px -14px;
+                        scale: 0.8;
+                        background-color: #000;
+                        color: #fff;
+                        font-family: $parrafo;
+                    }
+                }
+            }
+
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                align-items: end;
+                width: 100%;
+                font-size: 1.5rem;
+                font-family: $titulo;
+
+                span {
+                    width: 100%;
+                    padding: 1rem 0px;
+                    
+                    text-align: center;
                 }
 
-                .input-group__input:is(:focus, :valid) {
-                    outline-color: $butonColor;
-                }
-
-                .input-group__label {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    translate: 10px 10px;
+                .upload {
+                    background-color: $butonColor;
                     color: #fff;
-                    transition: translate 500ms, scale 500ms;
-                }
+                    transition: 0.3s ease-in-out;
 
-                .input-group__input:focus+.input-group__label,
-                .input-group__input:valid+.input-group__label {
-                    padding-inline: 5px;
-                    translate: 10px -14px;
-                    scale: 0.8;
-                    background-color: #000;
-                    font-family: $parrafo;
+                    &:hover {
+                        background-color: #03345c;
+                        color: $backGround;
+                    }
+                }
+                .delete{
+                    background-color: $backGround;
+                    color: $butonColor;
+                    border-top: 1px solid #fff;
+                    transition: 0.3s ease-in-out;
+
+                    &:hover {
+                        background-color: $butonColor;
+                        color: $backGround;
+                    }
                 }
             }
         }
     }
+
 }
