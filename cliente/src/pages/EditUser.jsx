@@ -53,6 +53,7 @@ const EditUser = () => {
     };
     fetchData();
   }, []);
+  console.log(formData);
 
   //* mostrar imagen seleccionada\\
 
@@ -111,8 +112,8 @@ const EditUser = () => {
 
   return (
     <div className="contenedor">
-      <div className="caja1">
-        <div className="caja2">
+      <div className="caja-left">
+        <div className="photo">
           <div className="preview-change">
             <input
               style={{ display: "none" }}
@@ -131,13 +132,13 @@ const EditUser = () => {
 
           {fileImgPreview && (
             <div className="preview-img">
-              <img src={fileImgPreview} alt="Preview" />
+              <img src={fileImgPreview} alt="User" />
             </div>
           )}
 
           {!fileImgPreview && formData.image && (
             <div className="preview-img">
-              <img src={formData.image} alt="Preview" />
+              <img src={formData.image} alt="User" />
             </div>
           )}
 
@@ -146,79 +147,97 @@ const EditUser = () => {
               <FontAwesomeIcon className="icon" icon={faUser}></FontAwesomeIcon>
             </div>
           )}
+        </div>
+      </div>
 
-          <div className="form">
-            <form>
-              <div className="div1">
-                <label htmlFor="username">Usuario</label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username}
-                />
-              </div>
-              <div className="div2">
-                <label htmlFor="nombre">Nombre</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      name: e.target.value,
-                    }))
-                  }
-                />
-              </div>
-              <div className="div3">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      email: e.target.value,
-                    }))
-                  }
-                />
-              </div>
-              <div className="div4">
-                <label htmlFor="apellido">Apellido</label>
-                <input
-                  type="apellido"
-                  id="apellido"
-                  name="apellido"
-                  value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      lastName: e.target.value,
-                    }))
-                  }
-                />
-              </div>
-            </form>
+      <div className="caja-rigth">
+        <div className="form-box">
+          <div className="formulario">
+            <div className="input-group">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className="input-group__input"
+                required
+                value={formData.username}
+              />
+              <label for="username" className="input-group__label">
+                Usuario
+              </label>
+            </div>
+            <div className="input-group">
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                className="input-group__input"
+                required
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    name: e.target.value,
+                  }))
+                }
+              />
+              <label for="nombre" className="input-group__label">
+                Nombre
+              </label>
+            </div>
+            <div className="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="input-group__input"
+                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    email: e.target.value,
+                  }))
+                }
+              />
+              <label htmlFor="email" className="input-group__label">
+                Email
+              </label>
+            </div>
+            <div className="input-group">
+              <input
+                type="text"
+                id="apellido"
+                name="apellido"
+                className="input-group__input"
+                required
+                value={formData.lastName}
+                onChange={(e) =>
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    lastName: e.target.value,
+                  }))
+                }
+              />
+              <label for="apellido" className="input-group__label">
+                Apellido
+              </label>
+            </div>
           </div>
+        </div>
 
-          <div className="buttons">
-            <span
-              className="upload"
-              onClick={() =>
-                notify(handleClick, "¿Está seguro en actualizar sus datos?")
-              }
-            >
-              <FontAwesomeIcon icon={faUpload} />
-            </span>
-            <span className="delete" onClick={handleDelete}>
-              <FontAwesomeIcon icon={faTrash} />
-            </span>
-          </div>
+        <div className="buttons">
+          <span
+            className="upload"
+            onClick={() =>
+              notify(handleClick, "¿Está seguro en actualizar sus datos?")
+            }
+          >
+            <FontAwesomeIcon icon={faUpload} />
+          </span>
+          <span className="delete" onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} />
+          </span>
         </div>
       </div>
     </div>

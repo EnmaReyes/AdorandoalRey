@@ -8,202 +8,140 @@ sans-serif;
 
 .contenedor {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3rem;
 
-    .caja1 {
-        margin-top: 110px;
+    .caja-left {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: $backGround;
-        height: 100%;
-        width: 1030px;
-        border-radius: 7px;
-        box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.71);
+        width: 50%;
 
-
-        .caja2 {
-            height: 100%;
-            width: 500px;
-            padding: 15px;
+        .photo {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
-            gap: 25px;
-            z-index: 1;
+            width: 100%;
+
 
             .preview-change {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                right: 17%;
-                bottom: -220px;
-                z-index: 2;
-                width: 50px;
-                height: 50px;
-                background-color: #fff;
+                width: 2rem;
+                height: 2rem;
+                font-size: 1.8rem;
+                position: absolute;
+                top: 15rem;
+                left: 19rem;
                 border: 2px solid $backGround;
                 border-radius: 50%;
-                box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.71);
-                transition: ease-in-out;
+                padding: 0.5rem;
+                background: #fff;
                 cursor: pointer;
+                transition: all 0.3s ease-in-out;
 
-                label {
-                    font-size: 35px;
-                    color: #252424;
+                .icon {
+
                     cursor: pointer;
+                    color: $backGround;
+                    transition: all 0.3s ease-in-out;
                 }
 
-                ;
-            }
+                &:hover {
+                    border: 2px solid $butonColor;
 
-            .preview-change:active {
-                transform: scale(0.95);
+                    .icon {
+                        color: $titulos;
+                    }
+                }
             }
 
             .preview-img {
-                text-align: center;
-                border: 5px solid #ffff;
-                border-radius: 50%;
-                background-color: #f3f3f3;
-                width: 200px;
-                height: 200px;
-                box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.71);
-                cursor: initial;
-                z-index: 1;
-
-                img {
-                    width: 200px;
-                    height: 200px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    cursor: initial;
-                }
-
+                border: 1.5px dotted $backGround;
             }
 
-            .preview-undifined {
+            .preview-img,
+            .preview-undifined,
+            img {
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                border: 5px solid #ffff;
+                width: 12rem;
+                height: 12rem;
                 border-radius: 50%;
-                background-color: #f3f3f3;
-                width: 200px;
-                height: 200px;
-                box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.71);
-                cursor: initial;
-                z-index: 1;
-
-                .icon {
-                    font-size: 120px;
-                    color: #918383;
-                    cursor: pointer;
-                    transition: 0.2s ease;
-                }
-
-                .icon:active {
-                    transform: scale(0.95);
-                }
-
-
-
-            }
-
-            .form {
-                width: 900px;
-            }
-
-            form {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-column-gap: 30px;
-                grid-row-gap: 15px;
-
-                .div1 {
-                    grid-area: 1 / 1 / 2 / 2;
-                }
-
-                .div2 {
-                    grid-area: 2 / 1 / 3 / 2;
-                }
-
-                .div3 {
-                    grid-area: 1 / 2 / 2 / 3;
-                }
-
-                .div4 {
-                    grid-area: 2 / 2 / 3 / 3;
-                }
-
-                div {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 15px;
-
-                    label {
-                        margin: 0px 0px 5px 20px;
-                        font-size: 20px;
-                        font-family: $titulo;
-
-                    }
-
-                    input {
-                        height: 30px;
-                        width: 100%;
-                        border-radius: 25px;
-                        box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.71);
-                        margin-bottom: 10px;
-                        font-size: 18px;
-                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                        padding: 5px;
-                    }
-                }
-            }
-
-            .buttons {
-                width: 100%;
-                height: 50px;
-                display: flex;
-                justify-content: space-evenly;
-
-                span {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 2%;
-                    width: 100px;
-                    border-radius: 25px;
-                    font-size: 25px;
-                    color: #fff;
-                    cursor: pointer;
-                    transition: 0.2s ease;
-                }
-
-                span:active {
-                    transform: scale(0.95);
-                }
-
-                .upload {
-                    background: #06851F;
-                    background: linear-gradient(to top, #06851F 15%, #001901 93%);
-                    box-shadow: inset 0px 0px 21px -7px rgba(0, 255, 34, 0.86);
-
-                }
-
-                .delete {
-                    background: #F00000;
-                    background: linear-gradient(to top, #F00000 15%, #190000 93%);
-                    box-shadow: inset 0px 0px 21px -7px rgba(255, 162, 162, 0.86);
-                }
-
+                text-align: center;
+                font-size: 2rem;
+                background-color: #fff;
+                color: $backGround;
+                object-fit: cover;
             }
         }
 
+    }
+
+    //? rigth box \\
+    .caja-rigth {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .form-box {
+            width: 100%;
+
+            .formulario {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                gap: 10px;
+                background-color: $backGround;
+                padding: 2rem;
+                gap: 30px;
+
+                .input-group {
+                    position: relative;
+
+                }
+
+                .input-group__input {
+                    font: inherit;
+                    color: #fff;
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    outline: 2px solid #fff;
+                    background-color: transparent;
+                    transition: outline-color 500ms;
+                    font-family: $titulo;
+                }
+
+                .input-group__input:is(:focus, :valid) {
+                    outline-color: $butonColor;
+                }
+
+                .input-group__label {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    translate: 10px 10px;
+                    color: #fff;
+                    transition: translate 500ms, scale 500ms;
+                }
+
+                .input-group__input:focus+.input-group__label,
+                .input-group__input:valid+.input-group__label {
+                    padding-inline: 5px;
+                    translate: 10px -14px;
+                    scale: 0.8;
+                    background-color: #000;
+                    font-family: $parrafo;
+                }
+            }
+        }
     }
 }

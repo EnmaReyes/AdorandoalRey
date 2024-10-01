@@ -18,8 +18,6 @@ import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 const URL = import.meta.env.VITE_BACKEND_URL;
 
-//! atualizar fecha del dia\\
-
 const Write = () => {
   const navigate = useNavigate();
   const state = useLocation().state;
