@@ -24,6 +24,12 @@ sans-serif;
         position: relative;
         top: -4rem;
 
+        @media (max-width:768px) {
+            width: 100%;
+            flex-direction: column;
+            top: -3rem;
+        }
+
         .caja-left {
             display: flex;
             flex-direction: column;
@@ -33,6 +39,11 @@ sans-serif;
             border: 1px solid $backGround;
             background: #fff;
             margin-inline: 2rem;
+
+            @media (max-width:768px) {
+                width: 90%;
+                margin: auto;
+            }
 
             .photo {
                 display: flex;
@@ -111,6 +122,11 @@ sans-serif;
                     font-family: $titulo;
                     font-size: 1.5rem;
                 }
+
+                @media (max-width:768px) {
+                    width: 90%;
+                    padding: auto;
+                }
             }
         }
 
@@ -121,6 +137,14 @@ sans-serif;
             flex-direction: column;
             justify-content: space-between;
             border: 1px solid $backGround;
+
+            @media (max-width:768px) {
+                width: 90%;
+                margin: auto;
+                padding: auto;
+                justify-content: center;
+                align-items: center;
+            }
 
             .form-box {
                 display: flex;
@@ -192,7 +216,7 @@ sans-serif;
                 span {
                     width: 100%;
                     padding: 1rem 0px;
-                    
+
                     text-align: center;
                 }
 
@@ -206,7 +230,8 @@ sans-serif;
                         color: $backGround;
                     }
                 }
-                .delete{
+
+                .delete {
                     background-color: $backGround;
                     color: $butonColor;
                     border-top: 1px solid #fff;

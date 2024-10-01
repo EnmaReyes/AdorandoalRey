@@ -11,7 +11,7 @@ sans-serif;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
     background-color: $backGround;
 
     .img-inicio {
@@ -46,10 +46,12 @@ sans-serif;
         /* 4 columnas de igual tamaño */
         gap: 20px;
         padding: 1rem;
+
         .blog {
             display: flex;
             flex-direction: column;
-            height: 100%; /* Se asegura que todos los blogs ocupen la misma altura */
+            height: 100%;
+            /* Se asegura que todos los blogs ocupen la misma altura */
             box-shadow: 2px 3px 8px -1px rgba(0, 0, 0, 0.75);
 
             .img-blog {
@@ -57,6 +59,7 @@ sans-serif;
                 margin: 0px;
                 background-color: #fff;
                 flex-shrink: 0;
+
                 img {
                     width: 100%;
                     max-height: 200px;
@@ -96,24 +99,29 @@ sans-serif;
         }
 
     }
+
     @media (max-width:768px) {
         width: 100%;
+
         .img-inicio {
             width: 100%;
             padding: 0px;
-            img{
+
+            img {
                 padding: 0px;
                 width: 100%;
             }
         }
-        .blogs-container{
+
+        .blogs-container {
             width: 100%;
             padding: 0px;
-            .blogs-box{
+
+            .blogs-box {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 10px;
                 padding: 0px;
-            } 
+            }
 
             .blog {
                 width: 12rem;

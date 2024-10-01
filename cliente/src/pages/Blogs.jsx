@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Share from "../components/Share";
 import "./Blogs.scss";
+import img from '../assets/background/006.png'
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Blogs = () => {
@@ -38,7 +39,7 @@ const Blogs = () => {
   return (
     <div className="blogs">
       <div className="img-inicio">
-        <img src="" alt="" />
+        <img src={img} alt="" />
       </div>
       <div className="blogs-container">
         <h1>Blogs</h1>
