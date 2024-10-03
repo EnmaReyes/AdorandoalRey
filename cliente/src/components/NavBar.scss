@@ -58,12 +58,13 @@ sans-serif;
         color: #fff;
         font-size: 1.2rem;
         cursor: pointer;
+        
       }
 
       @media (max-width: 768px) {
         position: absolute;
         width: 100%;
-        top: 3rem;
+        top: 3.06rem;
         left: 0;
         transform: translate(-200%, 0%);
         margin: auto;
@@ -75,18 +76,21 @@ sans-serif;
 
         &.active {
           transform: translate(0, 0);
-          width: 100%;
-          height: auto;
+          width: 70%;
+          height: 45rem;
+          padding: 1rem;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          background-color: #d7dbe4a1;
-          border-radius: 0px 0px 15% 0px;
-
+          justify-content: start;
+          align-items: start;
+          background-color: #2a2a2be8;
+          box-shadow: 3px 2px 7px -1px rgba(0,0,0,0.75);
           a {
             display: block;
             font-size: 2rem;
+            font-family: $titulo;
             margin: 2px;
+            
             transition: all 0.5s ease-in-out;
             opacity: 0;
           }

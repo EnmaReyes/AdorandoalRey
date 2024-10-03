@@ -245,7 +245,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
             </div>
           ) : (
             <div className="login">
-              <span>Para comentar debe </span>
+              <span>Para comentar debes</span>
               <Link to="/login" className="link" onClick={login}>
                 <b>Iniciar sesión</b>
               </Link>

@@ -173,6 +173,7 @@ const EditUser = () => {
                   name="username"
                   className="input-group__input"
                   required
+                  aria-disabled
                   value={formData.username}
                 />
                 <label for="username" className="input-group__label">

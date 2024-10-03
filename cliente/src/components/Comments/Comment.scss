@@ -327,3 +327,15 @@ sans-serif;
 
   cursor: not-allowed;
 }
+.login{
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-family: $parrafo;
+  b{
+    margin: 5px;
+    font-family: $titulo;
+    color: $butonColor;
+    font-weight: bolder;
+  }
+}
