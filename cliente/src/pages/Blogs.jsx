@@ -13,7 +13,7 @@ import img from "../assets/background/006.png";
 import ReactPaginate from "react-paginate";
 
 const URL = import.meta.env.VITE_BACKEND_URL;
-const POSTS_PER_PAGE = 1;
+const POSTS_PER_PAGE = 12;
 
 const Blogs = () => {
   const [posts, setPosts] = useState([]);
