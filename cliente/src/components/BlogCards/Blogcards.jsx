@@ -38,7 +38,7 @@ const Blogcards = () => {
 
   return (
     <div className="card-container">
-      <h1 className="section-name">Blogs</h1>
+      <h1 className="section-name"> <Link to="/blogs" className="link">Blogs </Link> </h1>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

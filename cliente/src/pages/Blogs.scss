@@ -31,74 +31,153 @@ sans-serif;
         width: 90%;
 
         h1 {
-            font-size: 3rem;
-            font-family: $titulo;
+            color: #464441;
+            font-size: 4rem;
+            font-family: "Libre Baskerville", serif;
             font-weight: bolder;
             margin-left: 2rem;
         }
-    }
 
-    .blogs-box {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        /* 4 columnas de igual tamaño */
-        gap: 20px;
-        padding: 1rem;
-
-        .blog {
-            display: flex;
-            flex-direction: column;
+        .blogs-box {
+            width: 100%;
             height: 100%;
-            /* Se asegura que todos los blogs ocupen la misma altura */
-            box-shadow: 2px 3px 8px -1px rgba(0, 0, 0, 0.75);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* 4 columnas de igual tamaño */
+            gap: 20px;
+            padding: 1rem;
 
-            .img-blog {
-                width: 100%;
-                margin: 0px;
-                background-color: #fff;
-                flex-shrink: 0;
-
-                img {
-                    width: 100%;
-                    max-height: 200px;
-                    object-fit: cover;
-                }
-            }
-
-            .blog-info {
+            .blog {
                 display: flex;
-                flex-grow: 1;
                 flex-direction: column;
-                justify-content: center;
-                background-color: #fff;
-                padding: 1rem;
+                height: 100%;
+                /* Se asegura que todos los blogs ocupen la misma altura */
+                box-shadow: 2px 3px 8px -1px rgba(0, 0, 0, 0.75);
 
-                .blog-titulo {
-                    text-align: justify;
-                    font-size: 1.5rem;
+                .img-blog {
+                    width: 100%;
                     margin: 0px;
-                    font-size: $titulo;
+                    background-color: #fff;
+                    flex-shrink: 0;
+
+                    img {
+                        width: 100%;
+                        max-height: 200px;
+                        object-fit: cover;
+                    }
                 }
 
-                .parrafo {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    /* Limita a 3 líneas */
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    /* Añade "..." al final si el texto es más largo */
-                    font-size: 14px;
-                    font-family: $parrafo;
-                    font-weight: bold;
+                .blog-info {
+                    display: flex;
+                    flex-grow: 1;
+                    flex-direction: column;
+                    justify-content: center;
+                    background-color: #fff;
+                    padding: 1rem;
+
+                    .blog-titulo {
+                        text-align: justify;
+                        font-size: 1.5rem;
+                        margin: 0px;
+                        font-size: $titulo;
+                    }
+
+                    .parrafo {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        /* Limita a 3 líneas */
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        /* Añade "..." al final si el texto es más largo */
+                        font-size: 14px;
+                        font-family: $parrafo;
+                        font-weight: bold;
+                    }
                 }
+
             }
 
         }
 
+        .paginacion {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            list-style: none;
+            padding: 10px;
+            gap: 10px;
+
+            .prev-button,
+            .next-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 6px 18px;
+                border-radius: 8px;
+                box-shadow: 0px 1px 3px 0px rgb(95, 92, 92);
+                font-size: 20px;
+                background-color: #fff;
+                color: $butonColor;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    color: #fff;
+                    background-color: $butonColor;
+                }
+            }
+
+            .page-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px 12px;
+                font-family: $titulo;
+                font-size: 18px;
+                border-radius: 8px;
+
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: 0px 1px 1px 2px rgb(182, 178, 178);
+                    background: #ffffff41;
+                    color: #000000;
+
+                }
+            }
+
+            .active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 5px 12px;
+                border-radius: 8px;
+                color: #fff;
+                background-color: $butonColor;
+                font-family: $titulo;
+                font-size: 18px;
+                box-shadow: 0px -1px 1px 2px #0b335c inset;
+
+            }
+
+            // .disabled{
+            //     display: flex;
+            //     justify-content: center;
+            //     align-items: center;
+            //     padding: 6px 18px;
+            //     border: 1px solid black;
+            //     border-radius: 8px;
+            //     box-shadow: 0px 1px 3px 0px black;
+            //     font-size: 20px;
+            //     background-color: #d8d0d0;
+            //     color: black;
+            // }
+        }
     }
+
+
 
     @media (max-width:768px) {
         width: 100%;
