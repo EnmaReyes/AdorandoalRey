@@ -24,7 +24,6 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || "");
   const [description, setDescription] = useState(state?.desc || "");
   const [fileImg, setFileImg] = useState(state?.img || "");
-  const [fileImgPreview, setFileImgPreview] = useState(null);
   const [date, setDate] = useState(state?.date || "");
   const [socialLinks, setSocialLinks] = useState(
     state?.links || {
@@ -39,26 +38,22 @@ const Write = () => {
 
     if (selectedFile) {
       setFileImg(selectedFile);
-
-      // Mostrar la vista previa de la imagen
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFileImgPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
     }
   };
 
   const handleClick = async () => {
     try {
       // Verificar si title, fileImg o description están vacíos o en false
-      if (!title || !fileImg || !description || !date) {
+      if (!title || !description || !date) {
         toast.error("Falta información para subir el Blog!!!", toastpromise);
         return;
       }
 
-      const imgUrl = await UploadImg(fileImg);
+      let imgUrl = state?.img;
 
+      if (fileImg && fileImg !== state?.img) {
+        imgUrl = await UploadImg(fileImg);
+      }
       const postData = {
         title,
         desc: description,
@@ -100,7 +95,10 @@ const Write = () => {
       console.log("Error al realizar la solicitud:", err);
     }
   };
-  console.log(date);
+
+  const getFormattedDate = (date) => {
+    return date ? format(new Date(date), "yyyy-MM-dd") : "";
+  };
 
   return (
     <div className="write">
@@ -112,9 +110,7 @@ const Write = () => {
           <div
             className="img-loader"
             style={{
-              backgroundImage: `url(${
-                fileImgPreview ? fileImgPreview : fileImg
-              })`,
+              backgroundImage: `url(${fileImg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -186,8 +182,8 @@ const Write = () => {
               <div className="date">
                 <input
                   type="date"
-                  placeholder={date}
-                  value={date}
+                  value={getFormattedDate(date)}
+                  placeholder={date ? getFormattedDate(date) : "dd/mm/aaaa"}
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>

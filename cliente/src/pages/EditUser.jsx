@@ -1,27 +1,23 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faImage,
-  faTrash,
-  faUpload,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faImage, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "./EditUser.scss";
 import gbEdit from "../assets/background/bg-editing.jfif";
 import { AuthContext } from "../context/authContext";
 import { UploadUserImg } from "../firebase/config.js";
-import { notify } from "../components/toastConfig/toastconfigs.jsx";
+import {
+  notify,
+  toastpromise,
+} from "../components/toastConfig/toastconfigs.jsx";
 import { toast } from "react-toastify";
-import { toastpromise } from "../components/toastConfig/toastconfigs.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 const EditUser = () => {
   const { refreshUserData } = useContext(AuthContext);
-  const navegate = useNavigate();
+  const navigate = useNavigate();
   const [userImg, setUserImg] = useState(null);
-  const [fileImgPreview, setFileImgPreview] = useState(null);
   const [state, setState] = useState({});
   const [originalValues, setOriginalValues] = useState({});
   const [formData, setFormData] = useState({
@@ -32,7 +28,7 @@ const EditUser = () => {
     image: "",
   });
 
-  //! get user \\
+  //! Obtener datos del usuario
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,56 +51,63 @@ const EditUser = () => {
     fetchData();
   }, []);
 
-  //* mostrar imagen seleccionada\\
-
+  //* Manejar selección de imagen
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setUserImg(selectedFile);
-
-      // Mostrar la vista previa de la imagen
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFileImgPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
     }
   };
 
+  //* Restaurar valores originales
   const handleDelete = () => {
-    setFileImgPreview(null);
     setUserImg(null);
     setFormData({
       ...originalValues,
     });
   };
 
+  //* Manejar la actualización de datos del usuario
   const handleClick = async () => {
-    const imgUrl = await UploadUserImg(userImg);
-
     try {
+      let imgUrl = formData.image;
+
+      // Si se selecciona una nueva imagen, se sube y se actualiza la URL
+      if (userImg && userImg !== formData.image) {
+        imgUrl = await UploadUserImg(userImg);
+      }
+
+      // Realizar PUT solo si el usuario tiene datos en el estado
       if (state) {
-        await axios.put(
+        const promise = axios.put(
           `${URL}/api/user/edit/`,
           {
-            image: fileImgPreview ? imgUrl : "",
+            image: userImg ? imgUrl : formData.image, // Si no se cambia la imagen, mantener la original
             email: formData.email,
             name: formData.name,
             lastName: formData.lastName,
           },
           { withCredentials: true }
         );
+
+        //! Notificación de éxito
+        toast.promise(
+          promise,
+          {
+            pending: "Haciendo cambios...",
+            success: "Cambios exitosos",
+            error: "Error al actualizar los datos",
+          },
+          toastpromise // estilo
+        );
+
+        await promise;
         refreshUserData();
-        toast.success("Cambios Exitosos", toastpromise);
-        navegate("/");
+        navigate("/");
       } else {
         toast.error("Ocurrió un error", toastpromise);
         console.error("Error: El estado es nulo o indefinido.");
       }
-      setFormData({
-        ...originalValues,
-        image: fileImgPreview ? fileImgPreview : originalValues.image,
-      });
     } catch (err) {
       console.log("Error al realizar la solicitud:", err);
     }
@@ -120,36 +123,26 @@ const EditUser = () => {
               <input
                 style={{ display: "none" }}
                 type="file"
-                name=""
                 id="file"
                 onChange={handleFileChange}
               />
               <label className="submit" htmlFor="file">
-                <FontAwesomeIcon
-                  className="icon"
-                  icon={faImage}
-                ></FontAwesomeIcon>
+                <FontAwesomeIcon className="icon" icon={faImage} />
               </label>
             </div>
 
-            {fileImgPreview && (
+            {/* Mostrar la imagen seleccionada o la imagen original */}
+            {userImg ? (
               <div className="preview-img">
-                <img src={fileImgPreview} alt="User" />
+                <img src={window.URL.createObjectURL(userImg)} alt="User" />
               </div>
-            )}
-
-            {!fileImgPreview && formData.image && (
+            ) : formData.image ? (
               <div className="preview-img">
-                <img src={formData.image} />
+                <img src={formData.image} alt="User" />
               </div>
-            )}
-
-            {!fileImgPreview && !formData.image && (
+            ) : (
               <div className="preview-undifined">
-                <FontAwesomeIcon
-                  className="icon"
-                  icon={faUser}
-                ></FontAwesomeIcon>
+                <FontAwesomeIcon className="icon" icon={faUser} />
               </div>
             )}
 
@@ -172,11 +165,9 @@ const EditUser = () => {
                   id="username"
                   name="username"
                   className="input-group__input"
-                  required
-                  aria-disabled
                   value={formData.username}
                 />
-                <label for="username" className="input-group__label">
+                <label htmlFor="username" className="input-group__label">
                   Usuario
                 </label>
               </div>
@@ -195,7 +186,7 @@ const EditUser = () => {
                     }))
                   }
                 />
-                <label for="nombre" className="input-group__label">
+                <label htmlFor="nombre" className="input-group__label">
                   Nombre
                 </label>
               </div>
@@ -233,7 +224,7 @@ const EditUser = () => {
                     }))
                   }
                 />
-                <label for="apellido" className="input-group__label">
+                <label htmlFor="apellido" className="input-group__label">
                   Apellido
                 </label>
               </div>
