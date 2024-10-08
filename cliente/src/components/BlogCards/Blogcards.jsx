@@ -38,13 +38,30 @@ const Blogcards = () => {
 
   return (
     <div className="card-container">
-      <h1 className="section-name"> <Link to="/blogs" className="link">Blogs </Link> </h1>
+      <h1 className="section-name">
+        {" "}
+        <Link to="/blogs" className="link">
+          Blogs{" "}
+        </Link>{" "}
+      </h1>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         navigation={true}
         slidesPerView={"auto"}
+        breakpoints={{
+          // Definir diferentes cantidad de slides para diferentes tamaños de pantalla
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
         coverflowEffect={{
           rotate: 50,
           stretch: 0,

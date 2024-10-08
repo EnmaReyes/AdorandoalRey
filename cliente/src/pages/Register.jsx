@@ -38,6 +38,22 @@ const Register = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+  
+    if (!inputs.email || !inputs.password || !inputs.username) {
+      setError("complete todos los campos.");
+      return;
+    }
+  
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
+      setError("Ingrese un correo válido.");
+      return;
+    }
+
+    if (inputs.password.length < 6) {
+      setError("Incluir al menos 6 caracteres en la Contraseña.");
+      return;
+    }
+  
     try {
       await axios.post(`${URL}/api/auth/register`, inputs);
       navigate("/login");
@@ -97,7 +113,7 @@ const Register = () => {
                 )}
               </a>
               <button onClick={handlesubmit}>Registrar</button>
-              {error && <p>{error}</p>}
+              {error && <p className="error">{error}</p>}
               <span>
                 ¿Posees cuenta? <Link to="/login">Iniciar Sesión</Link>
               </span>

@@ -11,7 +11,7 @@ const Search = ({ setSearchResult }) => {
   const [input, setInput] = useState("");
   const { setShowUserEdit } = useContext(AuthContext);
   const inputRef = useRef(null);
-
+  const [open, setOpen]=useState(false)
   const handleChange = (value) => {
     setInput(value);
   };
@@ -40,10 +40,13 @@ const Search = ({ setSearchResult }) => {
 
   return (
     <div className="input-wrapper">
-      <div className="btn">
+      <div onClick={()=>{setOpen(!open)}}
+        className="btn"
+      >
         <FontAwesomeIcon id="search-icon" icon={faSearch} />
       </div>
       <input
+        className={open? "inputOpen": ""}
         placeholder="Buscar"
         type="text"
         onClick={(e) => {

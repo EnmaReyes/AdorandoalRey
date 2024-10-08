@@ -13,6 +13,7 @@ sans-serif;
     width: 100%;
     margin: 0px;
     padding: 0px;
+    overflow: none;
   }
 
   .blogs-container {
@@ -23,7 +24,7 @@ sans-serif;
 
     @media(max-width: 768px) {
       width: 100%;
-      height: auto;
+      height: 30rem;
     }
 
   }

@@ -6,8 +6,6 @@ sans-serif;
 $titulo: 'Montserrat',
 sans-serif;
 
-.scrolled {}
-
 #navbar {
   display: flex;
   justify-content: space-between;
@@ -28,9 +26,13 @@ sans-serif;
     font-size: 18px;
 
     .search-bar {
-      flex-grow: 1; // Para que ocupe el espacio disponible
-      margin-left: 10px;
-      margin-right: 10px;
+      position: relative;
+      top: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      width: auto;
+
     }
 
     .burguer {
@@ -58,12 +60,12 @@ sans-serif;
         color: #fff;
         font-size: 1.2rem;
         cursor: pointer;
-        
+
       }
 
       @media (max-width: 768px) {
         position: absolute;
-        width: 100%;
+        width: auto;
         top: 3.06rem;
         left: 0;
         transform: translate(-200%, 0%);
@@ -84,13 +86,14 @@ sans-serif;
           justify-content: start;
           align-items: start;
           background-color: #2a2a2be8;
-          box-shadow: 3px 2px 7px -1px rgba(0,0,0,0.75);
+          box-shadow: 3px 2px 7px -1px rgba(0, 0, 0, 0.75);
+
           a {
             display: block;
             font-size: 2rem;
             font-family: $titulo;
             margin: 2px;
-            
+
             transition: all 0.5s ease-in-out;
             opacity: 0;
           }
@@ -151,11 +154,13 @@ sans-serif;
 
   .container-navbar {
     flex-direction: row;
-    align-items: flex-start;
     width: 100%;
+    padding: 0;
+    margin: 0;
 
     .search-bar {
       width: auto;
+      left: 0;
       margin: 0px;
       padding: 0px;
     }
@@ -168,7 +173,6 @@ sans-serif;
 
       a {
         font-size: 15px;
-
       }
     }
   }

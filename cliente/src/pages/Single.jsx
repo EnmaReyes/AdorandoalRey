@@ -16,7 +16,7 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import Share from "../components/Share";
 import "./Single.scss";
-import Loading from "../components/Loading";
+import Loading from "../components/Loading/loading";
 import Likes from "../components/Likes/Likes";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
