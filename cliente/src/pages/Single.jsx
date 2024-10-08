@@ -14,10 +14,10 @@ import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import { parseISO, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
-import Share from "../components/Share";
+import Share from "../components/Share.jsx";
 import "./Single.scss";
-import Loading from "../components/Loading/loading.jsx";
-import Likes from "../components/Likes/Likes";
+import Loading from "../components/Loading/Loading.jsx";
+import Likes from "../components/Likes/Likes.jsx";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
 
