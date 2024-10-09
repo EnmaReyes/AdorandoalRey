@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 //? import rutas\\
 import Register from "./pages/Register";
 import Single from "./pages/Single";
@@ -17,11 +12,14 @@ import Aboutme from "./pages/Aboutme";
 import EditUser from "./pages/EditUser";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 //! Rutas de las Paginas \\
 const Layout = () => {
   return (
     <>
+      <ScrollToTop />
       <ToastContainer />
       <NavBar />
       <Outlet />

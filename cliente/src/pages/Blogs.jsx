@@ -27,7 +27,6 @@ const Blogs = () => {
           withCredentials: true,
         });
         setPosts(res.data);
-        window.scrollTo(0, 0);
       } catch (error) {}
     };
     fetchData();

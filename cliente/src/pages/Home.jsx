@@ -23,6 +23,7 @@ const Home = () => {
 
   return (
     <div className="home">
+      
       <Banner />
       {/* BLOGS  */}
       <div className="blogs-container">

@@ -6,6 +6,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
+
 export const toastpromise = {
   position: "bottom-right",
   autoClose: 3000,
@@ -32,6 +33,7 @@ export const toastComments = {
 
 
   export const notify = (handleClick, texto) => {
+   
     Swal.fire({
       title: texto,
       icon: "warning",
@@ -43,6 +45,7 @@ export const toastComments = {
         handleClick(); // Llama a la función pasada por parámetro
       }
     });
+    
   };
 
 

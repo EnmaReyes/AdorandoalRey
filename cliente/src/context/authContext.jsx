@@ -8,6 +8,7 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
+
   const [showUserEdit, setShowUserEdit] = useState(true);
   const [logoutTimer, setLogoutTimer] = useState(null);
   const [isUserActive, setIsUserActive] = useState(false);
@@ -23,6 +24,7 @@ export const AuthContextProvider = ({ children }) => {
     await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true });
     setCurrentUser(null);
     localStorage.removeItem("user");
+    window.location.href = "/";
   };
 
   const refreshUserData = async () => {

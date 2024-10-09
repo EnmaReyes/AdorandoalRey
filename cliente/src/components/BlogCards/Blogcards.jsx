@@ -82,7 +82,7 @@ const Blogcards = () => {
                 </div>
                 <div className="data">
                   <h1 className="text-card">{post.title}</h1>
-                  {post.hearts.length > 0 && <p>{post.hearts?.length}</p>}
+                  <div className="counter">{post.hearts.length >= 1 && <p className="count">{post.hearts?.length}</p>}</div>
                   <span>
                     <FontAwesomeIcon icon={faHeart} />
                   </span>

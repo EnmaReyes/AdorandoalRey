@@ -1,0 +1,45 @@
+.about-conteiner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    background-color: #dee2f0;
+
+    .video {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: #ba7738;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 90%;
+        padding: 1rem;
+        .data {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0.5rem;
+            width: 50%;
+        }
+
+        .picture {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+
+            }
+        }
+    }
+}

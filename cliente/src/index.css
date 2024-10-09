@@ -1,3 +1,6 @@
+html, body .app {
+    scroll-behavior: smooth; /* Para un desplazamiento suave */
+  }
 
 body{
     margin:0px;  

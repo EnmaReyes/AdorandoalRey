@@ -125,9 +125,11 @@ sans-serif;
     .custom-select-navbar {
       display: flex;
       justify-content: center;
-
+      align-items: center;
+      width: auto;
+      margin: 0px;
+      gap: 5px;
       a {
-        margin: 15px 5px 15px 15px;
         color: #fff;
         cursor: pointer;
       }
@@ -167,7 +169,7 @@ sans-serif;
 
 
     .custom-select-navbar {
-      width: auto;
+      width:auto;
       padding: 0px;
       margin: 0px;
 
