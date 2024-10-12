@@ -107,14 +107,18 @@ const Write = () => {
       </div>
       <div className="content">
         <div className="content-data">
+          
           <div
             className="img-loader"
             style={{
-              backgroundImage: `url(${fileImg})`,
+              // backgroundImage:fileImg? `url(${window.URL.createObjectURL(fileImg)})` :`url(${fileImg})` ,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
+        {fileImg && 
+        <img className="img-blog" src={window.URL.createObjectURL(fileImg)} alt="" />  
+      }
             <div className="add-img">
               <input
                 style={{ display: "none" }}

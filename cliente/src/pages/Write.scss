@@ -78,10 +78,19 @@ sans-serif;
         justify-content: center;
         align-items: center;
 
+        .img-blog {
+          position: absolute;
+          width: 35rem;
+          height: 18rem;
+          object-fit: cover;
+          z-index: 0;
+        }
+
         .add-img {
           display: flex;
           justify-content: center;
           align-items: center;
+          z-index: 999;
 
           .file {
             display: flex;
@@ -127,14 +136,18 @@ sans-serif;
 
       @media (max-width:768px) {
         width: 95%;
-
         padding: 0px;
         top: -5rem;
 
         .img-loader {
           width: 90%;
 
+          .img-blog {
+            width: 90%;
+            height: 18rem;
+          }
         }
+
       }
     }
 
