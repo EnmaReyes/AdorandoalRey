@@ -26,7 +26,11 @@ const Blogs = () => {
         const res = await axios.get(`${URL}/api/posts/${location}`, {
           withCredentials: true,
         });
-        setPosts(res.data);
+        const sortedPosts = res.data.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+
+        setPosts(sortedPosts);
       } catch (error) {}
     };
     fetchData();
