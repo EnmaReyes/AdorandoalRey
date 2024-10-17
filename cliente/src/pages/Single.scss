@@ -9,6 +9,7 @@ sans-serif;
 .sinlge-contain {
   width: 100%;
   overflow: hidden;
+
   @media(max-width: 768px) {
     width: 100%;
     margin: 0px;
@@ -23,10 +24,12 @@ sans-serif;
     box-shadow: 0px 3px 18px -8px rgba(2, 17, 119, 0.48);
     margin-top: 3rem;
     transition: height 0.5s ease-in-out, object-fit 0.2s ease-in-out;
+
     @media(max-width: 768px) {
       height: 550px !important;
     }
   }
+
   .loading {
     display: flex;
     position: fixed;
@@ -39,17 +42,19 @@ sans-serif;
     margin: 0;
     padding: 0;
   }
+
   .scroll {
     height: 400px !important;
     object-fit: cover !important;
     transition: height 0.5s ease-in-out, object-fit 0.2s ease-in-out;
+
     @media(max-width: 768px) {
       height: 300px !important;
     }
 
- 
 
-  
+
+
   }
 
   .single {
@@ -107,28 +112,6 @@ sans-serif;
         background-color: #fff;
         margin: 15px 15px;
 
-        @keyframes show {
-          from {
-            opacity: 0;
-            scale: 25%;
-          }
-
-          to {
-            opacity: 1;
-            scale: 100%;
-          }
-        }
-
-        * {
-          view-timeline-name: --image;
-          view-timeline-axis: block;
-
-          animation-timeline: --image;
-          animation-name: show;
-
-          animation-range: entry 20% cover 30%;
-          animation-fill-mode: both;
-        }
 
         @media(max-width: 768px) {
           font-size: 1rem;
