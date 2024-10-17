@@ -12,8 +12,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
         background-color: #ba7738;
+
     }
 
     .info {
@@ -22,12 +24,14 @@
         justify-content: center;
         width: 90%;
         padding: 1rem;
+        margin-top: 1rem;
         .data {
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0.5rem;
             width: 50%;
+            background-color: transparent;
         }
 
         .picture {
@@ -36,9 +40,8 @@
             width: 50%;
 
             img {
-                width: 100%;
+                width: 60%;
                 object-fit: cover;
-
             }
         }
     }

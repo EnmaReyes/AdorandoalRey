@@ -97,7 +97,19 @@ const Write = () => {
   };
 
   const getFormattedDate = (date) => {
-    return date ? format(new Date(date), "yyyy-MM-dd") : "";
+    return date ? date : "";
+  };
+
+  //! editar ReactQuill \\
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }], // Títulos
+      [{ color: [] }, { background: [] }], // Color de texto y fondo
+      ["bold", "italic", "underline"], // Estilos de texto
+      [{ align: [] }], // Alineación de texto
+      ["link", "image", "video"], // Enlaces, imágenes, videos
+      ["clean"], // Limpiar formato
+    ],
   };
 
   return (
@@ -107,7 +119,6 @@ const Write = () => {
       </div>
       <div className="content">
         <div className="content-data">
-          
           <div
             className="img-loader"
             style={{
@@ -116,9 +127,13 @@ const Write = () => {
               backgroundPosition: "center",
             }}
           >
-        {fileImg && 
-        <img className="img-blog" src={window.URL.createObjectURL(fileImg)} alt="" />  
-      }
+            {fileImg && (
+              <img
+                className="img-blog"
+                src={window.URL.createObjectURL(fileImg)}
+                alt=""
+              />
+            )}
             <div className="add-img">
               <input
                 style={{ display: "none" }}
@@ -152,6 +167,7 @@ const Write = () => {
               theme="snow"
               value={description}
               onChange={setDescription}
+              modules={modules}
             />
           </div>
 
@@ -187,7 +203,7 @@ const Write = () => {
                 <input
                   type="date"
                   value={getFormattedDate(date)}
-                  placeholder={date ? getFormattedDate(date) : "dd/mm/aaaa"}
+                  placeholder={date}
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>

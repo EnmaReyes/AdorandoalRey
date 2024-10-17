@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Aboutme.scss";
 import YoutobePlayer from "react-player/youtube";
+import img01 from "../assets/AboutMe/yasmira-1.jpg"
 const Aboutme = () => {
   const [onplay, setOnplay] = useState(true);
 
@@ -38,12 +39,12 @@ const Aboutme = () => {
           </p>
         </div>
         <div className="picture">
-          <img src="" alt="" />
+          <img src={img01} alt="" />
         </div>
       </div>
       <div className="info">
         <div className="picture">
-          <img src="" alt="" />
+          <img src={img01} alt="" />
         </div>
         <div className="data">
           <h1>Yasmira</h1>
@@ -66,7 +67,7 @@ const Aboutme = () => {
           </p>
         </div>
         <div className="picture">
-          <img src="" alt="" />
+          <img src={img01} alt="" />
         </div>
       </div>
     </div>
