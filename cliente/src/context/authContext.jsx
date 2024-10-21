@@ -21,10 +21,10 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true });
+    await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true, });
     setCurrentUser(null);
     localStorage.removeItem("user");
-    // window.location.href = "/";
+    window.location.href = "/";
   };
 
   const refreshUserData = async () => {

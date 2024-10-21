@@ -87,7 +87,7 @@ const EditUser = () => {
             name: formData.name,
             lastName: formData.lastName,
           },
-          { withCredentials: true }
+          { withCredentials: true, }
         );
 
         //! Notificación de éxito
