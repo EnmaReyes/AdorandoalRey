@@ -16,10 +16,12 @@ import inicio from "../assets/logoblanco.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { SpineLoader } from "../components/Loading/Loading.jsx";
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 const Write = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const state = useLocation().state;
   const [title, setTitle] = useState(state?.title || "");
   const [description, setDescription] = useState(state?.desc || "");
@@ -42,10 +44,12 @@ const Write = () => {
   };
 
   const handleClick = async () => {
+    setLoading(!loading);
     try {
       // Verificar si title, fileImg o description están vacíos o en false
       if (!title || !description || !date) {
         toast.error("Falta información para subir el Blog!!!", toastpromise);
+        setLoading(false);
         return;
       }
 
@@ -215,7 +219,7 @@ const Write = () => {
                   notify(handleClick, "¿Está seguro en subir el post?")
                 }
               >
-                Publicar
+                {!loading ? "Publicar" : <SpineLoader />}
               </button>
             </div>
           </div>

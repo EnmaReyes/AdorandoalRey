@@ -75,13 +75,16 @@ export const AuthContextProvider = ({ children }) => {
     document.addEventListener("mousemove", handleUserActivity);
     document.addEventListener("keydown", handleUserActivity);
     document.addEventListener("keypress", handleUserActivity);
-
+    document.addEventListener("touchstart", handleUserActivity); // Para móviles
+    document.addEventListener("touchmove", handleUserActivity); // Para móviles
     return () => {
       // Limpiar los eventos cuando el componente se desmonte
       document.removeEventListener("mousedown", handleUserActivity);
       document.removeEventListener("mousemove", handleUserActivity);
       document.removeEventListener("keydown", handleUserActivity);
       document.removeEventListener("keypress", handleUserActivity);
+      document.removeEventListener("touchstart", handleUserActivity);
+      document.removeEventListener("touchmove", handleUserActivity);
     };
   }, []);
 

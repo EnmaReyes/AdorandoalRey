@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Loading.scss";
 
-const Loading = () => {
+export const Loading = () => {
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
@@ -33,4 +33,15 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export const SpineLoader = () => {
+  return (
+    <div className="load-box"> 
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    </div>
+  );
+};

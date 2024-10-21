@@ -112,7 +112,8 @@ const EditUser = () => {
       console.log("Error al realizar la solicitud:", err);
     }
   };
-
+  console.log(formData);
+  
   return (
     <div className="contenedor">
       <img className="gbEdit" src={gbEdit} alt="" />

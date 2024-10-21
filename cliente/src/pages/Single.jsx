@@ -16,10 +16,11 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import Share from "../components/Share.jsx";
 import "./Single.scss";
-import Loading from "../components/Loading/Loading.jsx";
+
 import Likes from "../components/Likes/Likes.jsx";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
+import { Loading } from "../components/Loading/Loading.jsx";
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
