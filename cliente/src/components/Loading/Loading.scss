@@ -1,6 +1,6 @@
 $thickness : 5px;
 $duration : 2500;
-$delay : $duration/6;
+$delay : calc($duration / 6);
 
 .loader-conteiner {
     display: flex;
@@ -81,7 +81,7 @@ $delay : $duration/6;
                 top: 10px;
                 left: 0;
                 width: 100%;
-                height: $thickness*3.5;
+                height: calc($thickness*3.5);
                 border-top: $thickness solid white;
                 border-bottom: $thickness solid white;
             }
@@ -124,7 +124,7 @@ $delay : $duration/6;
                 top: 46px;
                 left: 0;
                 width: 100%;
-                height: $thickness*3.5;
+                height: calc($thickness*3.5);
                 border-top: $thickness solid white;
                 border-bottom: $thickness solid white;
             }
@@ -201,7 +201,7 @@ $delay : $duration/6;
             @include polka(10px, 30%, #063567, rgba(255, 255, 255, 0.5));
             top: 200%;
             left: 5%;
-            animation: move #{$duration/10}ms linear infinite;
+            animation: move calc(($duration/ 10)ms) linear infinite;
         }
 
         &:after {
@@ -291,6 +291,7 @@ $delay : $duration/6;
     display: flex;
     justify-content: center;
     align-items: center;
+
     .load {
         position: relative;
         top: 0.8rem;
