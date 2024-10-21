@@ -1,7 +1,9 @@
 import { React } from "react";
 import "../style.scss";
 import "./Home.scss";
-import "../App.css";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 import Banner from "../components/Banner";
 import Blogcards from "../components/BlogCards/Blogcards";
 import SocialCards from "../components/SocialCards/SocialCards";

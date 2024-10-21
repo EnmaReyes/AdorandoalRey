@@ -23,7 +23,6 @@ export const AuthContextProvider = ({ children }) => {
   const logout = async () => {
     await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true });
     setCurrentUser(null);
-    localStorage.removeItem("user");
     window.location.href = "/";
   };
 
