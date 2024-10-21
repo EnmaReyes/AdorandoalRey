@@ -1,11 +1,6 @@
 import { React } from "react";
 import "../style.scss";
 import "./Home.scss";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/scrollbar";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "../App.css";
 import Banner from "../components/Banner";
 import Blogcards from "../components/BlogCards/Blogcards";

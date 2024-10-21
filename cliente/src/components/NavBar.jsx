@@ -12,26 +12,9 @@ const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
 const NavBar = () => {
   const { currentUser, logout } = useContext(AuthContext);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [scrolled, setScrolled] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [open, setopen] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const navegate = useNavigate();
-
-  // scroll del navbar\\
-  // useEffect(() => {
-  //   const onScroll = () => {
-  //     if (window.scrollY > 400) {
-  //       setScrolled(true);
-  //     } else {
-  //       setScrolled(false);
-  //     }
-  //   };
-  //   window.addEventListener("scroll", onScroll);
-
-  //   return () => window.removeEventListener("scroll", onScroll);
-  // }, []);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -129,7 +112,7 @@ const NavBar = () => {
             {currentUser?.image && (
               <img className="imgUSer" src={currentUser?.image} />
             )}
-            {open && <DropDown />}
+            {open && <DropDown/>}
           </div>
         )}
       </div>

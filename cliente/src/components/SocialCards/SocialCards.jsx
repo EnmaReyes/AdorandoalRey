@@ -41,7 +41,6 @@ const SocialCards = () => {
   };
 
   const nuevosPosts = posts.slice(0, 8);
-  console.log(nuevosPosts);
 
   return (
     <div className="social-conteiner">
