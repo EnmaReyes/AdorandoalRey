@@ -4,7 +4,6 @@ import { Users } from "../models/Users.js";
 export const userById = async (req, res) => {
   try {
     const token = req.cookies.access_token;
-    console.log("Token recibido:", token); // Agrega esto para verificar el token
     if (!token) {
       return res
         .status(401)
