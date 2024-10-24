@@ -29,3 +29,7 @@ export const DB_URL =
     ? process.env.PROD_DB_URL
     : process.env.DB_URL ||
       "postgresql://adorandoalreydb_owner:1Pz0DSnWbLEf@ep-delicate-limit-a64jjra0.us-west-2.aws.neon.tech/adorandoalreydb?sslmode=require";
+export const DB_DIALECT =
+  process.env.NODE_ENV === "productio"
+    ? (process.env.DB_DIALECT = "mysql")
+    : (process.env.DB_DIALECT = "postgres");

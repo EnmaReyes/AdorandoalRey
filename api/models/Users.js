@@ -3,7 +3,17 @@ import { sequelize } from "../db.js";
 import { Posts } from "./Posts.js";
 import { Comments } from "./Comments.js";
 import { CommentsResponse } from "./CommentsResponse.js";
+import { DB_DIALECT } from "../config.js";
 
+const idConfig = {
+  type: DataTypes.UUID,
+  primaryKey: true,
+  allowNull: false,
+};
+
+if (DB_DIALECT === 'mysql') {
+  idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
+}
 export const Users = sequelize.define(
   "users",
   {
@@ -12,12 +22,7 @@ export const Users = sequelize.define(
       allowNull: false,
       
     },
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-    },
+    id: idConfig,
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -54,7 +59,7 @@ Users.hasMany(Posts, {
 Posts.belongsTo(Users, {
   foreignKey: "uid",
   as: "user",
-  targetId: "id",
+  targetKey: "id",
 });
 
 
@@ -68,7 +73,7 @@ Users.hasMany(Comments, {
 Comments.belongsTo(Users, {
   foreignKey: "commenterId",
   as: "commenter",
-  targetId: "id",
+  targetKey: "id",
 });
 
 //! asociasion de usuarios a las Respuestas de sus comentarios \\
@@ -81,5 +86,5 @@ Users.hasMany(CommentsResponse, {
 CommentsResponse.belongsTo(Users, {
   foreignKey: "uidComents",
   as: "userComments",
-  targetId: "id",
+  targetKey: "id",
 });

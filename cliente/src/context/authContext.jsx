@@ -18,22 +18,19 @@ export const AuthContextProvider = ({ children }) => {
       withCredentials: true,
     });
     setCurrentUser(res.data);
-     // Almacenar el token después del login
-     localStorage.setItem("access_token", res.data.token);
+    
   };
 
   const logout = async () => {
     await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true, });
     setCurrentUser(null);
     localStorage.removeItem("user");
-    localStorage.removeItem("access_token"); // También eliminar el token al cerrar sesión
     window.location.href = "/";
   };
 
   const refreshUserData = async () => {
     try {
       const res = await axios.get(`${URL}/api/auth/user`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("access_token")}` }, // Enviar el token en la cabecera
         withCredentials: true,
       });
       setCurrentUser(res.data);

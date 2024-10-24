@@ -1,16 +1,22 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../db.js";
 import { Comments } from "./Comments.js";
+import { DB_DIALECT } from "../config.js";
+
+const idConfig = {
+  type: DataTypes.UUID,
+  primaryKey: true,
+  allowNull: false,
+};
+
+if (DB_DIALECT === "mysql") {
+  idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
+}
 
 export const Posts = sequelize.define(
   "posts",
   {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-    },
+    id: idConfig,
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,7 +25,7 @@ export const Posts = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [0, 50000000000], // Permite hasta 1 millón de caracteres
+        len: [0, 1000000], // Permite hasta 1 millón de caracteres
       },
     },
     img: {

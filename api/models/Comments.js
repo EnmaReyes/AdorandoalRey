@@ -1,16 +1,21 @@
-import { DataTypes, HasMany } from "sequelize";
+import { DataTypes,} from "sequelize";
 import { sequelize } from "../db.js";
+import { DB_DIALECT } from "../config.js";
 
+const idConfig = {
+  type: DataTypes.UUID,
+  primaryKey: true,
+  allowNull: false,
+};
+
+if (DB_DIALECT === 'mysql') {
+  idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
+}
   
 export const Comments = sequelize.define(
     "comments",
     {
-        id:{
-            type: DataTypes.UUID,
-            primaryKey:true,
-            defaultValue: DataTypes.UUIDV4,
-            allowNull: false
-        },
+        id: idConfig,
         comments:{
             type: DataTypes.TEXT,
             allowNull:false,
