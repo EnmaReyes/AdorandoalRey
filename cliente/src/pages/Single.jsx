@@ -21,8 +21,9 @@ import Likes from "../components/Likes/Likes.jsx";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
 import { Loading } from "../components/Loading/Loading.jsx";
+import {API_URL} from "../config.js";
 
-const URL = import.meta.env.VITE_BACKEND_URL;
+const URL = API_URL;
 
 const Single = () => {
   const [post, setPost] = useState({});

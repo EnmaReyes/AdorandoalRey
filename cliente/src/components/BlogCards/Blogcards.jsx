@@ -16,8 +16,9 @@ import {
   faHeartPulse,
   faShieldHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import {API_URL} from "../config.js";
 
-const URL = import.meta.env.VITE_BACKEND_URL;
+const URL = API_URL;
 const Blogcards = () => {
   const [posts, setPosts] = useState([]);
   const location = useLocation().search;

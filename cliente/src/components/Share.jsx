@@ -17,8 +17,9 @@ import {
   LinkedinIcon,
 } from "react-share";
 import "./Share.scss";
+import { API_URL } from "../config.js";
 
-const URL = import.meta.env.VITE_FRONTEND_URL;
+const URL = API_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();

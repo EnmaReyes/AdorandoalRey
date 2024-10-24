@@ -17,7 +17,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { SpineLoader } from "../components/Loading/Loading.jsx";
-const URL = import.meta.env.VITE_BACKEND_URL;
+import {API_URL} from "../config.js";
+
+const URL = API_URL;
 
 const Write = () => {
   const navigate = useNavigate();

@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Menu.scss";
-const URL = import.meta.env.VITE_BACKEND_URL;
+import {API_URL} from "../config.js";
+
+const URL = API_URL;
 
 const Menu = () => {
   const [posts, setPosts] = useState([]);

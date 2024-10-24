@@ -7,8 +7,9 @@ import "swiper/css/pagination";
 import Banner from "../components/Banner";
 import Blogcards from "../components/BlogCards/Blogcards";
 import SocialCards from "../components/SocialCards/SocialCards";
+import {API_URL} from "../config.js";
 
-const URL = import.meta.env.VITE_BACKEND_URL;
+const URL = API_URL;
 
 const Home = () => {
   

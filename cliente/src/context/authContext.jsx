@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState, createContext } from "react";
+import {API_URL} from "../config.js";
 
 export const AuthContext = createContext();
-const URL = import.meta.env.VITE_BACKEND_URL;
+
+const URL = API_URL;
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(

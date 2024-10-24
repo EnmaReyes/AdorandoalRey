@@ -11,8 +11,9 @@ import Share from "../components/Share";
 import "./Blogs.scss";
 import img from "../assets/background/006.png";
 import ReactPaginate from "react-paginate";
+import {API_URL} from "../config.js";
 
-const URL = import.meta.env.VITE_BACKEND_URL;
+const URL = API_URL;
 const POSTS_PER_PAGE = 12;
 
 const Blogs = () => {

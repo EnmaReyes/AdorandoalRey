@@ -12,7 +12,9 @@ import {
   toastpromise,
 } from "../components/toastConfig/toastconfigs.jsx";
 import { toast } from "react-toastify";
-const URL = import.meta.env.VITE_BACKEND_URL;
+import {API_URL} from "../config.js";
+
+const URL = API_URL;
 
 const EditUser = () => {
   const { refreshUserData } = useContext(AuthContext);
