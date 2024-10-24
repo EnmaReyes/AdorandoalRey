@@ -15,7 +15,8 @@ import Responses from "./Responses";
 import "./Comment.scss";
 import { toast } from "react-toastify";
 import { toastComments } from "../toastConfig/toastconfigs";
-import {API_URL} from "../config.js";
+import { API_URL } from "../../config";
+
 
 const URL = API_URL;
 

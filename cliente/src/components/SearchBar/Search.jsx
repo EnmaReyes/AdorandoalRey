@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
-import {API_URL} from "../config.js";
+import { API_URL } from "../../config";
+
 
 const URL = API_URL;
 

@@ -17,7 +17,8 @@ import {
   LinkedinIcon,
 } from "react-share";
 import "./Share.scss";
-import { API_URL } from "../config.js";
+import { API_URL } from "../config";
+
 
 const URL = API_URL;
 

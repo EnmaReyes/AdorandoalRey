@@ -7,8 +7,9 @@ import SearchResults from "../components/SearchBar/SearchResults.jsx";
 import "./NavBar.scss";
 import DropDown from "./DropDownProfile/DropDown.jsx";
 import Burguer from "./Burgericon/Burguer.jsx";
+import { API_URL } from "../config.js";
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const URL = API_URL;
 
 const NavBar = () => {
   const { currentUser, logout } = useContext(AuthContext);

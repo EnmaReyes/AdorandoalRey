@@ -12,7 +12,8 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import {API_URL} from "../config.js";
+import { API_URL } from "../../config.js";
+
 
 const URL = API_URL;
 const SocialCards = () => {

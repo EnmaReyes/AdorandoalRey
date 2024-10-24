@@ -17,7 +17,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { SpineLoader } from "../components/Loading/Loading.jsx";
-import {API_URL} from "../config.js";
+import { API_URL } from "../config.js";
+
 
 const URL = API_URL;
 

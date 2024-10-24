@@ -16,7 +16,8 @@ import {
   faHeartPulse,
   faShieldHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import {API_URL} from "../config.js";
+import { API_URL } from "../../config";
+
 
 const URL = API_URL;
 const Blogcards = () => {

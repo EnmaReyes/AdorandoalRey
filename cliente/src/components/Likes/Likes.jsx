@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "./Likes.scss"
-import {API_URL} from "../config.js";
+import { API_URL } from "../../config";
+
 
 const URL = API_URL;
 const Likes = ({ postid, currentUser }) => {
