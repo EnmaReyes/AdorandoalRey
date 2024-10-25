@@ -8,26 +8,17 @@ export const FRONTEND_URL =
     : "http://localhost:5173";
 
 export const DB_HOST =
-  process.env.NODE_ENV === "production"
-    ? process.env.MYSQL_DB_HOST
-    : "localhost";
+  process.env.NODE_ENV === "production" ? process.env.DB_HOST : "localhost";
 export const DB_USER =
-  process.env.NODE_ENV === "production"
-    ? process.env.MYSQL_DB_USER
-    : "postgres";
+  process.env.NODE_ENV === "production" ? process.env.DB_USER : "postgres";
 export const DB_NAME =
-  process.env.NODE_ENV === "production"
-    ? process.env.MYSQL_DB_NAME
-    : "adorandoalrey";
+  process.env.NODE_ENV === "production" ? process.env.DB_NAME : "adorandoalrey";
 export const DB_PASSWORD =
-  process.env.NODE_ENV === "production"
-    ? process.env.MYSQL_DB_PASSWORD
-    : "Enma2707";
+  process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : "Enma2707";
 export const DB_PORT =
-  process.env.NODE_ENV === "production" ? process.env.MYSQL_DB_PORT : 5432;
+  process.env.NODE_ENV === "production" ? process.env.DB_PORT : 5432;
 export const DB_URL =
-  process.env.NODE_ENV === "production"
-    ? process.env.MYSQL_DB_URL
-    : process.env.DB_URL;
+  process.env.NODE_ENV === "production" && process.env.DB_URL;
+
 export const DB_DIALECT =
   process.env.NODE_ENV === "production" ? "mysql" : "postgres";
