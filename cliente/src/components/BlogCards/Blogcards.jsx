@@ -12,9 +12,6 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
-  faHeartCircleBolt,
-  faHeartPulse,
-  faShieldHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../../config";
 
