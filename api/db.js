@@ -1,16 +1,12 @@
 import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
-
-// Cargar variables de entorno según el modo (development o production)
-if (process.env.NODE_ENV === "production") {
-  dotenv.config({ path: "./.env.production" });
-} else {
-  dotenv.config({ path: "./.env" });
-}
-
-// Obtener variables de entorno
-const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DIALECT } =
-  process.env;
+import {
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_PORT,
+  DB_DIALECT,
+} from "./config.js";
 
 // Configuración de Sequelize
 const sequelizeConfig = {
@@ -19,6 +15,7 @@ const sequelizeConfig = {
   port: DB_PORT,
 };
 
+// Instancia de Sequelize
 export const sequelize = new Sequelize(
   DB_NAME,
   DB_USER,
