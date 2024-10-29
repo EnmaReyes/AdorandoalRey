@@ -1,4 +1,4 @@
-import { DataTypes, HasMany } from "sequelize";
+import { DataTypes} from "sequelize";
 import { sequelize } from "../db.js";
 import { Posts } from "./Posts.js";
 import { Comments } from "./Comments.js";
