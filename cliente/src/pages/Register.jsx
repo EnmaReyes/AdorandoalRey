@@ -9,7 +9,9 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-const URL = import.meta.env.VITE_BACKEND_URL;
+import {API_URL} from "../config.js";
+
+const URL = API_URL;
 
 const Register = () => {
   const [inputs, setInputs] = useState({

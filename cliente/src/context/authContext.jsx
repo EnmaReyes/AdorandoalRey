@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, createContext } from "react";
-import {API_URL} from "../config.js";
+import { API_URL } from "../config.js";
 
 export const AuthContext = createContext();
 
@@ -20,11 +20,10 @@ export const AuthContextProvider = ({ children }) => {
       withCredentials: true,
     });
     setCurrentUser(res.data);
-    
   };
 
   const logout = async () => {
-    await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true, });
+    await axios.post(`${URL}/api/auth/logout`, null, { withCredentials: true });
     setCurrentUser(null);
     localStorage.removeItem("user");
     window.location.href = "/";
