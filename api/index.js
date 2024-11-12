@@ -1,11 +1,12 @@
-import express from "express";
-import postRoutes from "./routes/posts.mjs";
-import authRoutes from "./routes/auth.mjs";
-import userRoutes from "./routes/users.mjs";
-import { sequelize } from "./db.mjs";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import { FRONTEND_URL } from "./config.mjs";
+const express = require("express");
+const postRoutes = require("./routes/posts.js");
+const authRoutes = require("./routes/auth.js");
+const userRoutes = require("./routes/users.js");
+const { sequelize } = require("./db.js");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const { FRONTEND_URL } = require("./config.js");
+
 const port = process.env.PORT || 4000;
 
 const app = express();
@@ -34,4 +35,5 @@ async function main() {
     console.error("Unable to connect to the database:", error);
   }
 }
+
 main();

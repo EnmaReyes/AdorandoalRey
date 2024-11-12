@@ -1,9 +1,9 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../db.mjs";
-import { Posts } from "./Posts.mjs";
-import { Comments } from "./Comments.mjs";
-import { CommentsResponse } from "./CommentsResponse.mjs";
-import { DB_DIALECT } from "../config.mjs";
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../db.js");
+const { Posts } = require("./Posts.js");
+const { Comments } = require("./Comments.js");
+const { CommentsResponse } = require("./CommentsResponse.js");
+const { DB_DIALECT } = require("../config.js");
 
 const idConfig = {
   type: DataTypes.UUID,
@@ -14,7 +14,7 @@ const idConfig = {
 if (DB_DIALECT === "mysql") {
   idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
 }
-export const Users = sequelize.define(
+const Users = sequelize.define(
   "users",
   {
     username: {
@@ -86,3 +86,4 @@ CommentsResponse.belongsTo(Users, {
   as: "userComments",
   targetKey: "id",
 });
+module.exports = {Users};

@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import { Users } from "../models/Users.mjs";
+const jwt = require("jsonwebtoken");
+const { Users } = require("../models/Users.js");
 
-export const userById = async (req, res) => {
+const userById = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -23,7 +23,7 @@ export const userById = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -55,3 +55,5 @@ export const updateUser = async (req, res) => {
     res.status(500).json("Error al actualizar el usuario");
   }
 };
+
+module.exports = { userById, updateUser };

@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../db.mjs";
-import { Comments } from "./Comments.mjs";
-import { DB_DIALECT } from "../config.mjs";
+const { DataTypes } =require ("sequelize");
+const { sequelize }  =require  ("../db.js");
+const { Comments } =require ("./Comments.js");
+const { DB_DIALECT } =require  ("../config.js");
 
 const idConfig = {
   type: DataTypes.UUID,
@@ -13,7 +13,7 @@ if (DB_DIALECT === "mysql") {
   idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
 }
 
-export const CommentsResponse = sequelize.define(
+const CommentsResponse = sequelize.define(
   "commentsResponse",
   {
     id: idConfig,
@@ -40,3 +40,5 @@ CommentsResponse.belongsTo(Comments, {
   as: "replies",
   targetKe: "id",
 });
+
+module.exports = {CommentsResponse};

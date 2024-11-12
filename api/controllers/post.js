@@ -1,12 +1,12 @@
-import { Posts } from "../models/Posts.mjs";
-import { Users } from "../models/Users.mjs";
-import jwt from "jsonwebtoken";
-import { Comments } from "../models/Comments.mjs";
-import { Heart } from "../models/Heart.mjs";
-import { Op } from "sequelize";
-import { CommentsResponse } from "../models/CommentsResponse.mjs";
+const { Posts } = require("../models/Posts.js");
+const { Users } = require("../models/Users.js");
+const jwt = require("jsonwebtoken");
+const { Comments } = require("../models/Comments.js");
+const { Heart } = require("../models/Heart.js");
+const { Op } = require("sequelize");
+const { CommentsResponse } = require("../models/CommentsResponse.js");
 
-export const getPosts = async (req, res) => {
+const getPosts = async (req, res) => {
   try {
     const posts = await Posts.findAll({
       include: [
@@ -27,7 +27,7 @@ export const getPosts = async (req, res) => {
   }
 };
 
-export const getPostByID = async (req, res) => {
+const getPostByID = async (req, res) => {
   try {
     const postId = req.params.id;
 
@@ -87,7 +87,7 @@ export const getPostByID = async (req, res) => {
     res.status(500).json("Error interno del servidor");
   }
 };
-export const getPostByTitle = async (req, res) => {
+const getPostByTitle = async (req, res) => {
   try {
     const postName = req.query.title.toLowerCase();
 
@@ -153,7 +153,7 @@ export const getPostByTitle = async (req, res) => {
   }
 };
 
-export const addPost = async (req, res) => {
+const addPost = async (req, res) => {
   try {
     const token = req.cookies.access_token;
 
@@ -180,7 +180,7 @@ export const addPost = async (req, res) => {
   }
 };
 
-export const deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
   const token = req.cookies.access_token;
 
   if (!token) {
@@ -238,7 +238,7 @@ export const deletePost = async (req, res) => {
   }
 };
 
-export const updatePost = async (req, res) => {
+const updatePost = async (req, res) => {
   try {
     const token = req.cookies.access_token;
 
@@ -276,7 +276,7 @@ export const updatePost = async (req, res) => {
 
 //! comments \\
 
-export const addComments = async (req, res) => {
+const addComments = async (req, res) => {
   try {
     const postId = req.body.postId;
     const post = await Posts.findByPk(postId);
@@ -305,7 +305,7 @@ export const addComments = async (req, res) => {
   }
 };
 
-export const deleteComments = async (req, res) => {
+const deleteComments = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -348,7 +348,7 @@ export const deleteComments = async (req, res) => {
 };
 
 //! respuesta del comentario \\
-export const addResponseComment = async (req, res) => {
+const addResponseComment = async (req, res) => {
   try {
     const commentId = req.body.commentid;
     console.log(commentId);
@@ -379,7 +379,7 @@ export const addResponseComment = async (req, res) => {
 };
 
 //! Eliminar respuesta \\
-export const deleteResponse = async (req, res) => {
+ const deleteResponse = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -422,7 +422,7 @@ export const deleteResponse = async (req, res) => {
 };
 
 //! likes \\
-export const addHeart = async (req, res) => {
+const addHeart = async (req, res) => {
   try {
     const postId = req.body.postid;
     const post = await Posts.findByPk(postId);
@@ -451,7 +451,7 @@ export const addHeart = async (req, res) => {
   }
 };
 
-export const deleteHeart = async (req, res) => {
+const deleteHeart = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -493,3 +493,17 @@ export const deleteHeart = async (req, res) => {
     res.status(500).json("Error interno del servidor");
   }
 };
+module.exports ={
+  deleteHeart,
+  addHeart,
+  deleteResponse,
+  addResponseComment,
+  deleteComments,
+  addComments,
+  updatePost,
+  deletePost,
+  addPost,
+  getPostByTitle,
+  getPostByID,
+  getPosts,
+}

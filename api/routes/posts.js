@@ -1,5 +1,5 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   addComments,
   addHeart,
   addPost,
@@ -12,7 +12,7 @@ import {
   getPostByTitle,
   getPosts,
   updatePost,
-} from "../controllers/post.mjs";
+} = require("../controllers/post.js");
 
 const router = express.Router();
 
@@ -23,14 +23,14 @@ router.post("/", addPost);
 router.delete("/:id", deletePost);
 router.put("/:id", updatePost);
 
-//? comentarios \\
+// Comentarios
 router.post("/:id", addComments);
 router.delete("/:id/:id", deleteComments);
-router.post("/:id/response", addResponseComment)
-router.delete("/:id/response/:id", deleteResponse)
+router.post("/:id/response", addResponseComment);
+router.delete("/:id/response/:id", deleteResponse);
 
-//? likes \\
+// Likes
 router.post("/:id/:hearts", addHeart);
 router.delete("/:id/:hearts/:id", deleteHeart);
 
-export default router;
+module.exports = router;
