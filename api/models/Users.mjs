@@ -1,9 +1,9 @@
-import { DataTypes} from "sequelize";
-import { sequelize } from "../db.js";
-import { Posts } from "./Posts.js";
-import { Comments } from "./Comments.js";
-import { CommentsResponse } from "./CommentsResponse.js";
-import { DB_DIALECT } from "../config.js";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../db.mjs";
+import { Posts } from "./Posts.mjs";
+import { Comments } from "./Comments.mjs";
+import { CommentsResponse } from "./CommentsResponse.mjs";
+import { DB_DIALECT } from "../config.mjs";
 
 const idConfig = {
   type: DataTypes.UUID,
@@ -11,7 +11,7 @@ const idConfig = {
   allowNull: false,
 };
 
-if (DB_DIALECT === 'mysql') {
+if (DB_DIALECT === "mysql") {
   idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
 }
 export const Users = sequelize.define(
@@ -20,7 +20,6 @@ export const Users = sequelize.define(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      
     },
     id: idConfig,
     email: {
@@ -41,9 +40,9 @@ export const Users = sequelize.define(
     name: {
       type: DataTypes.STRING,
     },
-    lastName:{
+    lastName: {
       type: DataTypes.STRING,
-    }
+    },
   },
   {
     timestamps: false,
@@ -61,7 +60,6 @@ Posts.belongsTo(Users, {
   as: "user",
   targetKey: "id",
 });
-
 
 //! usuarios que comentan en los posts\\
 Users.hasMany(Comments, {

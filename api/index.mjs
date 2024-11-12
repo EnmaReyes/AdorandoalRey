@@ -1,11 +1,11 @@
 import express from "express";
-import postRoutes from "./routes/posts.js";
-import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/users.js";
-import { sequelize } from "./db.js";
+import postRoutes from "./routes/posts.mjs";
+import authRoutes from "./routes/auth.mjs";
+import userRoutes from "./routes/users.mjs";
+import { sequelize } from "./db.mjs";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { FRONTEND_URL } from "./config.js";
+import { FRONTEND_URL } from "./config.mjs";
 const port = process.env.PORT || 4000;
 
 const app = express();

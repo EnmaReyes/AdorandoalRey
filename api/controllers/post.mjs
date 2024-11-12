@@ -1,10 +1,10 @@
-import { Posts } from "../models/Posts.js";
-import { Users } from "../models/Users.js";
+import { Posts } from "../models/Posts.mjs";
+import { Users } from "../models/Users.mjs";
 import jwt from "jsonwebtoken";
-import { Comments } from "../models/Comments.js";
-import { Heart } from "../models/Heart.js";
+import { Comments } from "../models/Comments.mjs";
+import { Heart } from "../models/Heart.mjs";
 import { Op } from "sequelize";
-import { CommentsResponse } from "../models/CommentsResponse.js";
+import { CommentsResponse } from "../models/CommentsResponse.mjs";
 
 export const getPosts = async (req, res) => {
   try {

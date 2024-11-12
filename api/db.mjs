@@ -6,7 +6,7 @@ import {
   DB_HOST,
   DB_PORT,
   DB_DIALECT,
-} from "./config.js";
+} from "./config.mjs";
 
 // Configuración de Sequelize
 const sequelizeConfig = {

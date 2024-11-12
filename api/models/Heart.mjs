@@ -1,8 +1,8 @@
 import { DataTypes, HasMany } from "sequelize";
-import { sequelize } from "../db.js";
-import { Posts } from "./Posts.js";
-import { Users } from "./Users.js";
-import { DB_DIALECT } from "../config.js";
+import { sequelize } from "../db.mjs";
+import { Posts } from "./Posts.mjs";
+import { Users } from "./Users.mjs";
+import { DB_DIALECT } from "../config.mjs";
 
 const idConfig = {
   type: DataTypes.UUID,

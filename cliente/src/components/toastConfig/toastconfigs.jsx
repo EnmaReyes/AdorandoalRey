@@ -1,10 +1,9 @@
 import React from "react";
-import { toast, Bounce, Slide } from "react-toastify";
+import {Bounce, Slide } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/src/sweetalert2.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
+
 
 
 export const toastpromise = {

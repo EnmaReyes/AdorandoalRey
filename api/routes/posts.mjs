@@ -12,7 +12,7 @@ import {
   getPostByTitle,
   getPosts,
   updatePost,
-} from "../controllers/post.js";
+} from "../controllers/post.mjs";
 
 const router = express.Router();
 
