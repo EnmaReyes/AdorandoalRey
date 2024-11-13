@@ -10,19 +10,16 @@ footer {
     width: 100%;
 
     .grupo1 {
-        background-color: #021a33;
+        background: linear-gradient(to top, #021A33 10%, #042D59 48%, #021A33 90%);
         width: 100%;
         margin: auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 50px;
-        padding: 45px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         .box {
-            width: 100%;
-            height: 80%;
             display: flex;
-            justify-content: start;
             align-items: center;
 
             img {
@@ -33,26 +30,24 @@ footer {
 
         .box2 {
             width: 100%;
-            height: 80%;
             display: flex;
-            justify-content: end;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-
             h2 {
                 color: white;
-                margin-bottom: 150px;
+                margin-bottom: 2rem;
                 font-size: 20px;
-                transform: translate(115%, 40%);
             }
 
         }
 
         ul {
             display: flex;
-            transform: translate(-10%, -50%);
+            transform: translate(-05%, -50%);
 
         }
-
+ 
         li {
             list-style: none;
         }
@@ -125,19 +120,20 @@ footer {
             background: rgb(7, 104, 4);
         }
 
-
-    }
-
-    .grupo2 {
-        background-color: #023466;
-        padding: 15px 10px;
-        text-align: center;
-        color: #fff;
-
-        small {
-            font-size: 15px;
+        .grupo2 {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+    
+            small {
+                font-size: 15px;
+            }
         }
+
     }
+
 
 }
 

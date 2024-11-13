@@ -59,13 +59,12 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-      </div>
-
-      <div className="grupo2">
-        <small>
-          {" "}
-          © 2023 <b>Adorando al rey</b>- Todos Los Derechos Reservados.
-        </small>
+        <div className="grupo2">
+          <small>
+            {" "}
+            © 2023 <b>Adorando al rey</b>- Todos Los Derechos Reservados.
+          </small>
+        </div>
       </div>
     </footer>
   );
