@@ -31,7 +31,7 @@ const Aboutme = () => {
         />
       </div>
       <div className="info">
-        <div className="data">
+        <div className="data" >
           <h1>Yasmira Coronel Castillo</h1>
           <p>
             Oriunda de Cabimas, Venezuela, ha tejido una vida de servicio y fe,
@@ -49,7 +49,7 @@ const Aboutme = () => {
         <div className="picture">
           <img src={img02} alt="" />
         </div>
-        <div className="data">
+        <div className="data left">
           <h1>Madre y Profesional</h1>
           <p>
             Yasmira ha equilibrado la crianza de sus hijos con la búsqueda de
