@@ -3,8 +3,6 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { format } from "date-fns";
-import { es } from "date-fns/locale"; // Importa el locale español si es necesario
 import "./Write.scss";
 import { UploadImg } from "../firebase/config.js";
 import { toast } from "react-toastify";
@@ -18,7 +16,6 @@ import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { SpineLoader } from "../components/Loading/Loading.jsx";
 import { API_URL } from "../config.js";
-
 
 const URL = API_URL;
 
@@ -37,6 +34,10 @@ const Write = () => {
     }
   );
 
+  const getFormattedDate = (date) => {
+    return date ? date : "";
+  };
+
   // Mostrar imagen seleccionada
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -47,7 +48,7 @@ const Write = () => {
   };
 
   const handleClick = async () => {
-    setLoading(!loading);
+    setLoading(true);
     try {
       // Verificar si title, fileImg o description están vacíos o en false
       if (!title || !description || !date) {
@@ -96,15 +97,13 @@ const Write = () => {
       );
 
       await promise;
+      setLoading(false);
       navigate("/");
     } catch (err) {
+      setLoading(false);
       toast.error(`Error al realizar la solicitud: ${err.message}`);
       console.log("Error al realizar la solicitud:", err);
     }
-  };
-
-  const getFormattedDate = (date) => {
-    return date ? date : "";
   };
 
   //! editar ReactQuill \\
@@ -126,18 +125,15 @@ const Write = () => {
       </div>
       <div className="content">
         <div className="content-data">
-          <div
-            className="img-loader"
-            style={{
-              // backgroundImage:fileImg? `url(${window.URL.createObjectURL(fileImg)})` :`url(${fileImg})` ,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
+          <div className="img-loader">
             {fileImg && (
               <img
                 className="img-blog"
-                src={window.URL.createObjectURL(fileImg)}
+                src={
+                  fileImg instanceof File
+                    ? window.URL.createObjectURL(fileImg)
+                    : fileImg
+                }
                 alt=""
               />
             )}
@@ -145,7 +141,7 @@ const Write = () => {
               <input
                 style={{ display: "none" }}
                 type="file"
-                name=""
+                name="file"
                 id="file"
                 onChange={handleFileChange}
               />
@@ -199,7 +195,7 @@ const Write = () => {
                 </span>
                 <input
                   type="text"
-                  placeholder="https://youtobe"
+                  placeholder="https://youtube"
                   value={socialLinks.youtobe}
                   onChange={(e) =>
                     setSocialLinks({ ...socialLinks, youtobe: e.target.value })

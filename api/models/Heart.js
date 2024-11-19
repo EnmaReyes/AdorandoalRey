@@ -1,22 +1,18 @@
-const { DataTypes, HasMany } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const { sequelize } = require("../db.js");
 const { Posts } = require("./Posts.js");
 const { Users } = require("./Users.js");
-const { DB_DIALECT } = require("../config.js");
+const { v4: uuidv4 } = require("uuid");
 
-const idConfig = {
-  type: DataTypes.UUID,
-  primaryKey: true,
-  allowNull: false,
-};
-
-if (DB_DIALECT === "mysql") {
-  idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
-}
 const Heart = sequelize.define(
   "heart",
   {
-    id: idConfig,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: uuidv4,
+    },
     heart: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -54,4 +50,4 @@ Heart.belongsTo(Users, {
   as: "userHearts",
 });
 
-module.exports = {Heart};
+module.exports = { Heart };

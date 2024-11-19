@@ -54,10 +54,9 @@ sans-serif;
                 text-align: justify;
             }
         }
-         .left{
-            
-             text-align: right;
-            
+
+        .left {
+            text-align: right;
         }
 
         .picture {
@@ -68,6 +67,35 @@ sans-serif;
             img {
                 width: 80%;
                 object-fit: cover;
+            }
+        }
+
+        @media (max-width:768px) {
+            width: 80%;
+            flex-direction: column-reverse;
+
+            .data {
+                width: 100%;
+
+                h1 {}
+
+                p {
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+
+            .left {
+                text-align: start;
+            }
+
+            .picture {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
             }
         }
     }

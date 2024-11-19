@@ -1,21 +1,16 @@
-const { DataTypes } = require("sequelize") ;
-const { sequelize } = require ("../db.js");
-const { DB_DIALECT } = require ("../config.js");
-
-const idConfig = {
-  type: DataTypes.UUID,
-  primaryKey: true,
-  allowNull: false,
-};
-
-if (DB_DIALECT === "mysql") {
-  idConfig.defaultValue = DataTypes.UUIDV4; // Para MySQL puedes usar UUID como CHAR(36)
-}
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../db.js");
+const { v4: uuidv4 } = require("uuid");
 
 const Comments = sequelize.define(
   "comments",
   {
-    id: idConfig,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: uuidv4,
+    },
     comments: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -26,4 +21,4 @@ const Comments = sequelize.define(
   }
 );
 
-module.exports = {Comments};
+module.exports = { Comments };

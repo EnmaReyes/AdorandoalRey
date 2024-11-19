@@ -27,7 +27,7 @@ app.use("/api/auth", authRoutes);
 
 async function main() {
   try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter: false });
     app.listen(port, () => {
       console.log(`Conected!! app listening on port ${port}`);
     });

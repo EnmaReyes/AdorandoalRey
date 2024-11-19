@@ -5,6 +5,7 @@ const { Comments } = require("../models/Comments.js");
 const { Heart } = require("../models/Heart.js");
 const { Op } = require("sequelize");
 const { CommentsResponse } = require("../models/CommentsResponse.js");
+const { token } = require("morgan");
 
 const getPosts = async (req, res) => {
   try {
@@ -156,11 +157,9 @@ const getPostByTitle = async (req, res) => {
 const addPost = async (req, res) => {
   try {
     const token = req.cookies.access_token;
-
     if (!token) {
       return res.status(401).json("No estás autenticado para añadir post!");
     }
-
     const userInfo = jwt.verify(token, "jwtkey");
 
     const newPost = {
@@ -379,7 +378,7 @@ const addResponseComment = async (req, res) => {
 };
 
 //! Eliminar respuesta \\
- const deleteResponse = async (req, res) => {
+const deleteResponse = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
@@ -493,7 +492,7 @@ const deleteHeart = async (req, res) => {
     res.status(500).json("Error interno del servidor");
   }
 };
-module.exports ={
+module.exports = {
   deleteHeart,
   addHeart,
   deleteResponse,
@@ -506,4 +505,4 @@ module.exports ={
   getPostByTitle,
   getPostByID,
   getPosts,
-}
+};
