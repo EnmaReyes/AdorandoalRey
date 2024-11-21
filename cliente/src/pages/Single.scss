@@ -27,8 +27,8 @@ sans-serif;
 
     @media(max-width: 768px) {
       height: 590px !important;
-      object-fit: cover; 
-      transition: height 0.5s ease-in-out, object-fit 1s ease-in-out !important;   
+      object-fit: cover;
+      transition: height 0.5s ease-in-out, object-fit 1s ease-in-out !important;
     }
   }
 
@@ -52,10 +52,11 @@ sans-serif;
     margin-top: 3rem;
     transition: height 0.2s ease-in, object-fit 1s ease-in-out !important;
     box-shadow: 0px 3px 18px -8px rgba(2, 17, 119, 0.48);
+
     @media(max-width: 768px) {
       margin-top: 9rem;
       object-fit: contain !important;
-      height: auto ;
+      height: auto;
     }
 
 
@@ -373,7 +374,7 @@ sans-serif;
 
 
         //escucharnos
-        .icon {
+        .icon{
           display: flex;
           flex-direction: column;
           width: 100%;

@@ -17,10 +17,10 @@ import {
   LinkedinIcon,
 } from "react-share";
 import "./Share.scss";
-import { API_URL } from "../config";
+import { FRONT_URL } from "../config";
 
 
-const URL = API_URL;
+const URL = FRONT_URL;
 
 const Share = ({ post }) => {
   const location = useLocation();

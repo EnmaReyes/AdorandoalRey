@@ -21,7 +21,7 @@ import Likes from "../components/Likes/Likes.jsx";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
 import { Loading } from "../components/Loading/Loading.jsx";
-import {API_URL} from "../config.js";
+import { API_URL } from "../config.js";
 
 const URL = API_URL;
 
@@ -92,6 +92,8 @@ const Single = () => {
     return clonedElement.innerHTML;
   };
 
+  const links =
+    typeof post.links === "string" ? JSON.parse(post.links) : post.links;
   return (
     <div className="sinlge-contain">
       {isLoadidng && (
@@ -172,9 +174,13 @@ const Single = () => {
 
               <div className="icon">
                 <ul>
-                  {post.links?.spotify?.length > 0 && (
+                  {links?.spotify && (
                     <li>
-                      <a href={post.links?.spotify} target="blanket">
+                      <a
+                        href={links?.spotify}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="icon">
                           <FontAwesomeIcon icon={faSpotify} />
                         </i>
@@ -182,9 +188,13 @@ const Single = () => {
                     </li>
                   )}
 
-                  {post.links?.youtobe?.length > 0 && (
+                  {links?.youtobe && (
                     <li>
-                      <a href={post.links?.youtobe} target="blanket">
+                      <a
+                        href={links?.youtobe}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="icon">
                           <FontAwesomeIcon icon={faYoutube} />
                         </i>

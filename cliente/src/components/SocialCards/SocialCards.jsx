@@ -14,7 +14,6 @@ import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { API_URL } from "../../config.js";
 
-
 const URL = API_URL;
 const SocialCards = () => {
   const [posts, setPosts] = useState([]);
@@ -42,8 +41,16 @@ const SocialCards = () => {
     setHoveredPostId(null);
   };
 
-  const nuevosPosts = posts.slice(0, 8);
+  const nuevosPosts = posts.slice(0, 8).map((post) => {
+    // Si 'links' es una cadena JSON, la transformamos; si ya es un objeto, lo dejamos igual
+    const parsedLinks =
+      typeof post.links === "string" ? JSON.parse(post.links) : post.links;
 
+    return {
+      ...post, // Copiamos todos los campos del post original
+      links: parsedLinks, // Sobrescribimos solo el campo 'links'
+    };
+  });
   return (
     <div className="social-conteiner">
       <div className="social-box">
@@ -73,20 +80,22 @@ const SocialCards = () => {
                     />
                     {hoveredPostId === blog.id && (
                       <div className="hover">
-                        {blog.links.spotify && (
+                        {blog.links?.spotify && (
                           <a
                             href={blog.links?.spotify}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="spotifi-icon"
                           >
                             <FontAwesomeIcon icon={faSpotify} />
                           </a>
                         )}
-                        {blog.links.youtobe && (
+                        {blog.links?.youtobe && (
                           <>
                             <a
                               href={blog.links?.youtobe || blog.links?.spotify}
                               target="_blank"
+                              rel="noopener noreferrer"
                               className="play-icon"
                             >
                               <FontAwesomeIcon icon={faPlayCircle} />
@@ -94,6 +103,7 @@ const SocialCards = () => {
                             <a
                               href={blog.links?.youtobe}
                               target="_blank"
+                              rel="noopener noreferrer"
                               className="youtobe-icon"
                             >
                               <FontAwesomeIcon icon={faYoutube} />
