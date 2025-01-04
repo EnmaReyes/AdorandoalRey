@@ -131,7 +131,7 @@ const Comment = ({ setShowCommentField, showCommentField }) => {
                       alt={comment?.commenter.username}
                     />
                   ) : (
-                    <FontAwesomeIcon className="icon" icon={faUser} />
+                    <FontAwesomeIcon className="nonimg" icon={faUser} />
                   )}
                 </div>
                 <div className="box">

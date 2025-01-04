@@ -123,8 +123,9 @@ sans-serif;
                 transition: all 0.3s ease-in-out;
 
                 &:hover {
-                    color: #fff;
-                    background-color: $butonColor;
+                    box-shadow: 0px 1px 1px 2px rgb(182, 178, 178);
+                    background: #ffffff41;
+                    color: #000000;
                 }
             }
 
@@ -154,11 +155,11 @@ sans-serif;
                 align-items: center;
                 padding: 5px 12px;
                 border-radius: 8px;
-                color: #fff;
-                background-color: $butonColor;
                 font-family: $titulo;
                 font-size: 18px;
-                box-shadow: 0px -1px 1px 2px #0b335c inset;
+                box-shadow: 0px 1px 1px 2px rgb(182, 178, 178);
+                background: #ffffff41;
+                color: #000000;
 
             }
 

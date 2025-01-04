@@ -8,7 +8,10 @@ import {
   faTrash,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  notify,
+  notifytologin,
+} from "../components/toastConfig/toastconfigs.jsx";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
@@ -154,7 +157,15 @@ const Single = () => {
               <div className="social-icon">
                 <div className="icons">
                   <ul>
-                    <li>
+                    <li
+                      onClick={() =>
+                        !currentUser &&
+                        notifytologin(
+                          navigate,
+                          "Inicia sesión para apoyarnos con tu corazón"
+                        )
+                      }
+                    >
                       <Likes postid={postid} currentUser={currentUser} />
                     </li>
                     <li onClick={toggleCommentField}>

@@ -1,10 +1,8 @@
 import React from "react";
-import {Bounce, Slide } from "react-toastify";
+import { Bounce, Slide } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import "sweetalert2/src/sweetalert2.scss";
-
-
 
 export const toastpromise = {
   position: "bottom-right",
@@ -30,21 +28,30 @@ export const toastComments = {
   transition: Slide,
 };
 
+export const notify = (handleClick, texto) => {
+  Swal.fire({
+    title: texto,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Aceptar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      handleClick(); // Llama a la función pasada por parámetro
+    }
+  });
+};
 
-  export const notify = (handleClick, texto) => {
-   
-    Swal.fire({
-      title: texto,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Aceptar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        handleClick(); // Llama a la función pasada por parámetro
-      }
-    });
-    
-  };
-
-
+export const notifytologin = (handleClick, texto) => {
+  Swal.fire({
+    title: texto,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Iniciar Sesión",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      handleClick("/login"); // Llama a la función pasada por parámetro
+    }
+  });
+};

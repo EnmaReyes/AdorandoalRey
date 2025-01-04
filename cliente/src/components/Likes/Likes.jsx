@@ -13,6 +13,7 @@ const Likes = ({ postid, currentUser }) => {
   const [heartID, setHeartId] = useState(null);
   const [isProcessingHeart, setIsProcessingHeart] = useState(false);
   const hearts = 1;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -79,7 +80,7 @@ const Likes = ({ postid, currentUser }) => {
     <div>
       <div  className="likes">
         <p className="counter"> {countHearts >= 1 && <p className="count">{countHearts}</p>}</p>
-        <a onClick={handleHeart}>
+        <a onClick={currentUser && handleHeart}>
           <FontAwesomeIcon
             className={!heart ? "icon-chat" : "heart"}
             icon={faHeart}
