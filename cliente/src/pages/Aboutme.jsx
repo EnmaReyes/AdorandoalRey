@@ -4,6 +4,9 @@ import YoutobePlayer from "react-player/youtube";
 import img01 from "../assets/AboutMe/img1.jpg";
 import img02 from "../assets/AboutMe/img2.jpg";
 import img03 from "../assets/AboutMe/img3.jpg";
+import Contactus from "../components/ContactUS/contactus";
+
+
 const Aboutme = () => {
   const [onplay, setOnplay] = useState(true);
 
@@ -77,6 +80,7 @@ const Aboutme = () => {
           <img src={img03} alt="" />
         </div>
       </div>
+      <Contactus/>
     </div>
   );
 };
