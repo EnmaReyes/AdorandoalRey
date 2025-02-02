@@ -3,7 +3,12 @@ import { toastComments, toastpromise } from "../toastConfig/toastconfigs.jsx";
 import { toast } from "react-toastify";
 import "./contactus.scss";
 import axios from "axios";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelopeOpenText,
+  faLocationDot,
+  faMobileScreenButton,
+} from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../../config.js";
 const URL = API_URL;
 
@@ -83,79 +88,109 @@ const Contactus = () => {
         </svg>
       </div>
       <div className="contact-block">
-      <div className="contact-box">
-        <h1 className="titulo">Contactanos</h1>
-        <form onSubmit={handlesubmit} className="form_contact">
-          <div className="fullname_inputs ">
+        <div className="contact-box">
+          <h1 className="titulo">Contactanos</h1>
+          <form onSubmit={handlesubmit} className="form_contact">
+            <div className="fullname_inputs ">
+              <div className="input-group">
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  className="input-group__input"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="firstName" className="input-group__label">
+                  Nombre
+                </label>
+              </div>
+              <div className="input-group">
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className="input-group__input"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="lastName" className="input-group__label">
+                  Apellido
+                </label>
+              </div>
+            </div>
             <div className="input-group">
               <input
                 type="text"
-                id="firstName"
-                name="firstName"
+                id="email"
+                name="email"
                 className="input-group__input"
-                required
                 onChange={handleChange}
+                required
               />
-              <label htmlFor="firstName" className="input-group__label">
-                Nombre
+              <label htmlFor="email" className="input-group__label">
+                Correo Electronico
               </label>
             </div>
             <div className="input-group">
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
+                id="phone"
+                name="phone"
                 className="input-group__input"
                 required
                 onChange={handleChange}
               />
-              <label htmlFor="lastName" className="input-group__label">
-                Apellido
+              <label htmlFor="phone" className="input-group__label">
+                Numero Movíl
               </label>
             </div>
-          </div>
-          <div className="input-group">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              className="input-group__input"
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="email" className="input-group__label">
-              Correo Electronico
-            </label>
-          </div>
-          <div className="input-group">
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              className="input-group__input"
-              required
+
+            <textarea
+              className="contact-textarea"
+              placeholder="Escribir..."
+              name="message"
               onChange={handleChange}
             />
-            <label htmlFor="phone" className="input-group__label">
-              Numero Movíl
-            </label>
+
+            {error && <p className="error-message">{error}</p>}
+            <button type="submit" className="emailbutton">
+              Enviar
+            </button>
+          </form>
+        </div>
+
+        <div className="info-container">
+          <div class="triangle-horizontal">
+            <div className="triangle-data">
+                <h1 className="titulo-box">Adorando al Rey</h1>
+              <div className="line-block"></div>
+              <div className="data-box">
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="icon-triangle"
+                />
+                <p>
+                  Chile-Rancagua <br /> Villa Alameda pasaje Qintero
+                </p>
+              </div>
+              <div className="data-box">
+                <FontAwesomeIcon
+                  icon={faEnvelopeOpenText}
+                  className="icon-triangle"
+                />
+                <p>adorandoalreyconyasmira@gmail.com</p>
+              </div>
+              <div className="data-box">
+                <FontAwesomeIcon
+                  icon={faMobileScreenButton}
+                  className="icon-triangle"
+                />
+                <p>+56 9 54959538</p>
+              </div>
+            </div>
           </div>
-
-          <textarea
-            className="contact-textarea"
-            placeholder="Escribir..."
-            name="message"
-            onChange={handleChange}
-          />
-
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="emailbutton">Enviar</button>
-        </form>
-      </div>
-
-      <div className="info-container">
-        <div class="triangle-horizontal"></div>
-      </div>
+        </div>
       </div>
     </div>
   );
