@@ -19,8 +19,10 @@ const DB_PORT =
   process.env.NODE_ENV === "production" ? process.env.DB_PORT : 5432;
 const DB_URL = process.env.NODE_ENV === "production" && process.env.DB_URL;
 
-const DB_DIALECT =
-  process.env.NODE_ENV === "production" ? "mysql" : "postgres";
+const DB_DIALECT = process.env.NODE_ENV === "production" ? "mysql" : "postgres";
+
+const EMAIL_USER = "adorandoalreyconyasmira@gmail.com";
+const EMAIL_PASS = "pzxe vcbg xknn nock";
 
 module.exports = {
   FRONTEND_URL,
@@ -31,4 +33,6 @@ module.exports = {
   DB_PORT,
   DB_URL,
   DB_DIALECT,
+  EMAIL_USER,
+  EMAIL_PASS
 };
