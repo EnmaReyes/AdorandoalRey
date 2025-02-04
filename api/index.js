@@ -26,6 +26,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/email", emailRoutes);
+
 async function main() {
   try {
     await sequelize.sync({ alter: false });
