@@ -163,7 +163,7 @@ const Contactus = () => {
         <div className="info-container">
           <div class="triangle-horizontal">
             <div className="triangle-data">
-                <h1 className="titulo-box">Adorando al Rey</h1>
+              <h1 className="titulo-box">Adorando al Rey</h1>
               <div className="line-block"></div>
               <div className="data-box">
                 <FontAwesomeIcon
