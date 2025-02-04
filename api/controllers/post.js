@@ -5,6 +5,7 @@ const { Comments } = require("../models/Comments.js");
 const { Heart } = require("../models/Heart.js");
 const { Op } = require("sequelize");
 const { CommentsResponse } = require("../models/CommentsResponse.js");
+const DB_DIALECT = require("../config.js");
 const { token } = require("morgan");
 
 const getPosts = async (req, res) => {
@@ -96,10 +97,14 @@ const getPostByTitle = async (req, res) => {
       return res.status(400).json("No hay artículos");
     }
 
+    // Detecta el dialecto de la base de datos
+    
+    const likeOperator = DB_DIALECT === "postgres" ? Op.iLike : Op.like;
+
     const posts = await Posts.findAll({
       where: {
         title: {
-          [Op.iLike]: `%${postName}%`,
+          [likeOperator]: `%${postName}%`,
         },
       },
       include: [

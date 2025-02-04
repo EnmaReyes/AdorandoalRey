@@ -28,8 +28,8 @@ useEffect(() => {
       {searchResult.length > 0 &&
         searchResult.map((result) => (
           <Link className="link" to={`/post/${result.id}`}>
-            <div className="search-result" key={result.id}>
-              {result.title}
+            <div className="search-result" key={result?.id}>
+              {result?.title}
             </div>
           </Link>
         ))}

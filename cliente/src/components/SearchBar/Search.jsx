@@ -6,7 +6,6 @@ import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { API_URL } from "../../config";
 
-
 const URL = API_URL;
 
 const Search = ({ setSearchResult }) => {
@@ -14,6 +13,7 @@ const Search = ({ setSearchResult }) => {
   const { setShowUserEdit } = useContext(AuthContext);
   const inputRef = useRef(null);
   const [open, setOpen]=useState(false)
+  
   const handleChange = (value) => {
     setInput(value);
   };
