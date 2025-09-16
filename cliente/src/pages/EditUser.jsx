@@ -12,7 +12,7 @@ import {
   toastpromise,
 } from "../components/toastConfig/toastconfigs.jsx";
 import { toast } from "react-toastify";
-import {API_URL} from "../config.js";
+import { API_URL } from "../config.js";
 
 const URL = API_URL;
 
@@ -89,7 +89,7 @@ const EditUser = () => {
             name: formData.name,
             lastName: formData.lastName,
           },
-          { withCredentials: true, }
+          { withCredentials: true }
         );
 
         //! Notificación de éxito
@@ -114,7 +114,7 @@ const EditUser = () => {
       console.log("Error al realizar la solicitud:", err);
     }
   };
-  
+
   return (
     <div className="contenedor">
       <img className="gbEdit" src={gbEdit} alt="" />
@@ -194,25 +194,6 @@ const EditUser = () => {
               </div>
               <div className="input-group">
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="input-group__input"
-                  required
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      email: e.target.value,
-                    }))
-                  }
-                />
-                <label htmlFor="email" className="input-group__label">
-                  Email
-                </label>
-              </div>
-              <div className="input-group">
-                <input
                   type="text"
                   id="apellido"
                   name="apellido"
@@ -228,6 +209,25 @@ const EditUser = () => {
                 />
                 <label htmlFor="apellido" className="input-group__label">
                   Apellido
+                </label>
+              </div>
+              <div className="input-group">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="input-group__input"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      email: e.target.value,
+                    }))
+                  }
+                />
+                <label htmlFor="email" className="input-group__label">
+                  Email
                 </label>
               </div>
             </div>

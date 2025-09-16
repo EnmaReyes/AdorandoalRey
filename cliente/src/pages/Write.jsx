@@ -11,8 +11,9 @@ import {
   toastpromise,
 } from "../components/toastConfig/toastconfigs.jsx";
 import inicio from "../assets/logoblanco.png";
+import  podimo from "../assets/podimoIcon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faImage, faPodcast } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { SpineLoader } from "../components/Loading/Loading.jsx";
 import { API_URL } from "../config.js";
@@ -31,6 +32,7 @@ const Write = () => {
     state?.links || {
       spotify: "",
       youtobe: "",
+      podimo: "",
     }
   );
 
@@ -182,7 +184,7 @@ const Write = () => {
                 </span>
                 <input
                   type="text"
-                  placeholder="https://spotify"
+                  placeholder="https://spotify.com"
                   value={socialLinks.spotify}
                   onChange={(e) =>
                     setSocialLinks({ ...socialLinks, spotify: e.target.value })
@@ -195,10 +197,23 @@ const Write = () => {
                 </span>
                 <input
                   type="text"
-                  placeholder="https://youtube"
+                  placeholder="https://youtube.com"
                   value={socialLinks.youtobe}
                   onChange={(e) =>
                     setSocialLinks({ ...socialLinks, youtobe: e.target.value })
+                  }
+                />
+              </div>
+              <div className="podimo">
+                <div className="podimo-icon">
+                  <img src={podimo} alt="podimoIcon" className="podimo-icon-img"/>
+                </div>
+                <input
+                  type="text"
+                  placeholder="https://podimo.com"
+                  value={socialLinks.podimo}
+                  onChange={(e) =>
+                    setSocialLinks({ ...socialLinks, podimo: e.target.value })
                   }
                 />
               </div>

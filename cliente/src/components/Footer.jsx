@@ -2,6 +2,8 @@ import React from "react";
 import logo2 from "../assets/logoblanco.png";
 import { Link } from "react-router-dom";
 import "./Footer.scss";
+import podimoIcon from "../assets/podimoIcon.png";
+
 const Footer = () => {
   return (
     <footer>
@@ -54,6 +56,18 @@ const Footer = () => {
                   target="blanket"
                 >
                   <i class="fab fa-spotify icon"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://podimo.es/adorandoalreyconyasmira"
+                  target="_blank"
+                >
+                  <img
+                    src={podimoIcon}
+                    alt="Podimo"
+                    className="icon icon-podimo"
+                  />
                 </a>
               </li>
             </ul>

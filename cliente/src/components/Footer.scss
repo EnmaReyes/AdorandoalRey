@@ -53,6 +53,16 @@ footer {
             list-style: none;
         }
 
+        .icon-podimo {
+            width: 23px;
+            height: 23px;
+            display: inline-block;
+            margin-top: 4px;
+            filter: brightness(0);
+            transition: .5s;
+            border-radius: 8px;
+        }
+
         ul li a {
             width: 30px;
             height: 30px;
@@ -74,6 +84,12 @@ footer {
             color: #262626;
             transition: .5s;
             z-index: 3;
+        }
+
+        ul li a:hover .icon-podimo {
+            transform: rotateY(360deg);
+            filter: brightness(1) invert(0);
+            /* simula pasar a blanco */
         }
 
         ul li a:hover .icon {
@@ -119,6 +135,11 @@ footer {
 
         ul li:nth-child(6) a:before {
             background: rgb(7, 104, 4);
+        }
+
+        ul li:nth-child(7) a:before {
+            background: #794CF8;
+            /* color Podimo */
         }
 
         .grupo2 {

@@ -240,6 +240,7 @@ sans-serif;
 
       .spotify,
       .youtobe,
+      .podimo,
       .date {
         display: flex;
         justify-content: center;
@@ -251,6 +252,17 @@ sans-serif;
           padding: 5px 5px 5px 10px;
           font-size: 15px;
           font-weight: bolder;
+          color: gray;
+
+          &::placeholder {
+            color: #aaa; // color normal
+            transition: opacity 0.5s ease-in-out;
+          }
+
+          // Cuando el input está enfocado ocultamos el placeholder
+          &:focus::placeholder {
+            opacity: 0;
+          }
         }
       }
 
@@ -260,6 +272,17 @@ sans-serif;
 
       .youtobe {
         color: rgb(216, 12, 12);
+      }
+
+      .podimo-icon {
+        width: auto;
+        height: auto;
+
+        .podimo-icon-img {
+          width: 30px;
+          height: 30px;
+          border-radius: 8px;
+        }
       }
 
       .publicar-btn {
