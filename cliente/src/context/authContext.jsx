@@ -48,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
     // tiempo de inactividad permitido (ej: 1 hora = 3600000 ms)
     inactivityTimerRef.current = setTimeout(() => {
       logout(); // si pasa el tiempo sin actividad, cerrar sesión
-    }, 18000000); // 5 horas
+    }, 36000000); // 10 horas
   };
 
   // Maneja actividad del usuario

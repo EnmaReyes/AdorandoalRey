@@ -19,7 +19,7 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import Share from "../components/Share.jsx";
 import "./Single.scss";
-
+import podimo from "../assets/podimoIcon.png";
 import Likes from "../components/Likes/Likes.jsx";
 import { toast } from "react-toastify";
 import { toastComments } from "../components/toastConfig/toastconfigs";
@@ -108,6 +108,54 @@ const Single = () => {
       <div className="single">
         <div className="content">
           <h1 className="titulo">{post.title}</h1>
+          <div className="box-icon">
+            <div className="icon">
+              <ul>
+                {links?.spotify && (
+                  <li>
+                    <a
+                      href={links?.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="icon">
+                        <FontAwesomeIcon icon={faSpotify} />
+                      </i>
+                    </a>
+                  </li>
+                )}
+
+                {links?.youtobe && (
+                  <li>
+                    <a
+                      href={links?.youtobe}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="icon">
+                        <FontAwesomeIcon icon={faYoutube} />
+                      </i>
+                    </a>
+                  </li>
+                )}
+                {links?.podimo && (
+                  <li>
+                    <a
+                      href={links?.podimo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={podimo}
+                        alt="Podimo"
+                        className="icon icon-podimo"
+                      />
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
 
           <div className="box-parrafo">
             <p
@@ -181,38 +229,6 @@ const Single = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
-
-              <div className="icon">
-                <ul>
-                  {links?.spotify && (
-                    <li>
-                      <a
-                        href={links?.spotify}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="icon">
-                          <FontAwesomeIcon icon={faSpotify} />
-                        </i>
-                      </a>
-                    </li>
-                  )}
-
-                  {links?.youtobe && (
-                    <li>
-                      <a
-                        href={links?.youtobe}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="icon">
-                          <FontAwesomeIcon icon={faYoutube} />
-                        </i>
-                      </a>
-                    </li>
-                  )}
-                </ul>
               </div>
             </div>
           </div>

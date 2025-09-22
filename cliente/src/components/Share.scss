@@ -29,6 +29,10 @@ sans-serif;
             color: #262626;
             transition: 0.7s;
             z-index: 3;
+
+            @media screen and (max-width: 768px) {
+                font-size: 24px;
+            }
         }
 
         .share {

@@ -58,10 +58,6 @@ sans-serif;
       object-fit: contain !important;
       height: auto;
     }
-
-
-
-
   }
 
   .single {
@@ -88,6 +84,116 @@ sans-serif;
         padding: 0px;
         margin: 0px;
 
+      }
+
+      //escucharnos
+      .box-icon {
+        background-color: $backGround;
+        width: fit-content;
+        border-radius: 15px;
+        margin: 0;
+        align-self: flex-end;
+        padding: 0.5rem;
+        box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.84);
+
+        .icon {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+
+          ul {
+            display: flex;
+            justify-content: center; // centrado horizontal
+            align-items: center;
+            gap: 10px; // espacio entre íconos
+            padding: 0;
+            margin: 0;
+            list-style: none;
+          }
+
+          li {
+            list-style: none;
+          }
+
+          .icon-podimo {
+            width: 23px;
+            height: 23px;
+            margin-top: 2px;
+            filter: brightness(0);
+            transition: .5s;
+            border-radius: 8px;
+          }
+
+          // Estilos generales para todos los íconos
+          ul li a {
+            width: 35px;
+            height: 35px;
+            margin: 0 5px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 35px; // igual a height para centrar verticalmente
+            font-size: 25px;
+            display: flex; // flex para centrar dentro
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            transition: .5s;
+
+
+            // Ícono interior
+            .icon,
+            .icon-podimo {
+              transition: .5s;
+              z-index: 3;
+              color: #262626;
+            }
+
+            &:hover .icon {
+              color: #fff;
+              transform: rotateY(360deg);
+            }
+
+            &:hover .icon-podimo {
+              transform: rotateY(360deg);
+              filter: brightness(1) invert(0);
+            }
+
+            // Fondo de hover
+            &::before {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              transition: .5s;
+              z-index: 2;
+            }
+
+            &:hover::before {
+              top: 0;
+            }
+          }
+
+          // Colores de fondo individuales
+          ul li:nth-child(1) a::before {
+            background: rgb(7, 104, 4); // Spotify
+          }
+
+          ul li:nth-child(2) a::before {
+            background: #d81507; // Youtube
+          }
+
+          ul li:nth-child(3) a::before {
+            background: #794CF8; // Podimo
+          }
+        }
       }
 
       .titulo {
@@ -128,126 +234,87 @@ sans-serif;
 
       .barra-contain {
         display: flex;
-        flex-direction: row;
         align-items: center;
         width: 100%;
         background-color: $backGround;
-        border-radius: 0px 0px 15px 15px;
-        box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
-        -webkit-box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
-        -moz-box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.84);
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.84);
         z-index: 0;
-
-        @media (max-width:768px) {
-          width: 100%;
-        }
+        padding: 0.3rem 0;
 
         .barra-data {
           display: flex;
-          flex-direction: row;
-          justify-content: space-between;
+          justify-content: space-between; // user left - social right
           align-items: center;
           width: 100%;
 
-          @media(max-width: 768px) {
-            width: 80px;
+          /* MOBILE: apilado */
+          @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 1rem;
           }
 
+          /* ---------------- USER ---------------- */
           .user {
             display: flex;
-            width: 100%;
-            flex-direction: row;
-            justify-content: center;
             align-items: center;
+            gap: 0.8rem;
+            width: 100%;
 
-            @media(max-width: 768px) {
-              display: flex;
-              flex-direction: column;
+            @media (max-width: 768px) {
               justify-content: center;
-              align-items: center;
-              width: 100%;
-              margin: 1rem;
+              flex-wrap: wrap;
+              text-align: center;
             }
 
             .imgUser {
-              width: 40px;
-              height: 40px;
+              width: 50px;
+              height: 50px;
               border-radius: 50%;
               object-fit: cover;
-              margin: 0px 10px;
 
-              @media(max-width: 768px) {
-                width: 50px;
-                height: 50px;
-                margin-left: 2rem;
+              @media (min-width: 769px) {
+                width: 70px;
+                height: 70px;
               }
             }
 
             .info {
               display: flex;
               flex-direction: column;
-              justify-content: start;
-              width: 100%;
-
-              @media(max-width: 768px) {
-                width: 120px;
-                justify-content: center;
-                text-align: center;
-                padding: auto;
-                margin: auto;
-
-                .p {
-                  font-size: 12px;
-                }
-
-              }
-
-              .p {
-                margin: 0px;
-                align-items: center;
-              }
+              width: auto;
 
               .name {
                 font-family: $parrafo;
-                font-size: 20px;
+                font-size: 1rem;
                 font-weight: bolder;
 
+                @media (min-width: 769px) {
+                  font-size: 1.2rem;
+                }
+              }
+
+              .p {
+                margin: 0;
+                font-size: 0.8rem;
+
+                @media (min-width: 769px) {
+                  font-size: 0.9rem;
+                }
+              }
+
+              @media (max-width: 768px) {
+                width: 100%;
+                text-align: center;
               }
             }
 
             .edit {
               display: flex;
+              gap: 10px;
               font-size: 20px;
-              text-align: center;
-              line-height: 30px;
 
-              @media (max-width:768px) {
-                margin-top: 0.5rem;
-              }
-
-              .editar {
-                width: 30px;
-                height: 30px;
-                background-color: #fff;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: 0.2s ease-out;
-                margin: 0px 10px;
-
-                .fonticon {
-                  transition: 0.1s;
-                }
-
-                .fonticon:active {
-                  transform: scale(0.90);
-                }
-              }
-
-              .editar:hover {
-                color: $butonColor;
-
-              }
-
+              .editar,
               .delete {
                 width: 30px;
                 height: 30px;
@@ -255,204 +322,113 @@ sans-serif;
                 border-radius: 50%;
                 cursor: pointer;
                 transition: 0.2s ease-out;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 .fonticon {
                   transition: 0.1s;
                 }
 
-                .fonticon:active {
-                  transform: scale(0.90);
+                &:active .fonticon {
+                  transform: scale(0.9);
+                }
+
+                &:hover {
+                  color: $butonColor;
                 }
               }
 
-              .delete:hover {
-                color: $butonColor;
-
+              @media (max-width: 768px) {
+                margin: 0.2rem 0;
               }
             }
-
           }
 
-        }
-
-
-        .social-icon {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          z-index: 0;
-
-          @media (max-width:768px) {
-            width: 165px;
-          }
-
-          .icons {
-            width: 100%;
-
-            ul {
-              display: inline-flex;
-              width: 100%;
-            }
-
-            li {
-              list-style: none;
-
-            }
-
-            ul li {
-              position: relative;
-              top: 0;
-              right: 0;
-
-              @media (max-width:768px) {
-                top: -1rem;
-                right: 1.5rem;
-              }
-            }
-
-            ul li a {
-              width: 35px;
-              height: 35px;
-              margin-left: 10px;
-              background-color: #fff;
-              text-align: center;
-              font-size: 25px;
-              display: block;
-              border-radius: 50%;
-              position: relative;
-              overflow: hidden;
-              z-index: 1;
-              cursor: pointer;
-            }
-
-            ul li a .icon-chat {
-              position: relative;
-              top: 5px;
-              color: #262626;
-              transition: 0.7s;
-              z-index: 1;
-            }
-
-            ul li a .heart {
-              position: relative;
-              color: #ce0505;
-              transition: 0.7s;
-              transform: rotateY(360deg);
-            }
-
-            ul li a .chat {
-              position: relative;
-              color: #262626;
-              transition: 0.7s;
-              transform: rotateY(360deg);
-            }
-
-            ul li .chat,
-            .heart {
-              position: relative;
-              top: 5px;
-
-            }
-
-            ul li a:before {
-              content: "";
-              position: absolute;
-              top: 100%;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              transition: 0.7s;
-              z-index: 1;
-            }
-
-            ul li a:hover:before {
-              top: 0;
-            }
-          }
-        }
-
-
-        //escucharnos
-        .icon{
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-
-          @media (max-width:768px) {}
-
-          ul {
+          /* ---------------- SOCIAL ICONS ---------------- */
+          .social-icon {
             display: flex;
-            flex-direction: row;
-            justify-content: end;
+            justify-content: flex-end;
             align-items: center;
-          }
+            width: 100%;
+            z-index: 0;
 
-          li {
-            list-style: none;
-          }
+            @media (max-width: 768px) {
+              justify-content: center;
+              margin-bottom: 0.8rem;
+            }
 
-          ul li a {
-            width: 35px;
-            height: 35px;
-            margin: 0px 5px;
-            background-color: #fff;
-            text-align: center;
-            line-height: 10px;
-            font-size: 25px;
-            display: block;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            cursor: pointer;
+            .icons {
+              ul {
+                display: flex;
+                padding: 0;
+                margin: 0;
+                gap: 0.5rem;
 
-            @media (max-width:768px) {
-              top: -1rem;
-              right: -2rem;
+                li {
+                  list-style: none;
+
+                  a {
+                    width: 35px;
+                    height: 35px;
+                    background-color: #fff;
+                    text-align: center;
+                    font-size: 22px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+
+                    &:before {
+                      content: "";
+                      position: absolute;
+                      top: 100%;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      transition: 0.7s;
+                      z-index: 1;
+                    }
+
+                    &:hover:before {
+                      top: 0;
+                    }
+
+                    /* iconos dentro */
+                    .icon-chat,
+                    .chat,
+                    .heart {
+                      position: relative;
+                      top: 5px;
+                      transition: 0.7s;
+                      margin-bottom: 0.5rem;
+                    }
+
+                    .heart {
+                      color: #ce0505;
+                    }
+
+                    .chat {
+                      color: #262626;
+                      transform: rotateY(360deg);
+                    }
+
+                    .icon-chat {
+                      color: #262626;
+                      transform: rotateY(360deg);
+                    }
+                  }
+                }
+              }
             }
           }
-
-          ul li a .icon {
-            position: relative;
-            top: 5px;
-            color: #262626;
-            transition: .5s;
-            z-index: 3;
-
-          }
-
-          ul li a:hover .icon {
-            color: #ffffff;
-            transform: rotateY(360deg);
-          }
-
-          ul li a:before {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f00;
-            transition: .5s;
-            z-index: 2;
-          }
-
-          ul li a:hover:before {
-            top: 0;
-          }
-
-          ul li:nth-child(1) a:before {
-            background: rgb(7, 104, 4);
-          }
-
-          ul li:nth-child(2) a:before {
-            background: #d81507;
-          }
         }
-
       }
+
+
 
     }
 
