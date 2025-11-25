@@ -104,7 +104,8 @@ const Single = () => {
           <Loading />
         </div>
       )}
-      <img className={scrolled ? "scroll" : "postImg"} src={post?.img} />
+      <img className={`postImg ${scrolled ? "scroll" : ""}`} src={post?.img} />
+
       <div className="single">
         <div className="content">
           <h1 className="titulo">{post.title}</h1>

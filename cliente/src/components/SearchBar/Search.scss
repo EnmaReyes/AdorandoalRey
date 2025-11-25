@@ -1,45 +1,87 @@
+/* ==== INPUT WRAPPER (Estilo Apple) ==== */
 .input-wrapper {
     position: relative;
-    background-color: #dfd8d8;
-    border-radius: 50px;
-    height: 2rem;
-    padding: 0 8px;
-    box-shadow: 0px 0px 8px #ddd;
+    background: rgba(240, 240, 240, 0.9); // gris suave tipo iOS
+    border-radius: 14px;
+    height: 2.4rem;
+    padding: 0 12px;
     display: flex;
     align-items: center;
-    transform: translate(0%, -50%);
+
+    /* Sombra suave estilo Apple */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    /* Borde sutil */
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    backdrop-filter: blur(12px); // efecto glass suave
 }
 
-.input-wrapper input {
-    background-color: transparent;
+/* ==== ICONO ==== */
+#search-icon {
+    color: #7d7d7d;
+    font-size: 1.1rem;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+}
+
+.input-wrapper:hover #search-icon {
+    opacity: 1;
+}
+
+/* ==== BOTÓN ==== */
+.btn {
+    background: none;
     border: none;
-    font-size: 1.25rem;
-    margin-left: 7px;
-    width: 400px;
-    transition: width 0.7s ease;
+    cursor: pointer;
+    padding: 0;
 }
 
+/* ==== INPUT ==== */
+input {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    margin-left: 10px;
+    width: 400px;
+    transition: all 0.4s ease;
+    font-weight: 400;
+    color: #333;
+}
 
-.input-wrapper input:focus {
+input::placeholder {
+    color: #9b9b9b;
+    transition: opacity 0.2s ease;
+}
+
+input:focus::placeholder {
+    opacity: 0.4;
+}
+
+input:focus {
     outline: none;
 }
 
-
-
-#search-icon {
-    color: #606063;
-
-}
-
-@media(max-width: 768px) {
-    .input-wrapper input {
-        width: 0.08rem;
+/* ==== MOBILE ==== */
+@media (max-width: 768px) {
+    .input-wrapper {
+        width: fit-content;
+        padding-right: 8px;
+        height: 2.2rem;
     }
-  
-    .input-wrapper input:focus {
-        width: 8rem;
+
+    input {
+        width: 0;
+        opacity: 0;
+        margin-left: 6px;
     }
-    .input-wrapper .inputOpen{
-        width: 8rem;
+
+    input.open {
+        width: 9rem;
+        opacity: 1;
+    }
+
+    #search-icon {
+        font-size: 1rem;
     }
 }

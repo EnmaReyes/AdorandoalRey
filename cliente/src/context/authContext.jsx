@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
-  const [showUserEdit, setShowUserEdit] = useState(true);
+  const [showUserEdit, setShowUserEdit] = useState(false);
 
   const inactivityTimerRef = useRef(null); // ⬅️ Timer de inactividad
 

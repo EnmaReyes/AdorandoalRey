@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Search.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -6,58 +6,51 @@ import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { API_URL } from "../../config";
 
-const URL = API_URL;
-
 const Search = ({ setSearchResult }) => {
   const [input, setInput] = useState("");
+  const [open, setOpen] = useState(false);
   const { setShowUserEdit } = useContext(AuthContext);
-  const inputRef = useRef(null);
-  const [open, setOpen]=useState(false)
-  
-  const handleChange = (value) => {
-    setInput(value);
-  };
+
+  // Toggle search input in mobile
+  const toggleSearch = () => setOpen((prev) => !prev);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (input === "") {
-          setSearchResult([]);
-        } else {
-          const response = await axios.get(
-            `${URL}/api/posts/search?title=${input}`,
-            {
-              withCredentials: true,
-            }
-          );
-          setSearchResult(response.data.posts);
-        }
-      } catch (error) {
-        console.error(error);
+    const delayDebounce = setTimeout(() => {
+      if (input.trim() === "") {
+        setSearchResult([]);
+        return;
       }
-    };
+ const formatted =
+      input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+      
+      axios
+        .get(`${API_URL}/api/posts/search?title=${encodeURIComponent(formatted)}`, {
+          withCredentials: true,
+        })
+        .then((res) => setSearchResult(res.data.posts))
+        .catch((err) => console.error("Search error:", err));
+    }, 300); // debounce 300 ms
 
-    fetchData();
+    return () => clearTimeout(delayDebounce);
   }, [input]);
 
   return (
     <div className="input-wrapper">
-      <div onClick={()=>{setOpen(!open)}}
+      <button
         className="btn"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={toggleSearch}
       >
         <FontAwesomeIcon id="search-icon" icon={faSearch} />
-      </div>
+      </button>
+
       <input
-        className={open? "inputOpen": ""}
-        placeholder="Buscar"
+        className={`search-input ${open ? "open" : ""}`}
+        placeholder="Buscar..."
         type="text"
-        onClick={(e) => {
-          e.stopPropagation();
-          setShowUserEdit(true);
-        }}
-        ref={inputRef}
         value={input}
-        onChange={(e) => handleChange(e.target.value)}
+        onFocus={() => setShowUserEdit(true)}
+        onChange={(e) => setInput(e.target.value)}
       />
     </div>
   );
