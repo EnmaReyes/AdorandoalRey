@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
@@ -11,59 +11,93 @@ import {
   toastpromise,
 } from "../components/toastConfig/toastconfigs.jsx";
 import inicio from "../assets/logoblanco.png";
-import  podimo from "../assets/podimoIcon.png";
+import podimo from "../assets/podimoIcon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faImage, faPodcast } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faImage } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { SpineLoader } from "../components/Loading/Loading.jsx";
 import { API_URL } from "../config.js";
 
-const URL = API_URL;
+const URL_API = API_URL;
 
 const Write = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const state = useLocation().state;
+
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(state?.title || "");
   const [description, setDescription] = useState(state?.desc || "");
   const [fileImg, setFileImg] = useState(state?.img || "");
+  const [previewUrl, setPreviewUrl] = useState(null); // <- Vista previa segura
   const [date, setDate] = useState(state?.date || "");
   const [socialLinks, setSocialLinks] = useState(
-    state?.links || {
-      spotify: "",
-      youtobe: "",
-      podimo: "",
-    }
+    state?.links || { spotify: "", youtobe: "", podimo: "" }
   );
 
-  const getFormattedDate = (date) => {
-    return date ? date : "";
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      [{ color: [] }, { background: [] }],
+      ["bold", "italic", "underline"],
+      [{ align: [] }],
+      ["link", "image", "video"],
+      ["clean"],
+    ],
   };
 
-  // Mostrar imagen seleccionada
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const updateSocial = (key, value) =>
+    setSocialLinks((prev) => ({ ...prev, [key]: value }));
 
-    if (selectedFile) {
-      setFileImg(selectedFile);
+  const handleFileChange = (e) => {
+    const selected = e.target.files?.[0];
+    if (selected instanceof File) {
+      setFileImg(selected);
+    } else {
+      setFileImg(null);
     }
   };
 
-  const handleClick = async () => {
+  // ---- MANEJO SEGURO DE VISTA PREVIA ----
+  useEffect(() => {
+    if (!fileImg) {
+      setPreviewUrl(null);
+      return;
+    }
+
+    if (!(fileImg instanceof File)) {
+      setPreviewUrl(fileImg); // URL o string previa (editar post)
+      return;
+    }
+
+    const globalURL = window.URL || window.webkitURL;
+    if (!globalURL?.createObjectURL) {
+      console.error("createObjectURL no soportado");
+      setPreviewUrl(null);
+      return;
+    }
+
+    const objectUrl = globalURL.createObjectURL(fileImg);
+    setPreviewUrl(objectUrl);
+
+    return () => {
+      globalURL.revokeObjectURL(objectUrl);
+    };
+  }, [fileImg]);
+
+  // ---- PUBLICAR O ACTUALIZAR ----
+  const handleSubmit = async () => {
     setLoading(true);
+
     try {
-      // Verificar si title, fileImg o description están vacíos o en false
       if (!title || !description || !date) {
         toast.error("Falta información para subir el Blog!!!", toastpromise);
-        setLoading(false);
-        return;
+        return setLoading(false);
       }
 
-      let imgUrl = state?.img;
+      // Subir imagen si es nueva
+      const imgUrl =
+        fileImg instanceof File ? await UploadImg(fileImg) : fileImg;
 
-      if (fileImg && fileImg !== state?.img) {
-        imgUrl = await UploadImg(fileImg);
-      }
       const postData = {
         title,
         desc: description,
@@ -72,92 +106,68 @@ const Write = () => {
         date,
       };
 
-      const promise = state
-        ? axios.put(`${URL}/api/posts/${state.id}`, postData, {
+      const request = state
+        ? axios.put(`${URL_API}/api/posts/${state.id}`, postData, {
             withCredentials: true,
           })
-        : axios.post(`${URL}/api/posts/`, postData, { withCredentials: true });
+        : axios.post(`${URL_API}/api/posts/`, postData, {
+            withCredentials: true,
+          });
 
-      //! notificación del post
       toast.promise(
-        promise,
+        request,
         {
           pending: "Subiendo Blog...",
-          success: {
-            render({ data }) {
-              const responseData = JSON.parse(data.config.data);
-              return `${responseData.title} subido exitosamente`;
-            },
-          },
-          error: {
-            render({ data }) {
-              return `${data.message}`;
-            },
-          },
+          success: () => `${postData.title} subido exitosamente`,
+          error: (res) => res?.message || "Error al subir el Blog",
         },
-        toastpromise // estilo
+        toastpromise
       );
 
-      await promise;
-      setLoading(false);
+      await request;
       navigate("/");
     } catch (err) {
+      console.error("Error:", err);
+      toast.error(`Error: ${err.message}`);
+    } finally {
       setLoading(false);
-      toast.error(`Error al realizar la solicitud: ${err.message}`);
-      console.log("Error al realizar la solicitud:", err);
     }
-  };
-
-  //! editar ReactQuill \\
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, 3, false] }], // Títulos
-      [{ color: [] }, { background: [] }], // Color de texto y fondo
-      ["bold", "italic", "underline"], // Estilos de texto
-      [{ align: [] }], // Alineación de texto
-      ["link", "image", "video"], // Enlaces, imágenes, videos
-      ["clean"], // Limpiar formato
-    ],
   };
 
   return (
     <div className="write">
       <div className="inicio-bg">
-        <img className="inicio-img" src={inicio} alt="" />
+        <img className="inicio-img" src={inicio} alt="Logo" />
       </div>
+
       <div className="content">
         <div className="content-data">
+          {/* Imagen */}
           <div className="img-loader">
-            {fileImg && (
-              <img
-                className="img-blog"
-                src={
-                  fileImg instanceof File
-                    ? window.URL.createObjectURL(fileImg)
-                    : fileImg
-                }
-                alt=""
-              />
+            {previewUrl && (
+              <img className="img-blog" src={previewUrl} alt="Blog" />
             )}
+
             <div className="add-img">
               <input
-                style={{ display: "none" }}
-                type="file"
-                name="file"
                 id="file"
+                type="file"
+                style={{ display: "none" }}
                 onChange={handleFileChange}
               />
-              <label className="file" htmlFor="file">
-                <a className="add-image">
+
+              <label htmlFor="file" className="file">
+                <span className="add-image">
                   <FontAwesomeIcon icon={faImage} />
-                </a>
-                <a className="add-buton">
-                  {" "}
-                  <FontAwesomeIcon icon={faCirclePlus} />{" "}
-                </a>
+                </span>
+                <span className="add-buton">
+                  <FontAwesomeIcon icon={faCirclePlus} />
+                </span>
               </label>
             </div>
           </div>
+
+          {/* Título */}
           <input
             className="titulacion"
             type="text"
@@ -166,6 +176,7 @@ const Write = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
 
+          {/* Editor */}
           <div className="editorContainer">
             <ReactQuill
               className="editor"
@@ -176,64 +187,57 @@ const Write = () => {
             />
           </div>
 
+          {/* Redes y Fecha */}
           <div className="menu-write">
-            <div className="item">
+            <div className="item-write">
               <div className="spotify">
-                <span>
-                  <FontAwesomeIcon icon={faSpotify} />
-                </span>
+                <FontAwesomeIcon icon={faSpotify} size="2x" />
                 <input
                   type="text"
                   placeholder="https://spotify.com"
                   value={socialLinks.spotify}
-                  onChange={(e) =>
-                    setSocialLinks({ ...socialLinks, spotify: e.target.value })
-                  }
+                  onChange={(e) => updateSocial("spotify", e.target.value)}
                 />
               </div>
+
               <div className="youtobe">
-                <span>
-                  <FontAwesomeIcon icon={faYoutube} />
-                </span>
+                <FontAwesomeIcon icon={faYoutube} size="2x" />
                 <input
                   type="text"
                   placeholder="https://youtube.com"
                   value={socialLinks.youtobe}
-                  onChange={(e) =>
-                    setSocialLinks({ ...socialLinks, youtobe: e.target.value })
-                  }
+                  onChange={(e) => updateSocial("youtobe", e.target.value)}
                 />
               </div>
+
               <div className="podimo">
-                <div className="podimo-icon">
-                  <img src={podimo} alt="podimoIcon" className="podimo-icon-img"/>
-                </div>
+                <img src={podimo} alt="podimo" className="podimo-icon-img" />
                 <input
                   type="text"
                   placeholder="https://podimo.com"
                   value={socialLinks.podimo}
-                  onChange={(e) =>
-                    setSocialLinks({ ...socialLinks, podimo: e.target.value })
-                  }
+                  onChange={(e) => updateSocial("podimo", e.target.value)}
                 />
               </div>
+
               <div className="date">
                 <input
                   type="date"
-                  value={getFormattedDate(date)}
-                  placeholder={date}
+                  value={date}
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
             </div>
+
+            {/* Botón publicar */}
             <div className="publicar-btn">
               <button
                 className="btn-publish"
                 onClick={() =>
-                  notify(handleClick, "¿Está seguro en subir el post?")
+                  notify(handleSubmit, "¿Está seguro en subir el post?")
                 }
               >
-                {!loading ? "Publicar" : <SpineLoader />}
+                {loading ? <SpineLoader /> : "Publicar"}
               </button>
             </div>
           </div>
