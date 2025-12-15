@@ -127,15 +127,10 @@ const SocialCards = () => {
         <Swiper
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
           spaceBetween={24}
-          slidesPerView={1.5}
+          slidesPerView={1.8}
           centeredSlides
           grabCursor
-          initialSlide={0}
-          breakpoints={{
-            640: { slidesPerView: 2.5 },
-            1024: { slidesPerView: 3.5 },
-          }}
-          navigation
+          pagination={{ clickable: true }}
           mousewheel
           keyboard
           onSwiper={setSwiperRef}

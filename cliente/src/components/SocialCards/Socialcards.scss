@@ -11,49 +11,44 @@ $podimo: #710bf8;
 .hero-slider {
     position: relative;
     width: 100%;
-    height: 100vh; // Ocupa toda la altura de la ventana
+    height: 100vh;
     overflow: hidden;
     color: white;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
 
-    // 1. Estilos del Fondo
+    /* ================= BACKGROUND ================= */
     &__background {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         z-index: 0;
 
         .bg-image {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 6s ease;
             transform: scale(1);
+            transition: opacity 0.8s ease-in-out, transform 6s ease;
 
             &.active {
                 opacity: 1;
-                transform: scale(1.05); // Efecto sutil de zoom
+                transform: scale(1.05);
             }
         }
 
         .overlay-gradient {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            // Degradado oscuro para que el texto se lea bien
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);
+            inset: 0;
+            background: linear-gradient(to right,
+                    rgba(0, 0, 0, 0.8) 0%,
+                    rgba(0, 0, 0, 0.4) 50%,
+                    rgba(0, 0, 0, 0.1) 100%);
         }
     }
 
-    // 2. Estilos del Contenido Principal (Izquierda)
+    /* ================= CONTENT ================= */
     &__content {
         position: absolute;
         top: 50%;
@@ -70,9 +65,9 @@ $podimo: #710bf8;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.9rem;
-            color: #fbbf24; // Un color dorado/amarillo
-            display: block;
+            color: #fbbf24;
             margin-bottom: 1rem;
+            display: block;
         }
 
         .main-title {
@@ -81,7 +76,6 @@ $podimo: #710bf8;
             line-height: 1;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
-            // Animación simple de entrada
             animation: slideUp 0.5s ease forwards;
         }
 
@@ -106,11 +100,11 @@ $podimo: #710bf8;
                 background: transparent;
                 border: 2px solid white;
                 color: white;
-                text-transform: uppercase;
                 font-weight: bold;
-                cursor: pointer;
-                transition: all 0.3s;
+                text-transform: uppercase;
                 border-radius: 30px;
+                cursor: pointer;
+                transition: all $transition-fast;
 
                 &:hover {
                     background: white;
@@ -122,9 +116,8 @@ $podimo: #710bf8;
                 color: white;
                 font-size: 1.5rem;
                 margin-right: 15px;
-                transition: color 0.3s;
+                transition: color $transition-fast;
 
-                // El '&' representa al elemento actual (la etiqueta 'a')
                 &:nth-child(1):hover {
                     color: $spotify;
                 }
@@ -138,35 +131,51 @@ $podimo: #710bf8;
                 width: 24px;
                 height: 24px;
                 display: inline-block;
-                background: url('../../assets/podimoIcon.png') center / contain no-repeat;
-                filter: brightness(0) invert(1); // simula blanco
-                transition: filter 0.3s ease;
+                background: url("../../assets/podimoIcon.png") center / contain no-repeat;
+                filter: brightness(0) invert(1);
+                transition: filter $transition-fast;
 
                 &:hover {
-                    filter: none; // muestra el PNG real
+                    filter: none;
                 }
             }
-
         }
     }
 
-    // 3. Estilos del Swiper (Derecha/Abajo)
+    /* ================= SWIPER ================= */
     &__swiper-container {
         position: absolute;
         bottom: 50px;
         right: 0;
-        width: 55%; // Ocupa la mitad derecha
+        width: 55%;
         z-index: 10;
         padding-right: 20px;
 
         .social__swiper {
             padding: 20px 0;
-            overflow: visible; // Permite ver sombras fuera del contenedor
+            overflow: visible;
+
+            .swiper-pagination {
+                bottom: -10px;
+            }
+
+            .swiper-pagination-bullet {
+                width: 10px;
+                height: 10px;
+                background: rgba(255, 255, 255, 0.4);
+                opacity: 1;
+                margin: 0 6px !important;
+                transition: all $transition-fast;
+            }
+
+            .swiper-pagination-bullet-active {
+                background: #fbbf24;
+                transform: scale(1.4);
+            }
         }
 
         .slide-card {
-            position: relative;
-            height: 250px; // Altura de las tarjetas pequeñas
+            height: 250px;
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
@@ -179,6 +188,12 @@ $podimo: #710bf8;
                 opacity: 1;
             }
 
+            &.is-active {
+                transform: scale(1);
+                opacity: 1;
+                border: 2px solid #fbbf24;
+            }
+
             img {
                 width: 100%;
                 height: 100%;
@@ -186,34 +201,30 @@ $podimo: #710bf8;
                 transition: transform 0.3s;
             }
 
+            &:hover img {
+                transform: scale(1.1);
+            }
+
             .slide-info {
                 position: absolute;
                 bottom: 0;
-                left: 0;
                 width: 100%;
                 padding: 15px;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                background: linear-gradient(to top,
+                        rgba(0, 0, 0, 0.8),
+                        transparent);
 
                 h3 {
                     font-size: 1rem;
-                    margin: 0;
                     text-transform: uppercase;
+                    margin: 0;
                 }
-            }
-
-            // Estado activo dentro del carrusel (opcional: resaltar el borde)
-            &.is-active {
-                border: 2px solid #fbbf24;
-                opacity: 1;
-            }
-
-            &:hover img {
-                transform: scale(1.1);
             }
         }
     }
 }
 
+/* ================= ANIMATIONS ================= */
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -233,5 +244,72 @@ $podimo: #710bf8;
 
     to {
         opacity: 1;
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* 📱 Mobile */
+@media (max-width: 640px) {
+    .hero-slider {
+        height: auto;
+        min-height: 100vh;
+
+        &__content {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            max-width: 100%;
+            padding: 120px 20px 40px;
+
+            .main-title {
+                font-size: clamp(1.8rem, 6vw, 2.4rem);
+            }
+
+            .description {
+                -webkit-line-clamp: 2;
+                font-size: 0.9rem;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+
+                .btn-discover {
+                    width: 100%;
+                }
+            }
+        }
+
+        &__swiper-container {
+            position: relative;
+            width: 100%;
+            padding: 0 20px 40px;
+
+            .slide-card {
+                height: 220px;
+            }
+
+            .swiper-pagination {
+                bottom: -20px;
+            }
+        }
+    }
+}
+
+/* 📱 Tablet */
+@media (max-width: 1024px) {
+    .hero-slider {
+        &__content {
+            max-width: 420px;
+
+            .main-title {
+                font-size: clamp(2.4rem, 4vw, 3rem);
+            }
+        }
+
+        &__swiper-container {
+            width: 65%;
+        }
     }
 }
