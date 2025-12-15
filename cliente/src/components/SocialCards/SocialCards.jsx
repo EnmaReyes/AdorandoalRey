@@ -2,124 +2,167 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
-// Import Swiper React components
+// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Keyboard,
+  EffectFade,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./Socialcards.scss";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import "swiper/css/effect-fade"; // Importante para transiciones suaves si quisieras
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { API_URL } from "../../config.js";
+import "./Socialcards.scss";
 
-const URL = API_URL;
 const SocialCards = () => {
   const [posts, setPosts] = useState([]);
-  const [hoveredPostId, setHoveredPostId] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const location = useLocation().search;
+  const [swiperRef, setSwiperRef] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPosts = async () => {
       try {
-        const res = await axios.get(`${URL}/api/posts/${location}`);
-        setPosts(res.data);
-      } catch (error) {
-        console.log(error);
+        const { data } = await axios.get(`${API_URL}/api/posts/${location}`);
+        setPosts(data);
+      } catch (err) {
+        console.error(err);
       }
     };
 
-    fetchData();
+    fetchPosts();
   }, [location]);
 
-  const handleMouseEnter = (id) => {
-    setHoveredPostId(id);
+  const stripHtml = (html) => {
+    if (!html) return "";
+    return html.replace(/<[^>]*>?/gm, "").trim();
   };
 
-  const handleMouseLeave = () => {
-    setHoveredPostId(null);
-  };
-
-  const nuevosPosts = posts.slice(0, 8).map((post) => {
-    // Si 'links' es una cadena JSON, la transformamos; si ya es un objeto, lo dejamos igual
-    const parsedLinks =
+  const slides = posts.slice(0, 8).map((post) => {
+    const links =
       typeof post.links === "string" ? JSON.parse(post.links) : post.links;
 
-    return {
-      ...post, // Copiamos todos los campos del post original
-      links: parsedLinks, // Sobrescribimos solo el campo 'links'
-    };
+    return { ...post, links };
   });
+
+  const activePost = slides[activeIndex];
+
   return (
-    <div className="social-conteiner">
-      <div className="social-box">
-        <Swiper
-          cssMode={true}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper"
-        >
-          {nuevosPosts.map((blog) => (
-            <div key={blog.id} className="post">
-              <SwiperSlide>
-                <div className="info">
-                  <h1>{blog.title}</h1>
-                  <div
-                    className="image-container"
-                    onMouseEnter={() => handleMouseEnter(blog.id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <img
-                      src={blog.img}
-                      alt={blog.title}
-                      className={hoveredPostId === blog.id ? "darkened" : ""}
-                    />
-                    {hoveredPostId === blog.id && (
-                      <div className="hover">
-                        {blog.links?.spotify && (
-                          <a
-                            href={blog.links?.spotify}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="spotifi-icon"
-                          >
-                            <FontAwesomeIcon icon={faSpotify} />
-                          </a>
-                        )}
-                        {blog.links?.youtobe && (
-                          <>
-                            <a
-                              href={blog.links?.youtobe || blog.links?.spotify}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="play-icon"
-                            >
-                              <FontAwesomeIcon icon={faPlayCircle} />
-                            </a>
-                            <a
-                              href={blog.links?.youtobe}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="youtobe-icon"
-                            >
-                              <FontAwesomeIcon icon={faYoutube} />
-                            </a>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </SwiperSlide>
+    <section className="hero-slider">
+      {/* 1. CAPA DE FONDO (Background) */}
+      <div className="hero-slider__background">
+        {slides.map((post, index) => (
+          <img
+            key={post.id}
+            src={post.img}
+            alt={post.title}
+            className={`bg-image ${index === activeIndex ? "active" : ""}`}
+          />
+        ))}
+        <div className="overlay-gradient"></div>
+      </div>
+
+      {/* 2. CONTENIDO PRINCIPAL (Izquierda) */}
+      <div className="hero-slider__content">
+        <div className="content-wrapper">
+          <span className="subtitle">Escucha los Blogs</span>
+          <h1 className="main-title" key={activePost?.id}>
+            {activePost?.title}
+          </h1>
+          <p className="description" key={`desc-${activePost?.id}`}>
+            {stripHtml(activePost?.desc) ||
+              "Explora este increíble articulo y sumérgete en el audio Blog."}
+          </p>
+
+          <div className="action-buttons">
+            <Link to={`/post/${activePost?.id}`}>
+              <button className="btn-discover">
+                Leer <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </Link>
+            {/* Tus iconos sociales originales */}
+            <div className="social-links">
+              {activePost?.links?.spotify && (
+                <a
+                  href={activePost.links.spotify}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon icon={faSpotify} />
+                </a>
+              )}
+              {activePost?.links?.youtobe && (
+                <a
+                  href={activePost.links.youtobe}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon icon={faYoutube} />
+                </a>
+              )}
+              {activePost?.links?.podimo && (
+                <a
+                  href={activePost.links.podimo}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon-podimo"></span>
+                </a>
+              )}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. EL SLIDER (Derecha/Abajo) */}
+      <div className="hero-slider__swiper-container">
+        <Swiper
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          spaceBetween={24}
+          slidesPerView={1.5}
+          centeredSlides
+          grabCursor
+          initialSlide={0}
+          breakpoints={{
+            640: { slidesPerView: 2.5 },
+            1024: { slidesPerView: 3.5 },
+          }}
+          navigation
+          mousewheel
+          keyboard
+          onSwiper={setSwiperRef}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          className="social__swiper"
+        >
+          {slides.map((post, index) => (
+            <SwiperSlide key={post.id}>
+              <div
+                className={`slide-card ${
+                  index === activeIndex ? "is-active" : ""
+                }`}
+                onClick={() => {
+                  swiperRef?.slideTo(index);
+                  setActiveIndex(index);
+                }}
+              >
+                <img src={post.img} alt={post.title} loading="lazy" />
+                <div className="slide-info">
+                  <h3>{post.title}</h3>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };
 

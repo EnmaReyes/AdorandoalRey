@@ -1,176 +1,237 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
 
-.social-conteiner {
-    background-image: url("../../assets/background/social\ media.png");
-    background-size: cover;
-    background-position: bottom;
-    display: flex;
-    justify-content: center;
+/* ================= VARIABLES ================= */
+$transition-fast: 0.25s ease;
+$transition-smooth: 0.35s ease;
+
+$spotify: #1db954;
+$youtube: #e10600;
+$podimo: #710bf8;
+
+.hero-slider {
+    position: relative;
     width: 100%;
-    height: 650px;
-   
-    .social-box {
-        display: flex;
-        flex-direction: column;
-        width: 70%;
-        height: auto;
-        color: #000;
-        position: relative;
+    height: 100vh; // Ocupa toda la altura de la ventana
+    overflow: hidden;
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
 
-        .info {
-            h1 {
-                font-family: "Libre Baskerville", serif;
-                text-align: left;
-                margin-left: 15px;
-                font-size: 35px;
+    // 1. Estilos del Fondo
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 6s ease;
+            transform: scale(1);
+
+            &.active {
+                opacity: 1;
+                transform: scale(1.05); // Efecto sutil de zoom
             }
         }
 
-        .swiper {
+        .overlay-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            
+            // Degradado oscuro para que el texto se lea bien
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%);
+        }
+    }
+
+    // 2. Estilos del Contenido Principal (Izquierda)
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+        z-index: 2;
+        max-width: 500px;
+
+        .content-wrapper {
+            animation: fadeIn 1s ease;
         }
 
-        .swiper-slide {
-            width: 100%;
-            height: auto;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: none;
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: #fbbf24; // Un color dorado/amarillo
+            display: block;
+            margin-bottom: 1rem;
         }
 
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            max-height: 400px;
+        .main-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            // Animación simple de entrada
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #e5e5e5;
+        }
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .btn-discover {
+                padding: 12px 24px;
+                background: transparent;
+                border: 2px solid white;
+                color: white;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s;
+                border-radius: 30px;
+
+                &:hover {
+                    background: white;
+                    color: black;
+                }
+            }
+
+            .social-links a {
+                color: white;
+                font-size: 1.5rem;
+                margin-right: 15px;
+                transition: color 0.3s;
+
+                // El '&' representa al elemento actual (la etiqueta 'a')
+                &:nth-child(1):hover {
+                    color: $spotify;
+                }
+
+                &:nth-child(2):hover {
+                    color: $youtube;
+                }
+            }
+
+            .icon-podimo {
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                background: url('../../assets/podimoIcon.png') center / contain no-repeat;
+                filter: brightness(0) invert(1); // simula blanco
+                transition: filter 0.3s ease;
+
+                &:hover {
+                    filter: none; // muestra el PNG real
+                }
+            }
+
+        }
+    }
+
+    // 3. Estilos del Swiper (Derecha/Abajo)
+    &__swiper-container {
+        position: absolute;
+        bottom: 50px;
+        right: 0;
+        width: 55%; // Ocupa la mitad derecha
+        z-index: 10;
+        padding-right: 20px;
+
+        .social__swiper {
+            padding: 20px 0;
+            overflow: visible; // Permite ver sombras fuera del contenedor
+        }
+
+        .slide-card {
+            position: relative;
+            height: 250px; // Altura de las tarjetas pequeñas
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.88);
+            opacity: 0.7;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+
+            &:hover {
+                opacity: 1;
+            }
 
             img {
                 width: 100%;
-                height: auto;
-                max-height: 300px;
-                object-fit: fill;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s;
             }
 
-            .darkened {
-                filter: brightness(20%);
-                transition: 0.2s ease-in-out;
-            }
-
-            .hover {
-                transition: 0.2s ease-out;
+            .slide-info {
                 position: absolute;
-                top: 0;
+                bottom: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                text-align: center;
-                justify-content: space-evenly;
-                align-items: center;
+                padding: 15px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 
-
-                .spotifi-icon,
-                .play-icon,
-                .youtobe-icon {
-                    text-decoration: none;
-                    transition: transform 0.3s ease;
+                h3 {
+                    font-size: 1rem;
+                    margin: 0;
+                    text-transform: uppercase;
                 }
+            }
 
-                .spotifi-icon {
-                    font-size: 40px;
-                    color: rgb(7, 151, 7);
-                    filter: drop-shadow(0 0 20px rgba(13, 196, 13, 0.904));
+            // Estado activo dentro del carrusel (opcional: resaltar el borde)
+            &.is-active {
+                border: 2px solid #fbbf24;
+                opacity: 1;
+            }
 
-                }
-
-                .play-icon {
-                    font-size: 60px;
-                    color: #fff;
-                    filter: drop-shadow(0 0 20px rgba(250, 250, 250, 0.904));
-                }
-
-                .youtobe-icon {
-                    font-size: 40px;
-                    color: rgb(184, 9, 9);
-                    filter: drop-shadow(0 0 20px rgba(250, 3, 3, 0.904));
-                }
-
-                .play-icon:hover,
-                .spotifi-icon:hover,
-                .youtobe-icon:hover {
-                    transform: scale(1.2);
-                }
+            &:hover img {
+                transform: scale(1.1);
             }
         }
     }
 }
 
-@media(max-width:768px) {
-    .social-conteiner {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        background-size: cover;
-        background-position: right;
-        background-repeat: no-repeat;
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-        .social-box {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-            .info {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
 
-                h1 {
-                    margin-bottom: -20px;
-                    margin-left: 35px;
-                    font-size: 25px;
-                }
-            }
-
-            .swiper {
-                width: 100%;
-                height: 40%;
-            }
-
-            .image-container {
-                display: flex;
-                justify-content: center;
-                margin-left: -5px;
-
-                img {
-                    width: 80%;
-                    height: 200px;
-                    object-fit: contain;
-
-
-                }
-
-                .hover {
-                    align-content: center;
-                    justify-content: space-evenly;
-                    margin: 10px;
-
-                    .spotifi-icon {
-                        font-size: 25px;
-                    }
-
-                    .play-icon {
-                        font-size: 40px;
-                    }
-
-                    .youtobe-icon {
-                        font-size: 25px;
-                    }
-                }
-            }
-        }
+    to {
+        opacity: 1;
     }
 }
