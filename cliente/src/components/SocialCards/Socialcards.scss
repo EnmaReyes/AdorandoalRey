@@ -94,6 +94,7 @@ $podimo: #710bf8;
             display: flex;
             align-items: center;
             gap: 20px;
+            z-index: 50;
 
             .btn-discover {
                 padding: 12px 24px;
@@ -148,7 +149,7 @@ $podimo: #710bf8;
         bottom: 50px;
         right: 0;
         width: 55%;
-        z-index: 10;
+        z-index: 1;
         padding-right: 20px;
 
         .social__swiper {
