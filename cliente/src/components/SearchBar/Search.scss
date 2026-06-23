@@ -8,291 +8,297 @@ $light-text: #7f8c8d;
 $border-light: #e0e6ed;
 $white: #ffffff;
 
-$font-primary: 'Open Sans', sans-serif;
-$font-title: 'Montserrat', sans-serif;
+$font-primary: 'Open Sans',
+sans-serif;
+$font-title: 'Montserrat',
+sans-serif;
 
 // ==================== ANIMATIONS ====================
 @keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 // ==================== MIXINS ====================
 @mixin transition($property: all, $duration: 0.3s) {
-  transition: $property $duration cubic-bezier(0.4, 0, 0.2, 1);
+    transition: $property $duration cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @mixin shadow-soft {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 @mixin shadow-medium {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 // ==================== SEARCH CONTAINER ====================
 .search-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 420px;
-  height: 2.5rem;
-  flex-shrink: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 420px;
+    height: 2.5rem;
+    flex-shrink: 0;
 
-  @media (max-width: 768px) {
-    width: auto;
-    height: 2.2rem;
-  }
+    @media (max-width: 768px) {
+        width: auto;
+        height: 2.2rem;
+    }
 
-  @media (max-width: 480px) {
-    width: auto;
-    height: 2rem;
-  }
+    @media (max-width: 480px) {
+        width: auto;
+        height: 2rem;
+    }
 }
 
 // ==================== INPUT WRAPPER ====================
 .input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, $white 0%, #fafbfc 100%);
-  border: 1.5px solid $border-light;
-  border-radius: 12px;
-  height: 2.5rem;
-  padding: 0 12px;
-  width: 420px;
-  max-width: 420px;
-  @include shadow-soft;
-  @include transition(all, 0.3s);
-  flex-shrink: 0;
-  z-index: 10;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, $white 0%, #fafbfc 100%);
+    border: 1.5px solid $border-light;
+    border-radius: 12px;
+    height: 2.5rem;
+    padding: 0 12px;
+    width: 420px;
+    max-width: 420px;
+    @include shadow-soft;
+    @include transition(all, 0.3s);
+    flex-shrink: 0;
+    z-index: 10;
 
-  &:hover {
-    border-color: $accent-color;
-    @include shadow-medium;
-  }
+    &:hover {
+        border-color: $accent-color;
+        @include shadow-medium;
+    }
 
-  &:focus-within {
-    border-color: $secondary-color;
-    @include shadow-medium;
-    background: $white;
-  }
+    &:focus-within {
+        border-color: $secondary-color;
+        @include shadow-medium;
+        background: $white;
+    }
 
-  &.active {
-    width: calc(100vw - 2rem);
-    max-width: calc(100vw - 2rem);
-  }
+    &.active {
+        width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+    }
 }
 
 // ==================== SEARCH BUTTON ====================
 .search-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 8px;
-  color: $light-text;
-  @include transition(color, 0.2s);
-  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 8px;
+    color: $light-text;
+    @include transition(color, 0.2s);
+    flex-shrink: 0;
 
-  &:hover {
-    color: $secondary-color;
-  }
+    &:hover {
+        color: $secondary-color;
+    }
 
-  .search-icon {
-    font-size: 1.1rem;
-  }
+    .search-icon {
+        font-size: 1.1rem;
+    }
 }
 
 // ==================== SEARCH INPUT ====================
 .search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  font-family: $font-primary;
-  font-size: 1rem;
-  color: $dark-text;
-  outline: none;
-  padding: 0 6px;
-  min-width: 0;
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-family: $font-primary;
+    font-size: 1rem;
+    color: $dark-text;
+    outline: none;
+    padding: 0 6px;
+    min-width: 0;
 
-  &::placeholder {
-    color: $light-text;
-    opacity: 0.7;
-    @include transition(opacity, 0.2s);
-  }
-
-  &:focus::placeholder {
-    opacity: 0.5;
-  }
-
-  @media (max-width: 768px) {
-    width: 0;
-    opacity: 0;
-    padding: 0;
-    margin: 0;
-    @include transition(all, 0.4s);
-
-    &.open {
-      width: 150px;
-      opacity: 1;
-      padding: 0 6px;
+    &::placeholder {
+        color: $light-text;
+        opacity: 0.7;
+        @include transition(opacity, 0.2s);
     }
-  }
+
+    &:focus::placeholder {
+        opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+        width: 0;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
+        @include transition(all, 0.4s);
+
+        &.open {
+            width: 150px;
+            opacity: 1;
+            padding: 0 1rem;
+        }
+    }
 }
 
 // ==================== CLEAR BUTTON ====================
 .clear-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 8px;
-  color: $light-text;
-  @include transition(all, 0.2s);
-  flex-shrink: 0;
-  opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 8px;
+    color: $light-text;
+    @include transition(all, 0.2s);
+    flex-shrink: 0;
+    opacity: 0.8;
 
-  &:hover {
-    color: #e74c3c;
-    transform: scale(1.1);
-  }
+    &:hover {
+        color: #e74c3c;
+        transform: scale(1.1);
+    }
 
-  svg {
-    font-size: 0.9rem;
-  }
+    svg {
+        font-size: 0.9rem;
+    }
 }
 
 // ==================== LOADING SPINNER ====================
 .loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 8px;
-  color: $secondary-color;
-  flex-shrink: 0;
-  animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: $secondary-color;
+    flex-shrink: 0;
+    animation: spin 1s linear infinite;
 
-  svg {
-    font-size: 1rem;
-  }
+    svg {
+        font-size: 1rem;
+    }
 }
 
 // ==================== SEARCH HINT ====================
 .search-hint {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  font-family: $font-primary;
-  font-size: 0.8rem;
-  color: $light-text;
-  padding: 0.3rem 4px;
-  animation: slideInDown 0.3s ease-out;
-  opacity: 0.8;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1;
-  margin-top: 0.2rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    font-family: $font-primary;
+    font-size: 0.8rem;
+    color: $light-text;
+    padding: 0.3rem 4px;
+    animation: slideInDown 0.3s ease-out;
+    opacity: 0.8;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    margin-top: 0.2rem;
 }
 
 // ==================== MOBILE RESPONSIVE ====================
 @media (max-width: 768px) {
-  .search-container {
-    height: 2.2rem;
-  }
-
-  .input-wrapper {
-    width: fit-content;
-    max-width: fit-content;
-    padding-right: 8px;
-    height: 2.2rem;
-    flex-shrink: 0;
-
-    &.active {
-      width: calc(100vw - 80px);
-      max-width: calc(100vw - 80px);
+    .search-container {
+        height: 2.2rem;
     }
-  }
 
-  .search-input {
-    &.open {
-      width: 120px !important;
+    .input-wrapper {
+        width: fit-content;
+        max-width: fit-content;
+        padding-right: 8px;
+        height: 2.2rem;
+        flex-shrink: 0;
+
+        &.active {
+            width: calc(100vw - 80px);
+            max-width: calc(100vw - 80px);
+        }
     }
-  }
 
-  .search-btn .search-icon {
-    font-size: 1rem;
-  }
+    .search-input {
+        &.open {
+            width: 120px !important;
+        }
+    }
+
+    .search-btn .search-icon {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .search-container {
-    height: 2rem;
-  }
-
-  .input-wrapper {
-    width: fit-content;
-    max-width: fit-content;
-    height: 2rem;
-    padding: 0 10px;
-    gap: 0.25rem;
-    flex-shrink: 0;
-
-    &.active {
-      width: calc(100vw - 60px);
-      max-width: calc(100vw - 60px);
+    .search-container {
+        height: 2rem;
     }
-  }
 
-  .search-input {
-    font-size: 0.95rem;
+    .input-wrapper {
+        width: fit-content;
+        max-width: fit-content;
+        height: 2rem;
+        padding: 0 10px;
+        gap: 0.25rem;
+        flex-shrink: 0;
 
-    &.open {
-      width: 100px !important;
+        &.active {
+            width: calc(40vw - 0px);
+            max-width: calc(40vw - 0px);
+        }
     }
-  }
 
-  .search-btn .search-icon {
-    font-size: 0.95rem;
-  }
+    .search-input {
+        font-size: 0.95rem;
 
-  .clear-btn svg {
-    font-size: 0.85rem;
-  }
+        &.open {
+            width: 100px !important;
+        }
+    }
 
-  .search-hint {
-    font-size: 0.75rem;
-  }
+    .search-btn .search-icon {
+        font-size: 0.95rem;
+    }
+
+    .clear-btn svg {
+        font-size: 0.85rem;
+    }
+
+    .search-hint {
+        font-size: 0.75rem;
+    }
 }

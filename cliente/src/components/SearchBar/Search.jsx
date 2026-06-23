@@ -1,17 +1,13 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import "./Search.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   faSearch,
   faTimes,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
 import { AuthContext } from "../../context/authContext";
-
 import { API_URL } from "../../config";
 
 const Search = ({ setSearchResult }) => {
