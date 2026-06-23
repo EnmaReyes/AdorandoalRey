@@ -1,71 +1,358 @@
-.hidden {
-    display: none;
+// ==================== VARIABLES ====================
+$primary-color: #1a5f7f;
+$secondary-color: #e67e22;
+$accent-color: #2e86ab;
+$light-bg: #f8fafb;
+$dark-text: #2c3e50;
+$light-text: #7f8c8d;
+$border-light: #e0e6ed;
+$white: #ffffff;
+
+$font-primary: 'Open Sans', sans-serif;
+$font-title: 'Montserrat', sans-serif;
+
+// ==================== ANIMATIONS ====================
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* === Apple-style results container === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+// ==================== MIXINS ====================
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin shadow-soft {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@mixin shadow-medium {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+@mixin shadow-hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+// ==================== SEARCH RESULTS CONTAINER ====================
+.search-results-container {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  background: $white;
+  border: 1px solid $border-light;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  @include shadow-medium;
+  animation: slideInDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    max-width: calc(100vw - 2rem);
+    max-height: 400px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: calc(100vw - 1rem);
+    max-height: 300px;
+  }
+}
+
+// ==================== RESULTS HEADER ====================
+.results-header {
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, $light-bg 0%, #fafbfc 100%);
+  border-bottom: 1px solid $border-light;
+  flex-shrink: 0;
+
+  .result-count {
+    font-family: $font-primary;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $light-text;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// ==================== RESULTS LIST ====================
 .results-list {
-    position: absolute;
-    width: 420px;
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.45);
-    border-radius: 18px;
-    padding: 0.5rem 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    max-height: 330px;
-    overflow-y: auto;
-    margin-top: 2.5rem;
-    margin-left: 12px;
-    animation: fadeIn 0.25s ease-out;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $border-light;
+    border-radius: 3px;
+
+    &:hover {
+      background: $light-text;
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: $border-light transparent;
 }
 
-/* Hide scrollbar */
-.results-list::-webkit-scrollbar {
-    width: 0;
-}
-
-/* === Each item === */
+// ==================== RESULT ITEM ====================
 .result-item {
-    text-decoration: none;
-    display: block;
-}
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba($border-light, 0.5);
+  @include transition(all, 0.2s);
+  animation: fadeInUp 0.3s ease-out;
+  animation-fill-mode: both;
 
-.result-title {
-    padding: 12px 18px;
-    font-size: 1rem;
-    color: #222;
-    font-weight: 500;
-    transition: background 0.2s ease;
-    border-radius: 12px;
-}
-
-.result-title:hover {
-    background: rgba(255, 255, 255, 0.75);
-}
-
-/* Fade animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      animation-delay: calc(#{$i} * 0.05s);
     }
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+  &:last-child {
+    border-bottom: none;
+  }
 
-/* === Mobile === */
-@media (max-width: 768px) {
-    .results-list {
-        width: 180px;
-        margin-left: 0;
-        border-radius: 14px;
-        padding: 0.3rem 0;
+  &:hover {
+    background-color: rgba($secondary-color, 0.05);
+
+    .result-arrow {
+      opacity: 1;
+      transform: translateX(4px);
     }
 
     .result-title {
-        padding: 10px 14px;
-        font-size: 0.9rem;
+      color: $secondary-color;
     }
+  }
+
+  &:active {
+    background-color: rgba($secondary-color, 0.1);
+  }
+}
+
+// ==================== RESULT CONTENT ====================
+.result-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+// ==================== RESULT TITLE ====================
+.result-title {
+  font-family: $font-title;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $dark-text;
+  margin: 0 0 0.3rem 0;
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
+  @include transition(color, 0.2s);
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+// ==================== RESULT DESCRIPTION ====================
+.result-desc {
+  font-family: $font-primary;
+  font-size: 0.8rem;
+  color: $light-text;
+  margin: 0.2rem 0;
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
+}
+
+// ==================== RESULT META ====================
+.result-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+
+  time {
+    font-family: $font-primary;
+    font-size: 0.75rem;
+    color: $light-text;
+    opacity: 0.8;
+  }
+}
+
+// ==================== RESULT ARROW ====================
+.result-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: rgba($secondary-color, 0.1);
+  color: $secondary-color;
+  font-size: 0.8rem;
+  opacity: 0;
+  flex-shrink: 0;
+  @include transition(all, 0.2s);
+
+  @media (max-width: 768px) {
+    opacity: 0.6;
+  }
+}
+
+// ==================== RESULTS FOOTER ====================
+.results-footer {
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, rgba($secondary-color, 0.05), rgba($accent-color, 0.05));
+  border-top: 1px solid $border-light;
+  text-align: center;
+  flex-shrink: 0;
+
+  .more-results {
+    font-family: $font-primary;
+    font-size: 0.85rem;
+    color: $secondary-color;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+}
+
+// ==================== EMPTY STATE (Opcional) ====================
+.empty-state {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: $light-text;
+
+  p {
+    font-family: $font-primary;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
+
+// ==================== RESPONSIVE ADJUSTMENTS ====================
+@media (max-width: 768px) {
+  .search-results-container {
+    max-width: calc(100vw - 2rem);
+    border-radius: 10px;
+  }
+
+  .result-item {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .result-title {
+    font-size: 0.9rem;
+  }
+
+  .result-desc {
+    font-size: 0.75rem;
+  }
+
+  .result-meta time {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-results-container {
+    max-width: calc(100vw - 1rem);
+    max-height: 280px;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .results-header,
+  .results-footer {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .result-item {
+    padding: 0.5rem 0.8rem;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.08);
+    }
+  }
+
+  .result-content {
+    gap: 0.8rem;
+  }
+
+  .result-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .result-arrow {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  .results-footer .more-results {
+    font-size: 0.8rem;
+  }
 }
